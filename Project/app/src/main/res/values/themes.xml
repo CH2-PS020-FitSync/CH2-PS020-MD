@@ -1,0 +1,237 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FitSync" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_light_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorOnError">@color/md_theme_light_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
+        <item name="colorOutline">@color/md_theme_light_outline</item>
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_light_background</item>
+        <item name="colorPrimaryDark">@color/md_theme_light_background</item>
+        <item name="colorAccent">@color/md_theme_light_background</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">57sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">6sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.FitSync.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+
+    //BottomNavigationView
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+        <item name="itemTextColor">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="itemIconTint">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="itemIconSize">20dp</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.FitSync.LabelMedium</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.FitSync.LabelLarge</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorSurface">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+
+    </style>
+
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
+        <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal
+        </item>
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
+        </item>
+        <item name="android:color">@color/md_theme_light_surface</item>
+    </style>
+
+    //Button
+
+    <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button.TextButton</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
+        <item name="android:textColor">@color/md_theme_light_onPrimaryContainer</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.Material3.Button">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelLarge</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Button.TextButton" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="colorOnContainer">@color/md_theme_light_primaryContainer</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Button" parent="ThemeOverlay.Material3.Button">
+        <item name="colorContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnContainer">@color/md_theme_light_onPrimaryContainer</item>
+    </style>
+
+
+    <style name="Theme.FitSync" parent="Base.Theme.FitSync">
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.FitSync.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.FitSync.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.FitSync.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.FitSync.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.FitSync.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.FitSync.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.FitSync.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.FitSync.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.FitSync.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.FitSync.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.FitSync.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.FitSync.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.FitSync.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.FitSync.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.FitSync.LabelSmall</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
+
+        <item name="materialButtonOutlinedStyle">@style/Widget.App.Button.OutlinedButton</item>
+        <item name="materialButtonStyle">@style/Widget.App.Button</item>
+    </style>
+
+
+</resources>

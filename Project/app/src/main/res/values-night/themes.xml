@@ -1,0 +1,93 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FitSync" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/md_theme_dark_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_dark_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_dark_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_dark_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_dark_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_dark_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_dark_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_dark_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_dark_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_dark_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_dark_error</item>
+        <item name="colorOnError">@color/md_theme_dark_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_dark_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_dark_onErrorContainer</item>
+        <item name="colorOutline">@color/md_theme_dark_outline</item>
+        <item name="android:colorBackground">@color/md_theme_dark_background</item>
+        <item name="colorOnBackground">@color/md_theme_dark_onBackground</item>
+        <item name="colorSurface">@color/md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_dark_onSurfaceVariant</item>
+        <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
+        <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_dark_background</item>
+        <item name="colorPrimaryDark">@color/md_theme_dark_background</item>
+        <item name="colorAccent">@color/md_theme_dark_background</item>
+    </style>
+
+    //BottomNavigationView
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+        <item name="itemTextColor">@color/md_theme_dark_onSurfaceVariant</item>
+        <item name="itemIconTint">@color/md_theme_dark_onSurfaceVariant</item>
+        <item name="itemIconSize">20dp</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.FitSync.LabelMedium</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.FitSync.LabelLarge</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorSurface">@color/md_theme_dark_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_dark_onSurfaceVariant</item>
+
+    </style>
+
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
+        <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
+        <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal
+        </item>
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.Material3.NavigationBarView.ActiveIndicator
+        </item>
+        <item name="android:color">@color/md_theme_dark_surface</item>
+    </style>
+
+    //Button+OutlineButton
+    <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button.TextButton</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
+
+        <item name="android:textColor">@color/md_theme_dark_onPrimaryContainer</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.Material3.Button">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelLarge</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Button.TextButton" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="colorOnContainer">@color/md_theme_dark_primaryContainer</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Button" parent="ThemeOverlay.Material3.Button">
+        <item name="colorContainer">@color/md_theme_dark_primaryContainer</item>
+        <item name="colorOnContainer">@color/md_theme_dark_onPrimaryContainer</item>
+    </style>
+
+
+</resources>
