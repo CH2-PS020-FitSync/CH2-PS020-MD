@@ -9,4 +9,11 @@
     <string name="login">Login</string>
     <string name="or">Or</string>
     <string name="register">Register</string>
+    <string name="greetings_login">Welcome Back !, Glad to see you again Companion</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="back_description">Back Button</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="dont_have_acc">Whoops?, don’t have an account yet ?</string>
+    <string name="register_here">Register Here</string>
 </resources>
