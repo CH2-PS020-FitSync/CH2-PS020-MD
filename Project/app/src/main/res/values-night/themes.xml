@@ -106,7 +106,7 @@
     </style>
 
     //EditText
-    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
+    <style name="Widget.App.TextInputLayout.FilledBox." parent="Widget.Material3.TextInputLayout.FilledBox">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
         <item name="hintTextAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
         <item name="hintTextColor">@color/md_theme_dark_onSurface</item>

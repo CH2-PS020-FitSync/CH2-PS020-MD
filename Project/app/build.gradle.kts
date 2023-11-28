@@ -39,9 +39,11 @@ android {
     }
 }
 
+
 dependencies {
     //UI
-    implementation ("com.airbnb.android:lottie:3.4.0")
+    implementation("com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0")
+    implementation("com.airbnb.android:lottie:3.4.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")

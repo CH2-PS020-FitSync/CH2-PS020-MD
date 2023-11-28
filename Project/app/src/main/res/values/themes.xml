@@ -196,8 +196,13 @@
         <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
         <item name="android:textColor">@color/md_theme_light_onBackground</item>
     </style>
-    //OutlineButton
 
+    <style name="ThemeOverlay.App.Button.TextButton" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="colorOnContainer">@color/md_theme_light_primaryContainer</item>
+    </style>
+
+
+    //OutlineButton
     <style name="Widget.App.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button.TextButton</item>
         <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
@@ -215,15 +220,11 @@
     </style>
 
     //Button
-
     <style name="Widget.App.Button" parent="Widget.Material3.Button">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.Button</item>
         <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelLarge</item>
     </style>
 
-    <style name="ThemeOverlay.App.Button.TextButton" parent="ThemeOverlay.Material3.Button.TextButton">
-        <item name="colorOnContainer">@color/md_theme_light_primaryContainer</item>
-    </style>
 
     <style name="ThemeOverlay.App.Button" parent="ThemeOverlay.Material3.Button">
         <item name="colorContainer">@color/md_theme_light_primaryContainer</item>
@@ -232,7 +233,7 @@
 
 
     //EditText
-    <style name="Widget.App.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
+    <style name="Widget.App.TextInputLayout.FilledBox" parent="Widget.Material3.TextInputLayout.FilledBox">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
         <item name="hintTextAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
         <item name="hintTextColor">@color/md_theme_light_onSurface</item>
@@ -248,8 +249,6 @@
         <item name="colorError">@color/md_theme_light_error</item>
         <item name="editTextStyle">@style/Widget.Material3.TextInputEditText.FilledBox</item>
     </style>
-
-
 
     <style name="Theme.FitSync" parent="Base.Theme.FitSync">
         <item name="textAppearanceDisplayLarge">@style/TextAppearance.FitSync.DisplayLarge</item>
@@ -276,7 +275,7 @@
         <item name="materialButtonOutlinedStyle">@style/Widget.App.Button.OutlinedButton</item>
         <item name="materialButtonStyle">@style/Widget.App.Button</item>
         
-        <item name="textInputFilledStyle">@style/Widget.App.TextInputLayout</item>
+        <item name="textInputFilledStyle">@style/Widget.App.TextInputLayout.FilledBox</item>
     </style>
 
 
