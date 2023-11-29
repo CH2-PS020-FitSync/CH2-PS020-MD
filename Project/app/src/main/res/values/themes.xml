@@ -265,7 +265,6 @@
     </style>
 
     //CardView
-
     <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Elevated">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.Card</item>
     </style>

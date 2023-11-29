@@ -25,6 +25,7 @@
             style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:text="@string/greetings"
             app:layout_constraintStart_toEndOf="@id/iv_photo"
@@ -35,6 +36,7 @@
             style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop=""
             android:layout_marginStart="10dp"
             android:text="@string/welcome"
             app:layout_constraintStart_toEndOf="@id/iv_photo"
@@ -53,22 +55,74 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="?attr/colorPrimaryContainer"
+            android:elevation="8dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_photo">
 
-            <TextView
-                android:id="@+id/tv_cardName"
-                style="@style/TextAppearance.FitSync.TitleMedium"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:layout_margin="20dp"
-                />
+                android:padding="20dp">
 
+                <TextView
+                    android:id="@+id/card_name"
+                    style="@style/TextAppearance.FitSync.TitleMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_age_gender"
+                    style="@style/TextAppearance.FitSync.LabelMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/age_gender"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_name" />
+
+                <ImageView
+                    android:id="@+id/iv_gender"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_female"
+                    android:backgroundTint="?attr/colorOnPrimaryContainer"
+                    android:rotation="45"
+                    app:layout_constraintStart_toEndOf="@id/tv_age_gender"
+                    app:layout_constraintTop_toBottomOf="@id/card_name" />
+
+                <TextView
+                    android:id="@+id/tv_favoriteWorkouts"
+                    style="@style/TextAppearance.FitSync.LabelMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/favorite_workout"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_age_gender" />
+
+                <TextView
+                    android:id="@+id/title_cardHeight"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/card_height"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toEndOf="@id/tv_favoriteWorkouts"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

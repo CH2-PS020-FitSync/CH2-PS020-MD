@@ -64,4 +64,7 @@
     <string name="failed_changed_password">Failed changed password</string>
     <string name="retry">Retry</string>
     <string name="greetings">Greetings</string>
+    <string name="age_gender">20 - Female/Male</string>
+    <string name="favorite_workout">Currently Favorited Workouts : \n</string>
+    <string name="card_height">Height :</string>
 </resources>
