@@ -28,7 +28,7 @@
             app:layout_constraintEnd_toEndOf="@id/iv_photo"
             app:layout_constraintStart_toStartOf="@id/iv_photo"
             app:layout_constraintTop_toBottomOf="@id/iv_photo"
-            tools:text="Shen Xiaoting" />
+            android:text="Shen Xiaoting" />
 
         <TextView
             android:id="@+id/tv_age_gender"
@@ -38,11 +38,10 @@
             app:layout_constraintEnd_toEndOf="@id/iv_name"
             app:layout_constraintStart_toStartOf="@id/iv_name"
             app:layout_constraintTop_toBottomOf="@id/iv_name"
-            tools:text="25 - Female" />
+            android:text="25 - Female" />
 
         <TextView
             android:id="@+id/tv_account"
-            style="@style/TextAppearance.FitSync.LabelSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Account"
@@ -62,23 +61,32 @@
             android:id="@+id/tie_account"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
             android:text="Change account profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_account"
             app:layout_constraintTop_toBottomOf="@id/tv_account" />
+
+        <ImageButton
+            android:id="@+id/bt_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_account" />
 
         <ImageView
             android:id="@+id/iv_logoutt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_logout_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_logoutt"
+            app:layout_constraintBottom_toBottomOf="@id/tie_logout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tie_account" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_logoutt"
+            android:id="@+id/tie_logout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:editable="false"
@@ -91,10 +99,11 @@
             android:id="@+id/ib_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@null"
             android:src="@drawable/baseline_arrow_forward_ios_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_logoutt"
+            app:layout_constraintBottom_toBottomOf="@id/tie_logout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_logoutt" />
+            app:layout_constraintTop_toTopOf="@id/tie_logout" />
 
         <TextView
             android:id="@+id/tv_preferences"
@@ -104,13 +113,14 @@
             android:layout_marginTop="20dp"
             android:text="Preferences"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tie_logoutt" />
+            app:layout_constraintTop_toBottomOf="@id/tie_logout" />
 
         <ImageView
             android:id="@+id/iv_notif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_notifications_active_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_notif"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_preferences" />
 
@@ -120,10 +130,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Notifications"
-            app:layout_constraintBottom_toBottomOf="@id/iv_notif"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_notif"
-            app:layout_constraintTop_toTopOf="@id/iv_notif" />
+            app:layout_constraintTop_toBottomOf="@id/tv_preferences" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_notif"
@@ -157,7 +166,72 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tie_themes" />
 
+        <TextView
+            android:id="@+id/tv_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="More Info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tie_themes" />
 
+        <ImageView
+            android:id="@+id/iv_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_info_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_about"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_about" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_about"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:text="About FitSync"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_about"
+            app:layout_constraintTop_toBottomOf="@id/tv_more_info" />
+
+        <ImageButton
+            android:id="@+id/ib_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_about"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_about" />
+
+
+        <ImageView
+            android:id="@+id/iv_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_star_outline_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_rate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_rate" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rate Us"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_rate"
+            app:layout_constraintTop_toBottomOf="@id/tie_about" />
+
+        <ImageButton
+            android:id="@+id/ib_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_rate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_rate" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

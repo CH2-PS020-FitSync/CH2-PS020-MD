@@ -1,6 +1,7 @@
 package com.example.CH2_PS020.fitsync.ui.account
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +16,7 @@ class AccountFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentAccountBinding.inflate(layoutInflater)
-        binding.ibLogout.setOnClickListener {
-            Toast.makeText(requireActivity(),"clicked",Toast.LENGTH_SHORT).show()
-        }
+
     }
 
     override fun onCreateView(
@@ -25,6 +24,15 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false)
+//        return inflater.inflate(R.layout.fragment_account, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.ibLogout.setOnClickListener {
+            Log.d("IB","CLICKED")
+            Toast.makeText(requireActivity(),"clicked",Toast.LENGTH_SHORT).show()
+        }
     }
 }
