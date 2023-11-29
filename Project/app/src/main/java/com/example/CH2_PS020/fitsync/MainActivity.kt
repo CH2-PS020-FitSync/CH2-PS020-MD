@@ -20,11 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val homeFragment = HomeFragment()
         val workoutFragment = WorkoutFragment()
         val trackerFragment = TrackerFragment()
         val accountFragment = AccountFragment()
-        setFragment(homeFragment)
+        val testFragment = TestingFragment()
+        setFragment(testFragment)
 
         val shapeDrawable : MaterialShapeDrawable= binding.bottomNavigationView.background as MaterialShapeDrawable
         shapeDrawable.shapeAppearanceModel = shapeDrawable.shapeAppearanceModel
