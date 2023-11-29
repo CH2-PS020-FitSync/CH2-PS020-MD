@@ -52,4 +52,16 @@
     <string name="expert">4 or More days (Expert)</string>
     <string name="reset">Reset</string>
     <string name="done">Done</string>
+    <string name="welcome">Welcome</string>
+    <string name="subtitle_forgotpassword">Don’t worry !, it occurs. Please enter the email address linked with your account.</string>
+    <string name="send_code">Send Code</string>
+    <string name="title_createnewpassword">Create New Password</string>
+    <string name="subtitle_createnewpassword">Create your new password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="title_passwordChanged_success">Password Changed !</string>
+    <string name="subtitle_changedPass_success">Your password has been changed successfully</string>
+    <string name="back_to_login">Back to Login !</string>
+    <string name="failed_changed_password">Failed changed password</string>
+    <string name="retry">Retry</string>
+    <string name="greetings">Greetings</string>
 </resources>
