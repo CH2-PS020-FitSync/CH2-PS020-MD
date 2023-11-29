@@ -39,7 +39,123 @@
             app:layout_constraintStart_toStartOf="@id/iv_name"
             app:layout_constraintTop_toBottomOf="@id/iv_name"
             tools:text="25 - Female" />
-        
+
+        <TextView
+            android:id="@+id/tv_account"
+            style="@style/TextAppearance.FitSync.LabelSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_age_gender" />
+
+        <ImageView
+            android:id="@+id/iv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_account"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_account" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+            android:text="Change account profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_account"
+            app:layout_constraintTop_toBottomOf="@id/tv_account" />
+
+        <ImageView
+            android:id="@+id/iv_logoutt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_logout_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_logoutt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tie_account" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_logoutt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:text="Logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_logoutt"
+            app:layout_constraintTop_toBottomOf="@id/tie_account" />
+
+        <ImageButton
+            android:id="@+id/ib_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_forward_ios_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_logoutt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_logoutt" />
+
+        <TextView
+            android:id="@+id/tv_preferences"
+            style="@style/TextAppearance.FitSync.LabelMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Preferences"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tie_logoutt" />
+
+        <ImageView
+            android:id="@+id/iv_notif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_notifications_active_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_preferences" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_notif"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Notifications"
+            app:layout_constraintBottom_toBottomOf="@id/iv_notif"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_notif"
+            app:layout_constraintTop_toTopOf="@id/iv_notif" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_notif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_notif" />
+
+        <ImageView
+            android:id="@+id/iv_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_format_paint_24"
+            app:layout_constraintBottom_toBottomOf="@id/tie_themes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_themes" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tie_themes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Change Themes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_theme"
+            app:layout_constraintTop_toBottomOf="@id/tie_notif" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tie_themes" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
