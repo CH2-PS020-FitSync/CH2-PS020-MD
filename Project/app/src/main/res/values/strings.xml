@@ -85,4 +85,27 @@
     <string name="more_info">More Info</string>
     <string name="about_the_fitsync">About the FitSync</string>
     <string name="rate_us">Rate Us</string>
+    <string name="about">About</string>
+    <string name="to_about_page">To About page</string>
+    <string name="to_change_profile">to Change Profile</string>
+    <string name="dark_theme">Dark theme</string>
+    <string name="fitsync_logo">FitSync Logo</string>
+    <string name="about_description">FitSync adalah sebuah aplikasi yang membantu user menjaga kesehatan dengan men-Tracking pola hidup sehat user dengan memperbolehkan user untuk memantau Weight dan Workouts Journey sesuai dengan preferensi user.</string>
+    <string name="meet_fitsync_team">Meet FitSync Team</string>
+    <string name="machine_learning">Machine Learning</string>
+    <string name="cloud_computing">Cloud Computing</string>
+    <string name="mobile_development">Mobile Development</string>
+    <string name="description_workout">Description Workout</string>
+    <string name="icon_favorite">Icon Favorite</string>
+    <string name="time">40:00</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="edit_account">Edit Account</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save">Save</string>
+    <string name="subtitle_succes_changeProfile">Horray !, your profile has been changed</string>
+    <string name="title_logout_dialog">Are you sure ?</string>
+    <string name="subtitle_logout_dialog">Comeback again Companion!</string>
+    <string name="logout_byebye">Byebye !</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -69,6 +69,7 @@
                 android:id="@+id/iv_account"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:contentDescription="@string/account"
                 android:src="@drawable/baseline_edit_24" />
 
             <TextView
@@ -88,6 +89,7 @@
                 android:id="@+id/iv_goChangeProf"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="@string/to_change_profile"
                 android:src="@drawable/baseline_arrow_forward_ios_24" />
         </LinearLayout>
 
@@ -113,6 +115,7 @@
                 android:id="@+id/iv_logout"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:contentDescription="@string/logout"
                 android:src="@drawable/baseline_logout_24" />
 
             <TextView
@@ -132,6 +135,7 @@
                 android:id="@+id/iv_goLogout"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="@string/logout"
                 android:src="@drawable/baseline_arrow_forward_ios_24" />
         </LinearLayout>
 
@@ -168,6 +172,7 @@
                 android:id="@+id/iv_notification"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:contentDescription="@string/notifications"
                 android:src="@drawable/baseline_notifications_active_24" />
 
             <TextView
@@ -180,8 +185,15 @@
                 android:textColor="?attr/colorOnBackground" />
 
             <com.google.android.material.divider.MaterialDivider
-                android:layout_width="120dp"
+                android:layout_width="179dp"
                 android:layout_height="0dp" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/sw_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:checked="false"
+                />
 
         </LinearLayout>
 
@@ -207,6 +219,7 @@
                 android:id="@+id/iv_changeTheme"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:contentDescription="@string/change_theme"
                 android:src="@drawable/baseline_format_paint_24" />
 
             <TextView
@@ -215,12 +228,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/change_theme"
+                android:text="@string/dark_theme"
                 android:textColor="?attr/colorOnBackground" />
 
             <com.google.android.material.divider.MaterialDivider
-                android:layout_width="120dp"
+                android:layout_width="186dp"
                 android:layout_height="0dp" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/sw_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:checked="false"
+                />
 
         </LinearLayout>
 
@@ -257,6 +277,7 @@
                 android:id="@+id/iv_about"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:contentDescription="@string/about"
                 android:src="@drawable/baseline_info_24" />
 
             <TextView
@@ -276,6 +297,7 @@
                 android:id="@+id/iv_goAbout"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="@string/to_about_page"
                 android:src="@drawable/baseline_arrow_forward_ios_24" />
 
         </LinearLayout>
@@ -302,6 +324,7 @@
                 android:id="@+id/iv_rate"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
+                android:contentDescription="@string/rate_us"
                 android:src="@drawable/baseline_star_outline_24" />
 
             <TextView
@@ -321,6 +344,7 @@
                 android:id="@+id/iv_goRate"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="@string/rate_us"
                 android:src="@drawable/baseline_arrow_forward_ios_24" />
 
         </LinearLayout>

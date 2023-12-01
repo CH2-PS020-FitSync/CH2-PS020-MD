@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.account.AboutActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/ib_back"
+            style="@style/Widget.App.Button.IconButton.Filled"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/ic_arrow_back"
+            android:contentDescription="@string/back_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_about"
+            style="@style/TextAppearance.FitSync.HeadlineMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/about"
+            app:layout_constraintStart_toEndOf="@id/ib_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/logo_fitsync"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:contentDescription="@string/fitsync_logo"
+            android:src="@drawable/fitsync_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_about" />
+
+        <TextView
+            android:id="@+id/tv_aboutDesc"
+            style="@style/TextAppearance.FitSync.BodyLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/about_description"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo_fitsync" />
+
+        <TextView
+            android:id="@+id/title_introduce"
+            style="@style/TextAppearance.FitSync.HeadlineLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/meet_fitsync_team"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_aboutDesc" />
+
+        <TextView
+            android:id="@+id/title_ML"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/machine_learning"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_introduce" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photoML1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toStartOf="@id/iv_photoML2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_ML"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photoML2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="@id/iv_photoML3"
+            app:layout_constraintStart_toEndOf="@id/iv_photoML1"
+            app:layout_constraintTop_toBottomOf="@id/title_ML"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photoML3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_photoML2"
+            app:layout_constraintTop_toBottomOf="@id/title_ML"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <TextView
+            android:id="@+id/title_CC"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/cloud_computing"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_photoML2" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photoCC1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toStartOf="@id/iv_photoCC2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_CC"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photoCC2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_photoCC1"
+            app:layout_constraintTop_toBottomOf="@id/title_CC"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <TextView
+            android:id="@+id/title_MD"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/mobile_development"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_photoCC2" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photoMD1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toStartOf="@id/iv_photoCC2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_MD"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photoMD2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_photoMD1"
+            app:layout_constraintTop_toBottomOf="@id/title_MD"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

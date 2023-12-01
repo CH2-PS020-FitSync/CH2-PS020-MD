@@ -30,9 +30,9 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.ibLogout.setOnClickListener {
-            Log.d("IB","CLICKED")
-            Toast.makeText(requireActivity(),"clicked",Toast.LENGTH_SHORT).show()
-        }
+//        binding.ibLogout.setOnClickListener {
+//            Log.d("IB","CLICKED")
+//            Toast.makeText(requireActivity(),"clicked",Toast.LENGTH_SHORT).show()
+//        }
     }
 }

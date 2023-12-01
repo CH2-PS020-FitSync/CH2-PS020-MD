@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.workout.StartWorkout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <Button
+            android:id="@+id/ib_back"
+            style="@style/Widget.App.Button.IconButton.Filled"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/ic_arrow_back"
+            android:contentDescription="@string/back_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ic_favorite"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/icon_favorite"
+            android:src="@drawable/ic_favorite_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_startWorkoutName"
+            style="@style/TextAppearance.FitSync.TitleLarge"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/workout_name"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_back" />
+
+        <TextView
+            android:id="@+id/tv_startTargetWorkout"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/target_workout"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_startWorkoutName" />
+
+        <TextView
+            android:id="@+id/tv_startMinuteWorkout"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/level_minutes"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_startTargetWorkout" />
+
+        <TextView
+            android:id="@+id/tv_startDescWorkout"
+            style="@style/TextAppearance.FitSync.LabelMedium"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/description_workout"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_startMinuteWorkout" />
+
+        <ImageView
+            android:id="@+id/iv_startWorkoutPic"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/workout"
+            android:src="@drawable/fitsync_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ic_favorite" />
+
+        <TextView
+            android:id="@+id/tv_timer"
+            style="@style/TextAppearance.FitSync.DisplayLarge"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/time"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_startDescWorkout" />
+
+        <Button
+            android:id="@+id/btn_startWorkout"
+            style="@style/Widget.App.Button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/start"
+            app:layout_constraintEnd_toStartOf="@id/btn_endWorkout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_timer" />
+
+        <Button
+            android:id="@+id/btn_endWorkout"
+            style="@style/Widget.App.Button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/stop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_startWorkout"
+            app:layout_constraintTop_toBottomOf="@id/tv_timer" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_startWorkout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
