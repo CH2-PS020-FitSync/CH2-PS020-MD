@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="20dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_photo"
@@ -25,85 +26,123 @@
             style="@style/TextAppearance.FitSync.TitleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="?attr/colorOnBackground"
+
             app:layout_constraintEnd_toEndOf="@id/iv_photo"
             app:layout_constraintStart_toStartOf="@id/iv_photo"
-            app:layout_constraintTop_toBottomOf="@id/iv_photo"
-            android:text="Shen Xiaoting" />
+            app:layout_constraintTop_toBottomOf="@id/iv_photo" />
 
         <TextView
             android:id="@+id/tv_age_gender"
             style="@style/TextAppearance.FitSync.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/age_gender"
+            android:textColor="?attr/colorOnBackground"
+
             app:layout_constraintEnd_toEndOf="@id/iv_name"
             app:layout_constraintStart_toStartOf="@id/iv_name"
-            app:layout_constraintTop_toBottomOf="@id/iv_name"
-            android:text="25 - Female" />
+            app:layout_constraintTop_toBottomOf="@id/iv_name" />
 
         <TextView
             android:id="@+id/tv_account"
+            style="@style/TextAppearance.FitSync.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account"
+            android:layout_marginTop="20dp"
+            android:text="@string/account"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_age_gender" />
 
-        <ImageView
-            android:id="@+id/iv_account"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout_changeAccount"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_edit_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_account"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_account" />
+            app:layout_constraintTop_toBottomOf="@id/tv_account">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_account"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Change account profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_account"
-            app:layout_constraintTop_toBottomOf="@id/tv_account" />
+            <ImageView
+                android:id="@+id/iv_account"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_edit_24" />
 
-        <ImageButton
-            android:id="@+id/bt_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/baseline_arrow_forward_ios_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_account"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_account" />
+            <TextView
+                android:id="@+id/title_changeAccProf"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/change_account_profile"
+                android:textColor="?attr/colorOnBackground" />
 
-        <ImageView
-            android:id="@+id/iv_logoutt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_logout_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_logout"
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="120dp"
+                android:layout_height="0dp" />
+
+            <ImageView
+                android:id="@+id/iv_goChangeProf"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24" />
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerAccount1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tie_account" />
+            app:layout_constraintTop_toBottomOf="@id/layout_changeAccount" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_logout"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/layout_logout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:editable="false"
-            android:text="Logout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_logoutt"
-            app:layout_constraintTop_toBottomOf="@id/tie_account" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerAccount1">
 
-        <ImageButton
-            android:id="@+id/ib_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/baseline_arrow_forward_ios_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_logout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_logout" />
+            <ImageView
+                android:id="@+id/iv_logout"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_logout_24" />
+
+            <TextView
+                android:id="@+id/title_logout"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/logout"
+                android:textColor="?attr/colorOnBackground" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="255dp"
+                android:layout_height="0dp" />
+
+            <ImageView
+                android:id="@+id/iv_goLogout"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24" />
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerAccount2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_logout" />
 
         <TextView
             android:id="@+id/tv_preferences"
@@ -111,127 +150,191 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Preferences"
+            android:text="@string/preferences"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tie_logout" />
+            app:layout_constraintTop_toBottomOf="@id/dividerAccount2" />
 
-        <ImageView
-            android:id="@+id/iv_notif"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout_notification"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_notifications_active_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_notif"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_preferences" />
+            app:layout_constraintTop_toBottomOf="@id/tv_preferences">
 
+            <ImageView
+                android:id="@+id/iv_notification"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_notifications_active_24" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_notif"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Notifications"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_notif"
-            app:layout_constraintTop_toBottomOf="@id/tv_preferences" />
+            <TextView
+                android:id="@+id/title_notification"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/notifications"
+                android:textColor="?attr/colorOnBackground" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_notif"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_notif" />
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="120dp"
+                android:layout_height="0dp" />
 
-        <ImageView
-            android:id="@+id/iv_theme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_format_paint_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_themes"
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerPreferences1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_themes" />
+            app:layout_constraintTop_toBottomOf="@id/layout_notification" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_themes"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/layout_changeThemes"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Change Themes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_theme"
-            app:layout_constraintTop_toBottomOf="@id/tie_notif" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerPreferences1">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_theme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_themes" />
+            <ImageView
+                android:id="@+id/iv_changeTheme"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_format_paint_24" />
+
+            <TextView
+                android:id="@+id/title_changeThemes"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/change_theme"
+                android:textColor="?attr/colorOnBackground" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="120dp"
+                android:layout_height="0dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerPreferences2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_changeThemes" />
 
         <TextView
-            android:id="@+id/tv_more_info"
+            android:id="@+id/tv_moreInfo"
+            style="@style/TextAppearance.FitSync.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="More Info"
+            android:layout_marginTop="30dp"
+            android:text="@string/more_info"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tie_themes" />
+            app:layout_constraintTop_toBottomOf="@id/dividerPreferences2" />
 
-        <ImageView
-            android:id="@+id/iv_about"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout_about"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_info_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_about"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_about" />
+            app:layout_constraintTop_toBottomOf="@id/tv_moreInfo">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_about"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:editable="false"
-            android:text="About FitSync"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_about"
-            app:layout_constraintTop_toBottomOf="@id/tv_more_info" />
+            <ImageView
+                android:id="@+id/iv_about"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_info_24" />
 
-        <ImageButton
-            android:id="@+id/ib_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/baseline_arrow_forward_ios_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_about"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_about" />
+            <TextView
+                android:id="@+id/title_about"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/about_the_fitsync"
+                android:textColor="?attr/colorOnBackground" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="170dp"
+                android:layout_height="0dp" />
 
-        <ImageView
-            android:id="@+id/iv_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_star_outline_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_rate"
+            <ImageView
+                android:id="@+id/iv_goAbout"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerMoreInfo1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_rate" />
+            app:layout_constraintTop_toBottomOf="@id/layout_about" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tie_rate"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/layout_rateUs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rate Us"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_rate"
-            app:layout_constraintTop_toBottomOf="@id/tie_about" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dividerMoreInfo1">
 
-        <ImageButton
-            android:id="@+id/ib_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:src="@drawable/baseline_arrow_forward_ios_24"
-            app:layout_constraintBottom_toBottomOf="@id/tie_rate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tie_rate" />
+            <ImageView
+                android:id="@+id/iv_rate"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_star_outline_24" />
+
+            <TextView
+                android:id="@+id/title_rate"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/rate_us"
+                android:textColor="?attr/colorOnBackground" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="250dp"
+                android:layout_height="0dp" />
+
+            <ImageView
+                android:id="@+id/iv_goRate"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_arrow_forward_ios_24" />
+
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerMoreInfo2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_rateUs" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

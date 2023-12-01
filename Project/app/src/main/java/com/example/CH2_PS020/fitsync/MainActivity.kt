@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
         val workoutFragment = WorkoutFragment()
         val trackerFragment = TrackerFragment()
         val accountFragment = AccountFragment()
-        val testFragment = TestingFragment()
-        setFragment(testFragment)
+        setFragment(homeFragment)
 
         val shapeDrawable : MaterialShapeDrawable= binding.bottomNavigationView.background as MaterialShapeDrawable
         shapeDrawable.shapeAppearanceModel = shapeDrawable.shapeAppearanceModel

@@ -67,4 +67,22 @@
     <string name="age_gender">20 - Female/Male</string>
     <string name="favorite_workout">Currently Favorited Workouts : \n</string>
     <string name="card_height">Height :</string>
+    <string name="card_weight">Weight :</string>
+    <string name="card_bmi">BMI :</string>
+    <string name="days_streak">Days Streak</string>
+    <string name="workout_name">Workout Name</string>
+    <string name="level_minutes">Beginner - 45 Minutes</string>
+    <string name="target_workout">Target Workout</string>
+    <string name="recommended_workouts">Recommended Workouts</string>
+    <string name="all_workouts">All Workouts</string>
+    <string name="hint_searchBar">Search Workouts by name, minutes, and muscle target</string>
+    <string name="search_workouts">Search Workouts</string>
+    <string name="change_account_profile">Change Account Profile</string>
+    <string name="logout">Logout</string>
+    <string name="preferences">Preferences</string>
+    <string name="notifications">Notifications</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="more_info">More Info</string>
+    <string name="about_the_fitsync">About the FitSync</string>
+    <string name="rate_us">Rate Us</string>
 </resources>

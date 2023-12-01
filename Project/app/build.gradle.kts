@@ -43,6 +43,7 @@ android {
 dependencies {
     //UI
     implementation("com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.airbnb.android:lottie:3.4.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

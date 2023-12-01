@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.workout.WorkoutFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent">
+
+        <TextView
+            style="@style/TextAppearance.FitSync.TitleLarge"
+            android:textColor="?attr/colorOnBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/all_workouts" />
+
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/search_bar"
+            style="@style/Widget.App.SearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_workouts" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_allWorkouts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_all_workouts" />
+
+        </androidx.core.widget.NestedScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.search.SearchView
+        style="@style/Widget.App.SearchView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Workout" />
+        android:backgroundTint="@color/md_theme_light_background"
+        android:hint="@string/hint_searchBar"
+        app:layout_anchor="@id/search_bar" />
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

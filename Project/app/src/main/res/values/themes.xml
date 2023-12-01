@@ -265,6 +265,7 @@
     </style>
 
     //CardView
+
     <style name="Widget.App.CardView" parent="Widget.Material3.CardView.Elevated">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.Card</item>
     </style>
@@ -276,6 +277,7 @@
     </style>
 
     //RadioButton
+
     <style name="Widget.App.RadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.RadioButton</item>
         <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelLarge</item>
@@ -285,6 +287,37 @@
         <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
         <item name="colorPrimary">@color/md_theme_light_primary</item>
     </style>
+
+    //SearchBar
+
+    <style name="Widget.App.SearchBar" parent="Widget.Material3.SearchBar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.SearchBar</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelLarge</item>
+
+    </style>
+
+    <style name="ThemeOverlay.App.SearchBar" parent="ThemeOverlay.Material3.Search">
+        <item name="colorPrimary">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="strokeColor">@color/md_theme_light_outline</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+
+    //SearchView
+    <style name="Widget.App.SearchView" parent="Widget.Material3.SearchView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.SearchView</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
+    </style>
+
+    <style name="ThemeOverlay.App.SearchView" parent="ThemeOverlay.Material3.Search">
+        <item name="colorPrimary">@color/md_theme_light_background</item>
+        <item name="colorOnSurface">@color/md_theme_light_onBackground</item>
+        <item name="strokeColor">@color/md_theme_light_outline</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
 
     <style name="Theme.FitSync" parent="Base.Theme.FitSync">
         <item name="textAppearanceDisplayLarge">@style/TextAppearance.FitSync.DisplayLarge</item>
@@ -315,9 +348,13 @@
 
         <item name="textInputFilledStyle">@style/Widget.App.TextInputLayout.FilledBox</item>
 
-        <item name="circularProgressIndicatorStyle">@style/Widget.App.CircularProgressIndicator</item>
+        <item name="circularProgressIndicatorStyle">@style/Widget.App.CircularProgressIndicator
+        </item>
         <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
+
+        <item name="materialSearchBarStyle">@style/Widget.App.SearchBar</item>
+        <item name="materialSearchViewStyle">@style/Widget.App.SearchView</item>
     </style>
 
 

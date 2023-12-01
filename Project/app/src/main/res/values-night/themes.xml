@@ -151,8 +151,39 @@
     </style>
 
     <style name="ThemeOverlay.App.RadioButton" parent="">
-        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
-        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+        <item name="colorPrimary">@color/md_theme_dark_primary</item>
+    </style>
+
+    //SearchBar
+
+    <style name="Widget.App.SearchBar" parent="Widget.Material3.SearchBar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.SearchBar</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelLarge</item>
+
+    </style>
+
+    <style name="ThemeOverlay.App.SearchBar" parent="ThemeOverlay.Material3.Search">
+        <item name="colorPrimary">@color/md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+        <item name="strokeColor">@color/md_theme_dark_outline</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    //SearchView
+
+    <style name="Widget.App.SearchView" parent="Widget.Material3.SearchView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.SearchView</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
+    </style>
+
+    <style name="ThemeOverlay.App.SearchView" parent="ThemeOverlay.Material3.Search">
+        <item name="colorPrimary">@color/md_theme_dark_background</item>
+        <item name="colorOnSurface">@color/md_theme_dark_onBackground</item>
+        <item name="strokeColor">@color/md_theme_dark_outline</item>
+        <item name="strokeWidth">2dp</item>
     </style>
 
 

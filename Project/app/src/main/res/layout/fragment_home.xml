@@ -25,8 +25,8 @@
             style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             android:text="@string/greetings"
             app:layout_constraintStart_toEndOf="@id/iv_photo"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,8 +36,8 @@
             style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
             android:text="@string/welcome"
             app:layout_constraintStart_toEndOf="@id/iv_photo"
             app:layout_constraintTop_toBottomOf="@id/tv_greetings" />
@@ -48,16 +48,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="1dp"
             android:text="@string/name"
             app:layout_constraintStart_toEndOf="@id/tv_welcome"
             app:layout_constraintTop_toBottomOf="@id/tv_greetings" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bodyProfileCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:backgroundTint="?attr/colorPrimaryContainer"
-            android:elevation="8dp"
+            android:elevation="10dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_photo">
@@ -116,13 +118,119 @@
                     android:text="@string/card_height"
                     android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toEndOf="@id/tv_favoriteWorkouts"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tv_cardHeight"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/height"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toEndOf="@id/title_cardHeight"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/title_cardWeight"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/card_weight"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toEndOf="@id/tv_favoriteWorkouts"
+                    app:layout_constraintTop_toBottomOf="@id/title_cardHeight" />
+
+                <TextView
+                    android:id="@+id/tv_cardWeight"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/weight"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toEndOf="@id/title_cardWeight"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cardHeight" />
+
+                <TextView
+                    android:id="@+id/title_cardBMI"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/card_bmi"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toEndOf="@id/tv_favoriteWorkouts"
+                    app:layout_constraintTop_toBottomOf="@id/title_cardWeight" />
+
+                <TextView
+                    android:id="@+id/tv_cardBMI"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/card_bmi"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toEndOf="@id/title_cardBMI"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cardWeight" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:id="@+id/iv_streak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/fire"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bodyProfileCard" />
+
+        <TextView
+            android:id="@+id/tv_dayStreak"
+            style="@style/TextAppearance.FitSync.LabelMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/days_streak"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_streak" />
+
+        <TextView
+            android:id="@+id/tv_quoteStreak"
+            style="@style/TextAppearance.FitSync.LabelMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="@string/days_streak"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_dayStreak" />
+
+        <TextView
+            android:id="@+id/title_recommendedWorkout"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="@string/recommended_workouts"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_quoteStreak" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recommendedWorkouts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_recommendedWorkout"
+            tools:listitem="@layout/item_home_recommended" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
