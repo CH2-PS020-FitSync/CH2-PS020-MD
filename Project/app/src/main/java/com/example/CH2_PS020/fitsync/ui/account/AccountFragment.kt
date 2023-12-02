@@ -32,8 +32,6 @@ class AccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //TODO LOGIC
         super.onViewCreated(view, savedInstanceState)
-<<<<<<< Updated upstream
-=======
         val pref = ThemePreferences.getInstance(requireActivity().dataStoreTheme)
         val viewModel = ViewModelProvider(
             requireActivity(),
@@ -53,8 +51,6 @@ class AccountFragment : Fragment() {
         binding.swTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             viewModel.saveThemeSetting(isChecked)
         }
-
->>>>>>> Stashed changes
 
     }
 }
