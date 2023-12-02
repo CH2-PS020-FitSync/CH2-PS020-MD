@@ -1,24 +1,36 @@
 package com.example.CH2_PS020.fitsync
 
-import android.os.Build
 import android.os.Bundle
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.asLiveData
 import com.example.CH2_PS020.fitsync.databinding.ActivityMainBinding
 import com.example.CH2_PS020.fitsync.ui.account.AccountFragment
 import com.example.CH2_PS020.fitsync.ui.home.HomeFragment
 import com.example.CH2_PS020.fitsync.ui.tracker.TrackerFragment
 import com.example.CH2_PS020.fitsync.ui.workout.WorkoutFragment
+import com.example.CH2_PS020.fitsync.util.ThemePreferences
+import com.example.CH2_PS020.fitsync.util.dataStoreTheme
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var themePreferences: ThemePreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        themePreferences = ThemePreferences.getInstance(dataStoreTheme)
+        val pref = themePreferences.getThemeSetting().asLiveData()
+        pref.observe(this) {
+            if (it) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
         setContentView(binding.root)
 
         val homeFragment = HomeFragment()
@@ -27,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         val accountFragment = AccountFragment()
         setFragment(homeFragment)
 
-        val shapeDrawable : MaterialShapeDrawable= binding.bottomNavigationView.background as MaterialShapeDrawable
+        val shapeDrawable: MaterialShapeDrawable =
+            binding.bottomNavigationView.background as MaterialShapeDrawable
         shapeDrawable.shapeAppearanceModel = shapeDrawable.shapeAppearanceModel
             .toBuilder()
             .setTopLeftCorner(CornerFamily.ROUNDED, 70F)
@@ -51,7 +64,14 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .replace(binding.frameLayout.id, fragment)
-            .commit()
+            .commitNow()
+
+        when (fragment) {
+            is HomeFragment -> binding.bottomNavigationView.menu.findItem(R.id.menu_home)?.isChecked = true
+            is WorkoutFragment -> binding.bottomNavigationView.menu.findItem(R.id.menu_workout)?.isChecked = true
+            is TrackerFragment -> binding.bottomNavigationView.menu.findItem(R.id.menu_tracker)?.isChecked = true
+            is AccountFragment -> binding.bottomNavigationView.menu.findItem(R.id.menu_account)?.isChecked = true
+        }
 
         return true
     }

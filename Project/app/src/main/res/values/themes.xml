@@ -35,7 +35,7 @@
     </style>
 
     <style name="SplashScreenTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/md_theme_light_background</item>
+        <item name="colorPrimary">?attr/background</item>
         <item name="colorPrimaryDark">@color/md_theme_light_background</item>
         <item name="colorAccent">@color/md_theme_light_background</item>
     </style>
