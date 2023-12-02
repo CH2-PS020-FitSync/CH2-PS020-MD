@@ -27,12 +27,10 @@ class AccountFragment : Fragment() {
 //        return inflater.inflate(R.layout.fragment_account, container, false)
         return binding.root
     }
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //TODO LOGIC
         super.onViewCreated(view, savedInstanceState)
-//        binding.ibLogout.setOnClickListener {
-//            Log.d("IB","CLICKED")
-//            Toast.makeText(requireActivity(),"clicked",Toast.LENGTH_SHORT).show()
-//        }
+
     }
 }
