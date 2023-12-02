@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_intermediate"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:layout_marginStart="5dp"
+            android:text="Intermediate"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toEndOf="@+id/bt_sort_beginner"
+            app:layout_constraintTop_toTopOf="@+id/bt_sort_beginner" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_minutes_60"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:text="60 Minutes"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_sort_minutes_15" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_minutes_45"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:layout_marginStart="5dp"
+            android:text="45 Minutes"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toEndOf="@+id/bt_sort_minutes_30"
+            app:layout_constraintTop_toBottomOf="@+id/tv_minutes" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_minutes_30"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:text="30 Minutes"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toEndOf="@+id/bt_sort_minutes_15"
+            app:layout_constraintTop_toBottomOf="@+id/tv_minutes" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_minutes_15"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:text="15 Minutes"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_minutes" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_expert"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:layout_marginStart="5dp"
+            android:text="Expert"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toEndOf="@+id/bt_sort_intermediate"
+            app:layout_constraintTop_toTopOf="@+id/bt_sort_intermediate" />
+
+        <TextView
+            android:id="@+id/tv_filter"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_gender"
+            style="@style/TextAppearance.FitSync.LabelMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_male"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:text="Male"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_female"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="5dp"
+            android:padding="0dp"
+            android:text="Female"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toEndOf="@+id/bt_sort_male"
+            app:layout_constraintTop_toTopOf="@+id/bt_sort_male" />
+
+        <TextView
+            android:id="@+id/tv_level"
+            style="@style/TextAppearance.FitSync.LabelMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_sort_male" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_sort_beginner"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="0dp"
+            android:text="Beginner"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            android:textStyle="bold"
+            app:cornerRadius="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_level" />
+
+        <TextView
+            android:id="@+id/tv_minutes"
+            style="@style/TextAppearance.FitSync.LabelMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minutes"
+            android:textColor="@color/md_theme_light_onPrimaryContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_sort_beginner" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

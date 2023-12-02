@@ -19,7 +19,6 @@ class AccountFragment : Fragment() {
         super.onCreate(savedInstanceState)
         binding = FragmentAccountBinding.inflate(layoutInflater)
 
-
     }
 
     override fun onCreateView(
