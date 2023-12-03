@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,8 +15,8 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:padding="0dp"
             android:layout_marginStart="5dp"
+            android:padding="0dp"
             android:text="Intermediate"
             android:textColor="@color/md_theme_light_onPrimaryContainer"
             android:textStyle="bold"
@@ -41,8 +42,8 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:padding="0dp"
             android:layout_marginStart="5dp"
+            android:padding="0dp"
             android:text="45 Minutes"
             android:textColor="@color/md_theme_light_onPrimaryContainer"
             android:textStyle="bold"
@@ -55,9 +56,9 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
+            android:layout_marginStart="5dp"
             android:padding="0dp"
             android:text="30 Minutes"
-            android:layout_marginStart="5dp"
             android:textColor="@color/md_theme_light_onPrimaryContainer"
             android:textStyle="bold"
             app:cornerRadius="0dp"
@@ -82,8 +83,8 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:padding="0dp"
             android:layout_marginStart="5dp"
+            android:padding="0dp"
             android:text="Expert"
             android:textColor="@color/md_theme_light_onPrimaryContainer"
             android:textStyle="bold"
@@ -102,11 +103,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_marginTop="10dp"
             android:id="@+id/tv_gender"
             style="@style/TextAppearance.FitSync.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Gender"
             android:textColor="@color/md_theme_light_onPrimaryContainer"
             app:layout_constraintStart_toStartOf="parent"
@@ -171,6 +172,26 @@
             android:textColor="@color/md_theme_light_onPrimaryContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_sort_beginner" />
+
+        <ImageButton
+            android:elevation="2dp"
+            android:id="@+id/ib_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_theme_light_secondaryContainer"
+            android:src="@drawable/baseline_check_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:elevation="2dp"
+            android:id="@+id/ib_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_theme_light_secondaryContainer"
+            android:src="@drawable/baseline_close_24"
+            app:layout_constraintEnd_toStartOf="@id/ib_ok"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
