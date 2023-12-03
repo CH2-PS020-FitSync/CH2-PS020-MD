@@ -20,7 +20,7 @@
                 style="@style/TextAppearance.FitSync.TitleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tracker"
+                android:text="@string/tracker"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
                 style="@style/TextAppearance.FitSync.TitleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Weight Chart"
+                android:text="@string/weight_chart"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calendar_view" />
 
@@ -57,7 +57,7 @@
                 style="@style/TextAppearance.FitSync.TitleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BMI"
+                android:text="@string/bmi"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/aa_chart_view" />
 
@@ -106,7 +106,7 @@
                         style="@style/TextAppearance.FitSync.LabelLarge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Shen Xiaoting"
+                        android:text="@string/name"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.501"
@@ -119,7 +119,7 @@
                         style="@style/TextAppearance.FitSync.LabelSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="25 - Female"
+                        android:text="@string/age_gender"
                         app:layout_constraintEnd_toEndOf="@id/tv_card_name"
                         app:layout_constraintStart_toStartOf="@id/tv_card_name"
                         app:layout_constraintTop_toBottomOf="@id/tv_card_name" />
@@ -130,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Your Body Mass Index"
+                        android:text="@string/your_body_mass_index"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_card_age_gender" />
@@ -235,7 +235,6 @@
                         app:layout_constraintTop_toTopOf="@id/card_bar_bmi" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                <!--            TODO Bar untuk BMI belum-->
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

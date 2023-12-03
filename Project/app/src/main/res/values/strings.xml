@@ -108,4 +108,7 @@
     <string name="subtitle_logout_dialog">Comeback again Companion!</string>
     <string name="logout_byebye">Byebye !</string>
     <string name="cancel">Cancel</string>
+    <string name="your_body_mass_index">Your Body Mass Index</string>
+    <string name="bmi">BMI</string>
+    <string name="weight_chart">Weight Chart</string>
 </resources>
