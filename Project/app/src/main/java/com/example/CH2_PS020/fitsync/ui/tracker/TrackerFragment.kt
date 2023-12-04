@@ -1,11 +1,13 @@
 package com.example.CH2_PS020.fitsync.ui.tracker
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.TextView
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,7 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.google.android.material.button.MaterialButton
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.daysOfWeek
@@ -26,6 +29,7 @@ import com.kizitonwose.calendar.core.previousMonth
 import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
+import com.shawnlin.numberpicker.NumberPicker
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
@@ -34,11 +38,15 @@ import java.util.Locale
 class TrackerFragment : Fragment() {
 
     private lateinit var binding: FragmentTrackerBinding
+    //Calendar
     private lateinit var calendarView: CalendarView
+    //Dialog
+    private lateinit var dialogAddWeight:Dialog
+    private lateinit var pickerWeight:NumberPicker
+    private lateinit var btAdd:MaterialButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentTrackerBinding.inflate(layoutInflater)
-        calendarView = binding.calendarView
     }
 
     override fun onCreateView(
@@ -51,8 +59,25 @@ class TrackerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.ibAddWeight.setOnClickListener {
+            setupDialog()
+        }
         setupCalendar()
         setupChart()
+    }
+
+    private fun setupDialog() {
+        dialogAddWeight = Dialog(requireActivity())
+        dialogAddWeight.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogAddWeight.setContentView(R.layout.dialog_add_weight)
+        dialogAddWeight.setCancelable(true)
+
+        pickerWeight = dialogAddWeight.findViewById(R.id.picker_weight)
+        btAdd = dialogAddWeight.findViewById(R.id.bt_add_body_weight)
+        btAdd.setOnClickListener {
+            dialogAddWeight.dismiss()
+        }
+        dialogAddWeight.show()
     }
 
     private fun setupChart() {
@@ -82,6 +107,7 @@ class TrackerFragment : Fragment() {
     }
 
     private fun setupCalendar() {
+        calendarView = binding.calendarView
         calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
             override fun create(view: View): MonthViewContainer {
                 return MonthViewContainer(view)

@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_add_body_weight"
-        style="@style/TextAppearance.FitSync.TitleLarge"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_body_weight"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider_add_body_weight"
-        android:layout_width="300dp"
-        android:layout_height="5dp"
-        app:dividerColor="@color/md_theme_light_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_add_body_weight" />
+        <TextView
+            android:id="@+id/tv_add_body_weight"
+            style="@style/TextAppearance.FitSync.TitleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_body_weight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.shawnlin.numberpicker.NumberPicker
-        android:id="@+id/picker_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_add_body_weight"
-        app:np_dividerColor="#F50057"
-        app:np_max="150"
-        app:np_min="20"
-        app:np_orientation="horizontal"
-        app:np_selectedTextColor="@color/md_theme_light_primary" />
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_add_body_weight"
+            android:layout_width="300dp"
+            android:layout_height="5dp"
+            app:dividerColor="@color/md_theme_light_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_add_body_weight" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_add_body_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Add"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/picker_weight" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/picker_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_add_body_weight"
+            app:np_dividerColor="#F50057"
+            app:np_max="150"
+            app:np_min="20"
+            app:np_orientation="horizontal"
+            app:np_selectedTextColor="@color/md_theme_light_primary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_add_body_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/picker_weight" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
