@@ -114,11 +114,10 @@
                     style="@style/TextAppearance.FitSync.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:text="@string/card_height"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/tv_favoriteWorkouts"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_favoriteWorkouts" />
 
                 <TextView
                     android:id="@+id/tv_cardHeight"
@@ -129,17 +128,16 @@
                     android:text="@string/height"
                     android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toEndOf="@id/title_cardHeight"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_favoriteWorkouts" />
 
                 <TextView
                     android:id="@+id/title_cardWeight"
                     style="@style/TextAppearance.FitSync.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:text="@string/card_weight"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/tv_favoriteWorkouts"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title_cardHeight" />
 
                 <TextView
@@ -158,10 +156,9 @@
                     style="@style/TextAppearance.FitSync.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:text="@string/card_bmi"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/tv_favoriteWorkouts"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title_cardWeight" />
 
                 <TextView
