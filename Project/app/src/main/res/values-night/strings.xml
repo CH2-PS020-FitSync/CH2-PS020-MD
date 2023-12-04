@@ -3,4 +3,5 @@
     <string name="your_body_mass_index">Your Body Mass Index</string>
     <string name="bmi">BMI</string>
     <string name="weight_chart">Weight Chart</string>
+    <string name="add_body_weight">Add Body Weight</string>
 </resources>

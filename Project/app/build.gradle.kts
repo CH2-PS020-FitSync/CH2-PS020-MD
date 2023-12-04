@@ -73,4 +73,6 @@ dependencies {
     implementation ("com.kizitonwose.calendar:view:2.4.0")
     // Chart
     implementation ("com.github.AAChartModel:AAChartCore-Kotlin:7.2.0")
+    //Number Picker
+    implementation ("io.github.ShawnLin013:number-picker:2.4.13")
 }
