@@ -9,15 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.databinding.FragmentTrackerBinding
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.DayViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.MonthViewContainer
+import com.example.CH2_PS020.fitsync.ui.tracker.chart.generateRandomWeightEntries
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToBias
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+import com.github.aachartmodel.aainfographics.aachartcreator.AAChartZoomType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.button.MaterialButton
 import com.kizitonwose.calendar.core.CalendarDay
@@ -38,12 +43,20 @@ import java.util.Locale
 class TrackerFragment : Fragment() {
 
     private lateinit var binding: FragmentTrackerBinding
+
     //Calendar
     private lateinit var calendarView: CalendarView
+
     //Dialog
-    private lateinit var dialogAddWeight:Dialog
-    private lateinit var pickerWeight:NumberPicker
-    private lateinit var btAdd:MaterialButton
+    private lateinit var dialogAddWeight: Dialog
+    private lateinit var pickerWeight: NumberPicker
+    private lateinit var btAdd: MaterialButton
+
+    //Dummy Data
+    private val dummyWeightData = generateRandomWeightEntries(30)
+
+    //Slider
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentTrackerBinding.inflate(layoutInflater)
@@ -62,8 +75,21 @@ class TrackerFragment : Fragment() {
         binding.ibAddWeight.setOnClickListener {
             setupDialog()
         }
+        initViews()
+    }
+
+    private fun initViews() {
         setupCalendar()
         setupChart()
+        setupSlider(bmi = 18.6)
+    }
+
+    private fun setupSlider(bmi: Double) {
+        //Horizontal Bias
+        binding.cardBarBmi.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            horizontalBias = bmiToBias(bmi.toFloat())
+        }
+        binding.tvBmiSlider.text = bmi.toString()
     }
 
     private fun setupDialog() {
@@ -81,28 +107,26 @@ class TrackerFragment : Fragment() {
     }
 
     private fun setupChart() {
+
+        val weights = dummyWeightData.map { it.weight }
+        val dates = dummyWeightData.map { it.date }
+
         val aaChartView = view?.findViewById<AAChartView>(R.id.aa_chart_view)
-        val aaChartModel : AAChartModel = AAChartModel()
+        val aaChartModel: AAChartModel = AAChartModel()
             .chartType(AAChartType.Line)
-            .title("title")
-            .subtitle("subtitle")
-            .backgroundColor("#4b2b7f")
-            .dataLabelsEnabled(true)
-            .series(arrayOf(
-                AASeriesElement()
-                    .name("Tokyo")
-                    .data(arrayOf(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6)),
-                AASeriesElement()
-                    .name("NewYork")
-                    .data(arrayOf(0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5)),
-                AASeriesElement()
-                    .name("London")
-                    .data(arrayOf(0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0)),
-                AASeriesElement()
-                    .name("Berlin")
-                    .data(arrayOf(3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8))
+            .yAxisTitle("Weight(KG)")
+            .xAxisLabelsEnabled(true)
+            .backgroundColor("#ffffff")
+            .dataLabelsEnabled(false)
+            .series(
+                arrayOf(
+                    AASeriesElement().name("Weight").data(dummyWeightData.map {
+                        it.weight
+                    }.toTypedArray())
+                )
             )
-            )
+            .categories(dates.toTypedArray())
+            .zoomType(AAChartZoomType.XY)
         aaChartView?.aa_drawChartWithChartModel(aaChartModel)
     }
 
@@ -114,15 +138,14 @@ class TrackerFragment : Fragment() {
             }
 
             override fun bind(container: MonthViewContainer, data: CalendarMonth) {
-                calendarView.addOnItemTouchListener(object : RecyclerView.SimpleOnItemTouchListener() {
+                calendarView.addOnItemTouchListener(object :
+                    RecyclerView.SimpleOnItemTouchListener() {
                     override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
                         return rv.scrollState == RecyclerView.SCROLL_STATE_DRAGGING
                     }
                 })
-                // Remember that the header is reused so this will be called for each month.
-                // However, the first day of the week will not change so no need to bind
-                // the same view every time it is reused.
-                container.currentMonth.text = data.yearMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy"))
+                container.currentMonth.text =
+                    data.yearMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy"))
                 container.buttonNextMonth.setOnClickListener {
                     calendarView.scrollToMonth(data.yearMonth.nextMonth)
                 }
@@ -137,36 +160,37 @@ class TrackerFragment : Fragment() {
                             val title =
                                 dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
                             textView.text = title.uppercase()
-                            // In the code above, we use the same `daysOfWeek` list
-                            // that was created when we set up the calendar.
-                            // However, we can also get the `daysOfWeek` list from the month data:
-                            // val daysOfWeek = data.weekDays.first().map { it.date.dayOfWeek }
-                            // Alternatively, you can get the value for this specific index:
-                            // val dayOfWeek = data.weekDays.first()[index].date.dayOfWeek
                         }
                 }
             }
         }
 
-    calendarView.dayBinder =
-    object : MonthDayBinder<DayViewContainer> {
-        // Called only when a new container is needed.
-        override fun create(view: View) = DayViewContainer(view)
+        calendarView.dayBinder =
+            object : MonthDayBinder<DayViewContainer> {
+                // Called only when a new container is needed.
+                override fun create(view: View) = DayViewContainer(view)
 
-        // Called every time we need to reuse a container.
-        override fun bind(container: DayViewContainer, data: CalendarDay) {
-            container.textView.text = data.date.dayOfMonth.toString()
-            container.day = data
+                // Called every time we need to reuse a container.
+                override fun bind(container: DayViewContainer, data: CalendarDay) {
+                    container.textView.text = data.date.dayOfMonth.toString()
+                    container.day = data
+                    val dates = dummyWeightData.map {
+                        it.date
+                    }
+                    if (dates.contains(data.date.toString())) {
+                        //container.backgroundColor = Color.RED FULL
+                        //container.backgroundResource = R.drawable.background_calendar_day CIRCLE
+                        container.bar.visibility = View.VISIBLE
+                    }
+                }
+            }
 
-        }
+        val currentMonth = YearMonth.now()
+        val startMonth = currentMonth.minusMonths(100)  // Adjust as needed
+        val endMonth = currentMonth.plusMonths(100)  // Adjust as needed
+        val firstDayOfWeek = firstDayOfWeekFromLocale() // Available from the library
+        val daysOfWeek = daysOfWeek() // Available in the library
+        calendarView.setup(startMonth, endMonth, firstDayOfWeek)
+        calendarView.scrollToMonth(currentMonth)
     }
-
-    val currentMonth = YearMonth.now()
-    val startMonth = currentMonth.minusMonths(100)  // Adjust as needed
-    val endMonth = currentMonth.plusMonths(100)  // Adjust as needed
-    val firstDayOfWeek = firstDayOfWeekFromLocale() // Available from the library
-    val daysOfWeek = daysOfWeek() // Available in the library
-    calendarView.setup(startMonth, endMonth, firstDayOfWeek)
-    calendarView.scrollToMonth(currentMonth)
-}
 }

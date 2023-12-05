@@ -1,5 +1,6 @@
 package com.example.CH2_PS020.fitsync.ui.tracker.calendar
 
+import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -13,6 +14,17 @@ import com.kizitonwose.calendar.view.ViewContainer
 class DayViewContainer(view:View):ViewContainer(view) {
     lateinit var day:CalendarDay
     val textView = CalendarDayLayoutBinding.bind(view).calendarDayText
+    val bar = CalendarDayLayoutBinding.bind(view).dividerCalendarDay
+//    var backgroundColor:Int = Color.TRANSPARENT
+//        set(value) {
+//            field = value
+//            view.setBackgroundColor(value)
+//        }
+//    var backgroundResource:Int = 0
+//        set(value) {
+//            field = value
+//            view.setBackgroundResource(value)
+//        }
     init {
         view.setOnClickListener {
             Log.d("CLICKED DATE",day.date.toString())
