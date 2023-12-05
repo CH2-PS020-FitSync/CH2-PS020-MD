@@ -124,4 +124,6 @@
     <string name="btnFailedDialogText">Fill again !</string>
     <string name="successResendCode">Success Resend Code</string>
     <string name="failedResendCode">Success Resend Code</string>
+
+    <string name="dateFormat">YYYY-MM-DD</string>
 </resources>

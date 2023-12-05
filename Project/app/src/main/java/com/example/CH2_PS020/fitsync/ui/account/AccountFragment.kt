@@ -34,7 +34,6 @@ class AccountFragment : Fragment() {
             ThemesPrefViewModelFactory(pref)
         )[ThemesPrefViewModel::class.java]
 
-
         viewModel.getThemeSettings().observe(requireActivity()) { isDarkModeActive ->
             binding.swTheme.post {
                 if (isDarkModeActive) {

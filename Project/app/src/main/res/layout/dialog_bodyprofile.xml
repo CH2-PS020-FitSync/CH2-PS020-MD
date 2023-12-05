@@ -56,12 +56,12 @@
                     android:layout_height="2dp" />
 
                 <ImageButton
+                    android:id="@+id/ib_datePicker"
                     style="@style/Widget.Material3.MaterialTimePicker.ImageButton"
                     android:backgroundTint="?attr/colorSurfaceVariant"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/birthday"
-                    android:onClick="showDatePicker"
                     android:src="@drawable/ic_calendar" />
 
                 <TextView
