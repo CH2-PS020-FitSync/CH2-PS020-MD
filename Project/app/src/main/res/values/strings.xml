@@ -75,7 +75,7 @@
     <string name="target_workout">Target Workout</string>
     <string name="recommended_workouts">Recommended Workouts</string>
     <string name="all_workouts">All Workouts</string>
-    <string name="hint_searchBar">Search Workouts by name, minutes, and muscle target</string>
+    <string name="hint_searchView">What do you think ?</string>
     <string name="search_workouts">Search Workouts</string>
     <string name="change_account_profile">Change Account Profile</string>
     <string name="logout">Logout</string>

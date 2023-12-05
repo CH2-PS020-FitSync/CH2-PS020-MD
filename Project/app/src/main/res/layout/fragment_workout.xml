@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/md_theme_light_background"
-        android:hint="@string/hint_searchBar"
+        android:hint="@string/hint_searchView"
         app:layout_anchor="@id/search_bar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

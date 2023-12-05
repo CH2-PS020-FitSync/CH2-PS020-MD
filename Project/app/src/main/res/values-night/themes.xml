@@ -176,7 +176,7 @@
 
     <style name="Widget.App.SearchView" parent="Widget.Material3.SearchView">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.SearchView</item>
-        <item name="android:textAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.TitleMedium</item>
     </style>
 
     <style name="ThemeOverlay.App.SearchView" parent="ThemeOverlay.Material3.Search">

@@ -3,7 +3,13 @@ package com.example.CH2_PS020.fitsync
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.asLiveData
 import com.example.CH2_PS020.fitsync.databinding.ActivitySplashScreenBinding
+import com.example.CH2_PS020.fitsync.util.ThemePreferences
+import com.example.CH2_PS020.fitsync.util.dataStoreTheme
 
 @Suppress("DEPRECATION")
 class SplashScreen : AppCompatActivity() {
