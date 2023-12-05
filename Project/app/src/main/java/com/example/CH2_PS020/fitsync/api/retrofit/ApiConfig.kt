@@ -6,16 +6,23 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class ApiConfig {
 
     companion object {
-        fun getApiService(token: String) : ApiService {
-            val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-            val authInterceptor = Interceptor {chain ->
+        fun getApiService(token: String): ApiService {
+            val loggingInterceptor =
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
-                val requestHeaders = req.newBuilder().addHeader("Authorization","Bearer $token ").build()
+                val requestHeaders = req.newBuilder()
+                    .addHeader("Authorization", "Bearer $token ")
+                    .addHeader("x-api-key", BuildConfig.API_KEY)
+                    .addHeader("x-smtp-host", "smtp.ethereal.email")
+                    .addHeader("x-smtp-port", "587")
+                    .addHeader("x-smtp-username","yvonne.bernhard29@ethereal.email")
+                    .addHeader("x-smtp-password", "xGzGjDRsq2zarGXbhC")
+                    .build()
                 chain.proceed(requestHeaders)
             }
             val client = OkHttpClient.Builder()

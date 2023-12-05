@@ -43,11 +43,11 @@
                 app:layout_constraintTop_toBottomOf="@id/title_bodyProfile">
 
                 <TextView
-                    android:id="@+id/title_age"
+                    android:id="@+id/title_birthday"
                     style="@style/TextAppearance.FitSync.TitleMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/age"
+                    android:text="@string/birthday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,28 +55,23 @@
                     android:layout_width="0dp"
                     android:layout_height="2dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layout_age"
-                    style="@style/Widget.App.TextInputLayout.FilledBox"
-                    android:layout_width="80dp"
+                <ImageButton
+                    style="@style/Widget.Material3.MaterialTimePicker.ImageButton"
+                    android:backgroundTint="?attr/colorSurfaceVariant"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/age"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
-                    app:errorEnabled="true"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:contentDescription="@string/birthday"
+                    android:onClick="showDatePicker"
+                    android:src="@drawable/ic_calendar" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    style="@style/TextAppearance.FitSync.TitleMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/birthday"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lottie_treadmill">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_age"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:maxLength="3" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </LinearLayout>
 

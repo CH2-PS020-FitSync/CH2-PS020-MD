@@ -1,8 +1,10 @@
 package com.example.CH2_PS020.fitsync
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
@@ -10,9 +12,11 @@ import androidx.lifecycle.asLiveData
 import com.example.CH2_PS020.fitsync.databinding.ActivityMainBinding
 import com.example.CH2_PS020.fitsync.ui.account.AccountFragment
 import com.example.CH2_PS020.fitsync.ui.home.HomeFragment
+import com.example.CH2_PS020.fitsync.ui.landingpage.LandingPage
 import com.example.CH2_PS020.fitsync.ui.tracker.TrackerFragment
 import com.example.CH2_PS020.fitsync.ui.workout.WorkoutFragment
 import com.example.CH2_PS020.fitsync.util.ThemePreferences
+import com.example.CH2_PS020.fitsync.util.ViewModelFactory
 import com.example.CH2_PS020.fitsync.util.dataStoreTheme
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -20,6 +24,9 @@ import com.google.android.material.shape.MaterialShapeDrawable
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var themePreferences: ThemePreferences
+    private val viewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(applicationContext, true)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,17 +34,20 @@ class MainActivity : AppCompatActivity() {
         themePreferences = ThemePreferences.getInstance(dataStoreTheme)
         val pref = themePreferences.getThemeSetting().asLiveData()
         pref.observe(this) {
-            Handler(Looper.getMainLooper()).post{
                 if (it) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }
-            }
 
         }
-
         setContentView(binding.root)
+        viewModel.getSession().observe(this) {user ->
+            if (!user.isLogin) {
+                startActivity(Intent(this,LandingPage::class.java))
+                finish()
+            }
+        }
 
         val homeFragment = HomeFragment()
         val workoutFragment = WorkoutFragment()
@@ -76,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().apply {
             replace(binding.frameLayout.id, fragment, fragment.javaClass.simpleName)
             setReorderingAllowed(true)
-            addToBackStack(null) // Untuk dapat kembali ke fragment sebelumnya
+            addToBackStack(null)
             commit()
         }
         return true

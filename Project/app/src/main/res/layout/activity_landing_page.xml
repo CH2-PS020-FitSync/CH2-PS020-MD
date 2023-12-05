@@ -51,7 +51,7 @@
         android:layout_width="190dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="@color/md_theme_light_onPrimaryContainer"
+        android:background="?attr/colorOnPrimaryContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/or"
-        android:textColor="@color/md_theme_light_primary"
+        android:textColor="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
@@ -72,7 +72,7 @@
         android:layout_width="190dp"
         android:layout_height="2dp"
         android:layout_marginTop="16dp"
-        android:background="@color/md_theme_light_onPrimaryContainer"
+        android:background="?attr/colorOnPrimaryContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
 

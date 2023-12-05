@@ -112,4 +112,16 @@
     <string name="bmi">BMI</string>
     <string name="weight_chart">Weight Chart</string>
     <string name="add_body_weight">Add Body Weight</string>
+    <string name="birthday">Birthday</string>
+    <string name="body_bmi">Ideal Weight (22)</string>
+
+    //Error
+    <string name="layout_name_error">Nama tidak boleh kosong</string>
+    <string name="layout_email_error1">Email tidak boleh kosong</string>
+    <string name="layout_email_error2">Email harus mengandung @ </string>
+    <string name="layout_password_error">Password tidak boleh kurang dari 8 Karakter</string>
+    <string name="layout_conPass_error">Password tidak sama</string>
+    <string name="btnFailedDialogText">Fill again !</string>
+    <string name="successResendCode">Success Resend Code</string>
+    <string name="failedResendCode">Success Resend Code</string>
 </resources>

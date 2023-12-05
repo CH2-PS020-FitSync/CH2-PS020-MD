@@ -24,6 +24,9 @@ android {
         buildConfigField(
             "String", "API_URL", "\"https://fitsync-main-api-k3bfbgtn5q-et.a.run.app/\""
         )
+        buildConfigField(
+            "String", "API_KEY", "\"b5242882-b5ab-43e3-a846-384bf7e0e22d\""
+        )
     }
 
     buildTypes {

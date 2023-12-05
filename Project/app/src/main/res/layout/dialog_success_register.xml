@@ -28,7 +28,6 @@
                 android:id="@+id/lottie_success"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-
                 android:elevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_success"
+                android:textColor="?attr/colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lottie_success" />
@@ -54,12 +54,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/subtitle_success"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_success" />
 
             <Button
-                android:id="@+id/btn_continue"
+                android:id="@+id/btn_continueToLandingPage"
                 style="@style/Widget.App.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

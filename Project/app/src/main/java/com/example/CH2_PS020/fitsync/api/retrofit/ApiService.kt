@@ -14,7 +14,7 @@ interface ApiService {
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("confirmPassword") confirmPassword: String,
+        @Field("passwordConfirmation") confirmPassword: String,
     ): UserResponse
 
     @FormUrlEncoded

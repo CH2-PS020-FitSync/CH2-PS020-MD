@@ -41,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_failed"
+                android:textColor="?attr/colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/lottie_success" />
@@ -52,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/subtitle_failed"
+                android:textColor="?attr/colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_failed" />
@@ -71,24 +73,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title_error_code"
+                    android:textColor="?attr/colorOnBackground"
                     app:layout_constraintEnd_toStartOf="@id/tv_errorcode"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/subtitle_failed" />
 
                 <TextView
-                    android:id="@+id/tv_errorcode"
+                    android:id="@+id/tv_errorCodeVerif"
                     style="@style/TextAppearance.FitSync.LabelMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@string/error_code"
+                    android:textColor="?attr/colorOnBackground"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/title_errorcode"
                     app:layout_constraintTop_toBottomOf="@id/subtitle_failed" />
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_continue"
+                android:id="@+id/btn_sendMeBack"
                 style="@style/Widget.App.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

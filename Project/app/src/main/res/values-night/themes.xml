@@ -109,7 +109,6 @@
     <style name="Widget.App.TextInputLayout.FilledBox." parent="Widget.Material3.TextInputLayout.FilledBox">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
         <item name="hintTextAppearance">@style/TextAppearance.FitSync.LabelMedium</item>
-        <item name="hintTextColor">@color/md_theme_dark_onSurface</item>
         <item name="boxCornerRadiusBottomEnd">13dp</item>
         <item name="boxCornerRadiusBottomStart">13dp</item>
         <item name="boxCornerRadiusTopStart">13dp</item>
@@ -119,6 +118,7 @@
     <style name="ThemeOverlay.App.TextInputLayout" parent="">
         <item name="colorPrimary">@color/md_theme_dark_surface</item>
         <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+        <item name="colorOnBackground">@color/md_theme_dark_onSurface</item>
         <item name="colorError">@color/md_theme_dark_error</item>
         <item name="editTextStyle">@style/Widget.Material3.TextInputEditText.FilledBox</item>
     </style>
@@ -126,7 +126,7 @@
     //CircularProgressIndicator
     <style name="Widget.App.CircularProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.CircularProgressIndicator</item>
-        <item name="trackThickness">10dp</item>
+        <item name="trackThickness">5dp</item>
     </style>
 
     <style name="ThemeOverlay.App.CircularProgressIndicator" parent="">
@@ -185,6 +185,40 @@
         <item name="strokeColor">@color/md_theme_dark_outline</item>
         <item name="strokeWidth">2dp</item>
     </style>
+
+    //MaterialDialogBuilder
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/md_theme_dark_primary</item>
+        <item name="colorSecondary">@color/md_theme_dark_secondary</item>
+        <item name="colorSurface">@color/md_theme_dark_surface</item>
+        <item name="colorOnSurface">@color/md_theme_dark_onSurface</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button.OutlinedButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.Button.OutlinedButton</item>
+    </style>
+
+    <style name="MaterialAlertDialog.App" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="MaterialAlertDialog.App.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">@color/md_theme_dark_onSurface</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.HeadlineMedium</item>
+    </style>
+
+    <style name="MaterialAlertDialog.App.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">@color/md_theme_dark_onSurface</item>
+        <item name="android:textAppearance">@style/TextAppearance.FitSync.TitleSmall</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
 
 
 </resources>

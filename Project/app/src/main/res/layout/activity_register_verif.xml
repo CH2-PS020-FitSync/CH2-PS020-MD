@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
+
         <Button
             android:id="@+id/ib_back"
             style="@style/Widget.App.Button.IconButton.Filled"
@@ -43,11 +44,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:inputType="number"
-            android:itemBackground="@drawable/bg_otp_item"
-            android:textColor="@color/md_theme_light_onSurface"
-            app:OtpItemSpacing="20dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:hint="@string/code_otp"
+            android:inputType="text"
+            android:itemBackground="@drawable/bg_otp_item"
+            android:textAppearance="@style/TextAppearance.FitSync.TitleMedium"
+            android:textColor="?attr/colorOnSurface"
+            app:OtpItemSpacing="20dp"
+            app:OtpState_filled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/subtitleRegVerif" />
@@ -69,10 +74,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="-10dp"
+            android:enabled="true"
             android:text="@string/resend_code"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:enabled="false"
             app:layout_constraintTop_toBottomOf="@id/resendCode" />
 
         <Button
@@ -92,11 +97,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
