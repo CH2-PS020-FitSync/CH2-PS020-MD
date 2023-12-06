@@ -47,8 +47,8 @@
                 app:layout_constraintTop_toBottomOf="@id/title_logout" />
 
             <Button
-                android:id="@+id/btn_logout"
-                style="@style/Widget.App.Button"
+                android:id="@+id/btn_byebye"
+                style="@style/Widget.App.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -58,13 +58,14 @@
 
             <Button
                 android:id="@+id/btn_cancel"
-                style="@style/Widget.App.Button"
+                style="@style/Widget.App.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/cancel"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subtitle_logout" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

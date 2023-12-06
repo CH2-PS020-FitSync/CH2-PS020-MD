@@ -13,7 +13,8 @@ object Injection {
     fun provideRepository(context: Context): FitSyncRepository = runBlocking {
         val pref = SessionsPreferences.getInstance(context.dataStoreSessions)
         val user = runBlocking { pref.getSession().first() }
-        val apiService = ApiConfig.getApiService(user.accessToken)
+        val apiService = if (user.accessToken != "")
+            ApiConfig.getApiService(user.accessToken) else ApiConfig.getApiService(user.refreshToken)
         FitSyncRepository(pref, apiService)
     }
 }
