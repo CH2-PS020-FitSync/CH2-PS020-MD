@@ -96,6 +96,7 @@ class TrackerFragment : Fragment() {
         dialogAddWeight = Dialog(requireActivity())
         dialogAddWeight.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogAddWeight.setContentView(R.layout.dialog_add_weight)
+        dialogAddWeight.window?.decorView?.setBackgroundResource(android.R.color.transparent)
         dialogAddWeight.setCancelable(true)
 
         pickerWeight = dialogAddWeight.findViewById(R.id.picker_weight)
@@ -116,7 +117,7 @@ class TrackerFragment : Fragment() {
             .chartType(AAChartType.Line)
             .yAxisTitle("Weight(KG)")
             .xAxisLabelsEnabled(true)
-            .backgroundColor("#ffffff")
+            .backgroundColor(android.R.color.transparent)
             .dataLabelsEnabled(false)
             .series(
                 arrayOf(
