@@ -5,10 +5,10 @@ import java.util.Calendar
 import java.util.Locale
 
 object DateConverter {
-    fun convertMillisToString(timeMillis: Long): String {
+    fun convertMillisToString(format : String ,timeMillis: Long): String {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = timeMillis
-        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val sdf = SimpleDateFormat(format, Locale.getDefault())
         return sdf.format(calendar.time)
     }
 }

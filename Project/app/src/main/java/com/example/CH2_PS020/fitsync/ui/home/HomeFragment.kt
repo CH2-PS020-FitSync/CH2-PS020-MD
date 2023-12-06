@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import com.example.CH2_PS020.fitsync.R
 
 class HomeFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

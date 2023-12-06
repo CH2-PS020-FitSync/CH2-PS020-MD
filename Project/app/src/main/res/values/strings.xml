@@ -50,6 +50,12 @@
     <string name="beginner">Not Often (Beginner)</string>
     <string name="intermediate">1-3 Days (Intermediate)</string>
     <string name="expert">4 or More days (Expert)</string>
+
+    <string name="value_beginner">Beginner</string>
+    <string name="value_intermediate">Intermediate</string>
+    <string name="value_expert">Expert</string>
+
+
     <string name="reset">Reset</string>
     <string name="done">Done</string>
     <string name="welcome">Welcome</string>
@@ -125,5 +131,7 @@
     <string name="successResendCode">Success Resend Code</string>
     <string name="failedResendCode">Success Resend Code</string>
 
-    <string name="dateFormat">YYYY-MM-DD</string>
+    <string name="dateFormat">yyyy-MM-dd</string>
+    <string name="goal_weight">Goal Weight</string>
+    <string name="fill_again">Fill Again</string>
 </resources>

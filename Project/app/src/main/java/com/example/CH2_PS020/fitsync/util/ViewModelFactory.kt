@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.CH2_PS020.fitsync.MainViewModel
 import com.example.CH2_PS020.fitsync.data.FitSyncRepository
 import com.example.CH2_PS020.fitsync.di.Injection
+import com.example.CH2_PS020.fitsync.ui.account.AccountViewModel
 import com.example.CH2_PS020.fitsync.ui.login.LoginViewModel
 import com.example.CH2_PS020.fitsync.ui.register.RegisterVerifViewModel
 import com.example.CH2_PS020.fitsync.ui.register.RegisterViewModel
@@ -32,6 +33,10 @@ class ViewModelFactory(private val repository: FitSyncRepository) :
 
             modelClass.isAssignableFrom(RegisterVerifViewModel::class.java) -> {
                 RegisterVerifViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
+                AccountViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

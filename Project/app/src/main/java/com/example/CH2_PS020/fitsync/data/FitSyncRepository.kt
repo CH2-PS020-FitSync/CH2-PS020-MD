@@ -23,7 +23,7 @@ class FitSyncRepository constructor(
         return userPreferences.getSession()
     }
 
-    suspend fun logout() {
+    suspend fun logoutSessions() {
         userPreferences.logout()
     }
 
@@ -71,6 +71,41 @@ class FitSyncRepository constructor(
         emit(Result.Loading)
         try {
             val success = apiService.refreshOtp(userId)
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun logout(authorization: String) = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.logout(authorization)
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun getPatchMe(
+        authorization: String,
+        gender: String,
+        birthDate: String,
+        level: String,
+        goalWeight: String,
+        weight: String,
+        height: String
+    ) = liveData {
+        emit(Result.Loading)
+        try {
+            val success =
+                apiService.getPatchedMe(authorization,gender, birthDate, level, goalWeight, height, weight)
             emit(Result.Success(success))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()

@@ -4,6 +4,8 @@ import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 
 interface ApiService {
@@ -60,14 +62,26 @@ interface ApiService {
     @POST("auth/forgot-password/change")
     suspend fun forgotPassChange(
         @Field("userId") userId: String,
-        @Field("password") password: String,
         @Field("passwordConfirmation") passwordConfirmation: String,
+        @Field("password") password: String,
     ): UserResponse
 
     @FormUrlEncoded
     @POST("auth/otp/refresh")
     suspend fun refreshOtp(
         @Field("userId") userId: String,
+    ): UserResponse
+
+    @FormUrlEncoded
+    @PATCH("me")
+    suspend fun getPatchedMe(
+        @Header("Authorization") authorization: String,
+        @Field("gender") gender: String,
+        @Field("birthDate") birthDate: String,
+        @Field("level") level: String,
+        @Field("goalWeight") goalWeight : String,
+        @Field("height") height : String,
+        @Field("weight") weight : String
     ): UserResponse
 
     @GET("me")
