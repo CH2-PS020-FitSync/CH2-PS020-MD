@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -115,6 +116,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun dialogBodyProfile(authorization : String) {
+        val authorization = "Bearer $authorization"
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

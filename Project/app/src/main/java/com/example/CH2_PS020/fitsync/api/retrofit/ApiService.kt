@@ -1,12 +1,15 @@
 package com.example.CH2_PS020.fitsync.api.retrofit
 
+import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
+import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -75,18 +78,27 @@ interface ApiService {
     @FormUrlEncoded
     @PATCH("me")
     suspend fun getPatchedMe(
-        @Header("Authorization") authorization: String,
+        @Header("authorization") authorization: String,
         @Field("gender") gender: String,
         @Field("birthDate") birthDate: String,
         @Field("level") level: String,
-        @Field("goalWeight") goalWeight : String,
-        @Field("height") height : String,
-        @Field("weight") weight : String
+        @Field("goalWeight") goalWeight: String,
+        @Field("height") height: String,
+        @Field("weight") weight: String
     ): UserResponse
 
     @GET("me")
     suspend fun getMe(): UserResponse
 
+    @GET("exercises")
+    suspend fun getExercises(
+        @Query("titleStartsWith") titleStartsWith: String? = null,
+        @Query("type") type: String? = null,
+        @Query("level") level: String? = null,
+        @Query("gender") gender: String? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
+    ): ExercisesResponse
 
 
 }

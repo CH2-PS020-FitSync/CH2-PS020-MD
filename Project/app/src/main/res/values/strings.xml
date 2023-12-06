@@ -134,4 +134,7 @@
     <string name="dateFormat">yyyy-MM-dd</string>
     <string name="goal_weight">Goal Weight</string>
     <string name="fill_again">Fill Again</string>
+
+    //Adapter item
+    <string name="exercise_level_duration">%s - %s</string>
 </resources>

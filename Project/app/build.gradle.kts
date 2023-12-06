@@ -83,4 +83,6 @@ dependencies {
     implementation("com.github.AAChartModel:AAChartCore-Kotlin:7.2.0")
     //Number Picker
     implementation("io.github.ShawnLin013:number-picker:2.4.13")
+    //Glide image loading library
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

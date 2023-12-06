@@ -13,12 +13,12 @@
 
         <TextView
             style="@style/TextAppearance.FitSync.TitleLarge"
-            android:textColor="?attr/colorOnBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/all_workouts" />
+            android:text="@string/all_workouts"
+            android:textColor="?attr/colorOnBackground" />
 
         <com.google.android.material.search.SearchBar
             android:id="@+id/search_bar"
@@ -30,7 +30,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_allWorkouts"
@@ -48,5 +48,17 @@
         android:backgroundTint="@color/md_theme_light_background"
         android:hint="@string/hint_searchView"
         app:layout_anchor="@id/search_bar" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_bar"
+        style="@style/Widget.App.CircularProgressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_anchorGravity="center" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.example.CH2_PS020.fitsync.data
 
 import androidx.lifecycle.liveData
+import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import com.example.CH2_PS020.fitsync.api.retrofit.ApiService
 import com.example.CH2_PS020.fitsync.data.model.UserModel
@@ -8,6 +9,7 @@ import com.example.CH2_PS020.fitsync.util.SessionsPreferences
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
+import retrofit2.http.Query
 
 class FitSyncRepository constructor(
     val userPreferences: SessionsPreferences,
@@ -105,11 +107,40 @@ class FitSyncRepository constructor(
         emit(Result.Loading)
         try {
             val success =
-                apiService.getPatchedMe(authorization,gender, birthDate, level, goalWeight, height, weight)
+                apiService.getPatchedMe(
+                    authorization,
+                    gender,
+                    birthDate,
+                    level,
+                    goalWeight,
+                    height,
+                    weight
+                )
             emit(Result.Success(success))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun getExercises(
+        titleStartsWith: String? = null,
+        type: String? = null,
+        level: String? = null,
+        gender: String? = null,
+        limit: Int? = null,
+        offset: Int? = null
+    ) = liveData {
+        emit(Result.Loading)
+        try {
+            val success =
+                apiService.getExercises(titleStartsWith, type, level, gender, limit, offset)
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ExercisesResponse::class.java)
             val errorMessage = errorBody.message.toString()
             emit(Result.Error(errorMessage))
         }
