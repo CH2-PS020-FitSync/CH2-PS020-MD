@@ -70,7 +70,7 @@
     <string name="failed_changed_password">Failed changed password</string>
     <string name="retry">Retry</string>
     <string name="greetings">Greetings</string>
-    <string name="age_gender">20 - Female/Male</string>
+    <string name="age_gender">%s - %s</string>
     <string name="favorite_workout">Currently Favorited Workouts : \n</string>
     <string name="card_height">Height :</string>
     <string name="card_weight">Weight :</string>
@@ -137,4 +137,9 @@
 
     //Adapter item
     <string name="exercise_level_duration">%s - %s</string>
+    <string name="greetings_good_morning">Good Morning !</string>
+    <string name="greetings_good_afternoon">Good Afternoon !</string>
+    <string name="greetins_good_evening">Good Evening !</string>
+    <string name="greetings_good_night">Good Night !</string>
+    <string name="title_goal_weight">Goal Weight :</string>
 </resources>

@@ -171,6 +171,27 @@
                     android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toEndOf="@id/title_cardBMI"
                     app:layout_constraintTop_toBottomOf="@id/tv_cardWeight" />
+
+                <TextView
+                    android:id="@+id/title_goalWeight"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_goal_weight"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_cardBMI" />
+
+                <TextView
+                    android:id="@+id/tv_cardGoalWeight"
+                    style="@style/TextAppearance.FitSync.LabelLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/title_goal_weight"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintStart_toEndOf="@id/title_goalWeight"
+                    app:layout_constraintTop_toBottomOf="@id/title_cardBMI" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -223,11 +244,23 @@
             android:id="@+id/rv_recommendedWorkouts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="horizontal"
             android:orientation="horizontal"
+            android:scrollbars="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_recommendedWorkout"
             tools:listitem="@layout/item_home_recommended" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar"
+            style="@style/Widget.App.CircularProgressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

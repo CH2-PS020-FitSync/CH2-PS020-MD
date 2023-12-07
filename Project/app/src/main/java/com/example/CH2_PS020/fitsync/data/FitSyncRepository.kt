@@ -10,7 +10,6 @@ import com.example.CH2_PS020.fitsync.util.SessionsPreferences
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
-import retrofit2.http.Query
 
 class FitSyncRepository constructor(
     val userPreferences: SessionsPreferences,
@@ -166,6 +165,20 @@ class FitSyncRepository constructor(
         }
     }
 
+    fun getMe() = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.getMe()
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+
     fun postBMI(
         height: Float,
         weight: Float,
@@ -182,5 +195,4 @@ class FitSyncRepository constructor(
             emit(Result.Error(errorMessage))
         }
     }
-
 }
