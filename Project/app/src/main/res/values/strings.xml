@@ -70,11 +70,11 @@
     <string name="failed_changed_password">Failed changed password</string>
     <string name="retry">Retry</string>
     <string name="greetings">Greetings</string>
-    <string name="age_gender">%s - %s</string>
-    <string name="favorite_workout">Currently Favorited Workouts : \n</string>
-    <string name="card_height">Height :</string>
-    <string name="card_weight">Weight :</string>
-    <string name="card_bmi">BMI :</string>
+    <string name="age_gender">%1$s - %2$s</string>
+    <string name="favorite_workout">Currently Favorited Workouts : \n %1S</string>
+    <string name="card_height">Height : %1S Cm</string>
+    <string name="card_weight">Weight : %1S Kg</string>
+    <string name="card_bmi">BMI : %1S</string>
     <string name="days_streak">Days Streak</string>
     <string name="workout_name">Workout Name</string>
     <string name="level_minutes">Beginner - 45 Minutes</string>
@@ -118,7 +118,7 @@
     <string name="bmi">BMI</string>
     <string name="weight_chart">Weight Chart</string>
     <string name="add_body_weight">Add Body Weight</string>
-    <string name="birthday">Birthday</string>
+    <string name="birthday">Birthday : %1S</string>
     <string name="body_bmi">Ideal Weight (22)</string>
 
     //Error
@@ -141,5 +141,5 @@
     <string name="greetings_good_afternoon">Good Afternoon !</string>
     <string name="greetins_good_evening">Good Evening !</string>
     <string name="greetings_good_night">Good Night !</string>
-    <string name="title_goal_weight">Goal Weight :</string>
+    <string name="card_goalWeight">Goal Weight : %1S Kg</string>
 </resources>

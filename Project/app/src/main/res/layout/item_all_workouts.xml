@@ -13,48 +13,62 @@
         android:layout_height="match_parent"
         android:padding="20dp">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <TextView
             android:id="@+id/tv_workoutName"
             style="@style/TextAppearance.FitSync.TitleMedium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="@string/workout_name"
+            android:ellipsize="end"
             android:textColor="?attr/colorOnTertiaryContainer"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/tv_levelMinutes"
             style="@style/TextAppearance.FitSync.LabelMedium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/level_minutes"
             android:textColor="?attr/colorOnTertiaryContainer"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_workoutName" />
 
         <TextView
             android:id="@+id/tv_targetWorkouts"
             style="@style/TextAppearance.FitSync.LabelMedium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/target_workout"
             android:textColor="?attr/colorOnTertiaryContainer"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_levelMinutes" />
 
         <ImageView
             android:id="@+id/iv_workouts"
             android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/fitsync_logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_levelMinutes"
-            app:layout_constraintTop_toBottomOf="@id/tv_workoutName" />
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

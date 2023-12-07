@@ -66,6 +66,14 @@ class AccountFragment : Fragment() {
             viewModel.saveThemeSetting(isChecked)
         }
 
+        binding.layoutChangeAccount.setOnClickListener {
+            startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
+        }
+
+        binding.layoutAbout.setOnClickListener {
+            startActivity(Intent(requireActivity(),AboutActivity::class.java))
+        }
+
         binding.layoutLogout.setOnClickListener {
             lifecycleScope.launch {
                 accountViewModel.getSession().observe(requireActivity()) { userModel ->

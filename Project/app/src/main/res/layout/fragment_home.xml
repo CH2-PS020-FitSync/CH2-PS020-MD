@@ -15,6 +15,7 @@
             android:id="@+id/iv_photo"
             android:layout_width="62dp"
             android:layout_height="62dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -93,9 +94,7 @@
                     android:id="@+id/iv_gender"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/ic_female"
                     android:backgroundTint="?attr/colorOnPrimaryContainer"
-                    android:rotation="45"
                     app:layout_constraintStart_toEndOf="@id/tv_age_gender"
                     app:layout_constraintTop_toBottomOf="@id/card_name" />
 
@@ -110,7 +109,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_age_gender" />
 
                 <TextView
-                    android:id="@+id/title_cardHeight"
+                    android:id="@+id/tv_cardHeight"
                     style="@style/TextAppearance.FitSync.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,79 +118,42 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_favoriteWorkouts" />
 
-                <TextView
-                    android:id="@+id/tv_cardHeight"
-                    style="@style/TextAppearance.FitSync.LabelLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/height"
-                    android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/title_cardHeight"
-                    app:layout_constraintTop_toBottomOf="@id/tv_favoriteWorkouts" />
 
-                <TextView
-                    android:id="@+id/title_cardWeight"
-                    style="@style/TextAppearance.FitSync.LabelLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/card_weight"
-                    android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_cardHeight" />
 
                 <TextView
                     android:id="@+id/tv_cardWeight"
                     style="@style/TextAppearance.FitSync.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/weight"
-                    android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/title_cardWeight"
-                    app:layout_constraintTop_toBottomOf="@id/tv_cardHeight" />
-
-                <TextView
-                    android:id="@+id/title_cardBMI"
-                    style="@style/TextAppearance.FitSync.LabelLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/card_bmi"
+                    android:text="@string/card_weight"
                     android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_cardWeight" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_cardHeight" />
+
+
 
                 <TextView
                     android:id="@+id/tv_cardBMI"
                     style="@style/TextAppearance.FitSync.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
                     android:text="@string/card_bmi"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/title_cardBMI"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_cardWeight" />
 
-                <TextView
-                    android:id="@+id/title_goalWeight"
-                    style="@style/TextAppearance.FitSync.LabelLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_goal_weight"
-                    android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_cardBMI" />
 
                 <TextView
                     android:id="@+id/tv_cardGoalWeight"
                     style="@style/TextAppearance.FitSync.LabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/title_goal_weight"
+                    android:text="@string/card_goalWeight"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/title_goalWeight"
-                    app:layout_constraintTop_toBottomOf="@id/title_cardBMI" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cardBMI" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 

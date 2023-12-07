@@ -1,5 +1,6 @@
 package com.example.CH2_PS020.fitsync.api.retrofit
 
+import android.util.Log
 import com.example.CH2_PS020.fitsync.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

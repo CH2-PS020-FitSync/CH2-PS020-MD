@@ -5,9 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -15,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +21,6 @@ import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.data.model.UserModel
 import com.example.CH2_PS020.fitsync.databinding.ActivityLoginBinding
 import com.example.CH2_PS020.fitsync.ui.forgotpassword.ForgotPasswordActivity
-import com.example.CH2_PS020.fitsync.ui.home.HomeFragment
 import com.example.CH2_PS020.fitsync.ui.register.RegisterActivity
 import com.example.CH2_PS020.fitsync.ui.welcome.WelcomeActivity
 import com.example.CH2_PS020.fitsync.util.DateConverter
@@ -74,19 +71,28 @@ class LoginActivity : AppCompatActivity() {
                         showLoading(false)
                         val accessToken = result.data.user?.accessToken
                         val refreshToken = result.data.user?.refreshToken.toString()
-                        val name = result.data.user?.name.toString()
+                        val name = result.data.user?.name
                         if (accessToken != null) {
                             lifecycleScope.launch {
                                 viewModel.saveSessions(
                                     UserModel(
-                                        name,
+                                        name.toString(),
                                         email,
                                         accessToken,
                                         refreshToken
                                     )
                                 )
                             }
-                            dialogBodyProfile(accessToken)
+                            if (result.data.user.latestBMI?.height != null || result.data.user.latestBMI?.weight != null) {
+                                dialogBodyProfile(accessToken)
+                            } else {
+                                if (name != null) {
+                                    val intent = Intent(this, WelcomeActivity::class.java)
+                                    intent.putExtra(NAME, name)
+                                    startActivity(intent)
+                                }
+
+                            }
                         }
                     }
 
@@ -115,8 +121,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun dialogBodyProfile(authorization : String) {
-        val authorization = "Bearer $authorization"
+    private fun dialogBodyProfile(authorization: String) {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -125,38 +130,13 @@ class LoginActivity : AppCompatActivity() {
         val btnReset = dialog.findViewById<Button>(R.id.btn_reset)
         val btnContinue = dialog.findViewById<Button>(R.id.btn_done)
         val datePicker = dialog.findViewById<ImageButton>(R.id.ib_datePicker)
-        val tvDate = dialog.findViewById<TextView>(R.id.tv_date)
-        val edtWieght =
-            dialog.findViewById<TextInputEditText>(R.id.edt_weightBodyProfile).text.toString()
-        val edtHeight =
-            dialog.findViewById<TextInputEditText>(R.id.edt_heightBodyProfile).text.toString()
-        val edtGoalWeight =
-            dialog.findViewById<TextInputEditText>(R.id.edt_goalWeight).text.toString()
+        val tvDate = dialog.findViewById<TextView>(R.id.tv_birthday)
 
-        var selectedGender: String = ""
-        var selectedExercise: String = ""
+        lateinit var selectedGender: String
+        lateinit var selectedExercise: String
 
         val radioGroupGender = dialog.findViewById<RadioGroup>(R.id.radioGroupGender)
-        val selectedRadioButtonId = radioGroupGender.checkedRadioButtonId
-
-        if (selectedRadioButtonId != -1) {
-            val selectedRadioButton: RadioButton = dialog.findViewById(selectedRadioButtonId)
-            selectedGender = selectedRadioButton.text.toString()
-        }
-
         val radioGroupExercise = dialog.findViewById<RadioGroup>(R.id.radioGroupExercise)
-        val selectedRadioButtonIdExercise = radioGroupExercise.checkedRadioButtonId
-
-        if (selectedRadioButtonIdExercise != -1) {
-            val selectedRadioButton: RadioButton =
-                dialog.findViewById(selectedRadioButtonIdExercise)
-            selectedExercise = when (selectedRadioButton.text) {
-                getString(R.string.beginner) -> getString(R.string.value_beginner)
-                getString(R.string.intermediate) -> getString(R.string.value_intermediate)
-                getString(R.string.expert) -> getString(R.string.value_expert)
-                else -> ""
-            }
-        }
 
         datePicker.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker()
@@ -164,57 +144,89 @@ class LoginActivity : AppCompatActivity() {
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds()).build()
             datePicker.show(supportFragmentManager, "datePicker")
             datePicker.addOnPositiveButtonClickListener {
-                tvDate.text = DateConverter.convertMillisToString(
+                val birth = DateConverter.convertMillisToString(
                     resources.getString(R.string.dateFormat),
                     it
                 )
+                tvDate.text = resources.getString(R.string.birthday, birth)
             }
         }
 
         btnContinue.setOnClickListener {
-            viewModel.getPatchedMe(
-                authorization,
-                selectedGender, selectedExercise,
-                tvDate.text.toString(), edtGoalWeight, edtHeight, edtWieght
-            ).observe(this) { result ->
-                showLoading(true)
-                if (result != null) {
-                    when (result) {
-                        is Result.Loading -> {
-                            showLoading(true)
-                        }
+            val edtWieght =
+                dialog.findViewById<TextInputEditText>(R.id.edt_weightBodyProfile).text.toString()
+            val edtHeight =
+                dialog.findViewById<TextInputEditText>(R.id.edt_heightBodyProfile).text.toString()
+            val edtGoalWeight =
+                dialog.findViewById<TextInputEditText>(R.id.edt_goalWeight).text.toString()
 
-                        is Result.Success -> {
-                            val name = result.data.user?.name.toString()
-                            val intent = Intent(this, WelcomeActivity::class.java)
-                            intent.putExtra(NAME, name)
-                            startActivity(intent)
-                        }
+            val selectedRadioButtonId = radioGroupGender.checkedRadioButtonId
+            if (selectedRadioButtonId != -1) {
+                val selectedRadioButton: RadioButton = dialog.findViewById(selectedRadioButtonId)
+                selectedGender = selectedRadioButton.text.toString()
+            }
 
-                        is Result.Error -> {
-                            showLoading(false)
-                            MaterialAlertDialogBuilder(
-                                this@LoginActivity,
-                                R.style.ThemeOverlay_App_MaterialAlertDialog
-                            ).apply {
-                                setTitle(resources.getString(R.string.title_failed))
-                                setMessage(result.error)
-                                setNegativeButton(getString(R.string.fill_again)) { _, _ ->
+            val selectedRadioButtonIdExercise = radioGroupExercise.checkedRadioButtonId
+            if (selectedRadioButtonIdExercise != -1) {
+                val selectedRadioButton: RadioButton =
+                    dialog.findViewById(selectedRadioButtonIdExercise)
+                selectedExercise = when (selectedRadioButton.text) {
+                    getString(R.string.beginner) -> getString(R.string.value_beginner)
+                    getString(R.string.intermediate) -> getString(R.string.value_intermediate)
+                    getString(R.string.expert) -> getString(R.string.value_expert)
+                    else -> ""
+                }
+            }
+            if (edtWieght.isBlank() || edtHeight.isBlank() || edtGoalWeight.isBlank() || tvDate.text.isBlank() ||
+                radioGroupGender.checkedRadioButtonId == -1 || radioGroupExercise.checkedRadioButtonId == -1
+            ) {
+                Toast.makeText(this@LoginActivity, "Harap isi semua kolom", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            } else {
+                viewModel.getPatchedMe(
+                    authorization,
+                    selectedGender, tvDate.text.toString(),
+                    selectedExercise, edtGoalWeight, edtHeight, edtWieght
+                ).observe(this) { result ->
+                    showLoading(true)
+                    if (result != null) {
+                        when (result) {
+                            is Result.Loading -> {
+                                showLoading(true)
+                            }
 
+                            is Result.Success -> {
+                                val name = result.data.user?.name.toString()
+                                val intent = Intent(this, WelcomeActivity::class.java)
+                                intent.putExtra(NAME, name)
+                                startActivity(intent)
+                            }
+
+                            is Result.Error -> {
+                                showLoading(false)
+                                MaterialAlertDialogBuilder(
+                                    this@LoginActivity,
+                                    R.style.ThemeOverlay_App_MaterialAlertDialog
+                                ).apply {
+                                    setTitle(resources.getString(R.string.title_failed))
+                                    setMessage(result.error)
+                                    setNegativeButton(getString(R.string.fill_again)) { _, _ ->
+
+                                    }
+                                    create()
+                                    show()
                                 }
-                                create()
-                                show()
                             }
                         }
                     }
                 }
+                dialog.dismiss()
             }
-            dialog.dismiss()
+
+            dialog.show()
         }
-
-        dialog.show()
     }
-
 
 
     private fun showLoading(isLoading: Boolean) {

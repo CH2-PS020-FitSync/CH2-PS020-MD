@@ -44,7 +44,7 @@ data class User(
 	val createdAt: String? = null,
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	val name: String,
 
 	@field:SerializedName("id")
 	val id: String? = null,

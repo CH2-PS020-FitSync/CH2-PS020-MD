@@ -3,13 +3,17 @@ package com.example.CH2_PS020.fitsync.api.retrofit
 import com.example.CH2_PS020.fitsync.api.response.BmiResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -79,7 +83,7 @@ interface ApiService {
     @FormUrlEncoded
     @PATCH("me")
     suspend fun getPatchedMe(
-        @Header("authorization") authorization: String,
+        @Header("Authorization") authorization: String,
         @Field("gender") gender: String,
         @Field("birthDate") birthDate: String,
         @Field("level") level: String,
@@ -118,6 +122,12 @@ interface ApiService {
         @Field("weight") weight: Float,
         @Field("date") date: String? = null
     ): BmiResponse
+
+    @Multipart
+    @PUT("me/photo")
+    suspend fun updatePhoto(
+        @Part file :MultipartBody.Part
+    ) : UserResponse
 
 
 }

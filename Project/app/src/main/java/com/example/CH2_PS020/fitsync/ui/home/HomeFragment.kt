@@ -16,6 +16,7 @@ import com.example.CH2_PS020.fitsync.util.AgeConverter
 import com.example.CH2_PS020.fitsync.util.BMICalculator
 import com.example.CH2_PS020.fitsync.util.GreetingGenerator
 import com.example.CH2_PS020.fitsync.util.ViewModelFactory
+import java.util.Locale
 
 class HomeFragment : Fragment() {
 
@@ -49,20 +50,21 @@ class HomeFragment : Fragment() {
                         val gender = result.data.user?.gender.toString()
                         val height = result.data.user?.latestBMI?.height.toString()
                         val weight = result.data.user?.latestBMI?.weight.toString()
-                        val bmis = BMICalculator.calculateBMI(weight, height).toString()
+                        val bmis = BMICalculator.calculateBMI(weight, height)
                         val goalWeight = result.data.user?.goalWeight.toString()
 
-//                        bindingData(
-//                            name,
-//                            photoUrl,
-//                            birthDate,
-//                            gender,
-//                            height,
-//                            weight,
-//                            bmis,
-//                            goalWeight
-//                        )
+                        bindingData(
+                            name,
+                            photoUrl,
+                            birthDate,
+                            gender,
+                            height,
+                            weight,
+                            bmis,
+                            goalWeight
+                        )
                     }
+
                     is Result.Error -> {
                         showLoading(false)
                         Toast.makeText(requireContext(), "Error Loading Data", Toast.LENGTH_SHORT)
@@ -90,23 +92,29 @@ class HomeFragment : Fragment() {
             tvGreetings.text = GreetingGenerator.generateGreetings(requireContext())
             tvHomeName.text = name
             cardName.text = name
-            Glide.with(ivPhoto).load(photoUrl).into(ivPhoto)
+
+            if (photoUrl.isBlank()) {
+                ivPhoto.setImageDrawable(getDrawable(requireContext(), R.drawable.fitsync_logo))
+            } else {
+                Glide.with(ivPhoto).load(photoUrl).into(ivPhoto)
+            }
+
             tvAgeGender.text = resources.getString(
                 R.string.age_gender,
                 AgeConverter.calculateAge(birthDate, requireContext()),
-                gender
+                gender.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
             )
             if (gender.equals(resources.getString(R.string.male), true)) {
                 ivGender.setImageDrawable(getDrawable(requireContext(), R.drawable.ic_male))
 
-            } else {
+            } else if (gender == resources.getString(R.string.female)) {
                 ivGender.setImageDrawable(getDrawable(requireContext(), R.drawable.ic_female))
             }
 
-            tvCardHeight.text = height
-            tvCardWeight.text = weight
-            tvCardBMI.text = bmis
-            tvCardGoalWeight.text = goalWeight
+            tvCardHeight.text = resources.getString(R.string.card_height, height)
+            tvCardWeight.text = resources.getString(R.string.card_weight, weight)
+            tvCardBMI.text = resources.getString(R.string.card_bmi, bmis)
+            tvCardGoalWeight.text = resources.getString(R.string.card_goalWeight, goalWeight)
 
         }
     }

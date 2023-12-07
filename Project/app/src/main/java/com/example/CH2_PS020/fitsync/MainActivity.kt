@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationView.background as MaterialShapeDrawable
         shapeDrawable.shapeAppearanceModel = shapeDrawable.shapeAppearanceModel
             .toBuilder()
-            .setTopLeftCorner(CornerFamily.ROUNDED, 70F)
-            .setTopRightCorner(CornerFamily.ROUNDED, 70F)
+            .setTopLeftCorner(CornerFamily.ROUNDED, 70.0F)
+            .setTopRightCorner(CornerFamily.ROUNDED, 70.0F)
             .build()
 
         binding.bottomNavigationView.setOnItemSelectedListener {
