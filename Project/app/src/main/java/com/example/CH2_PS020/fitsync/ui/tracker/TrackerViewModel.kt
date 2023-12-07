@@ -18,4 +18,6 @@ class TrackerViewModel(private val repository: FitSyncRepository) : ViewModel() 
         weight: Float,
         date: String? = null
     ) = repository.postBMI(height, weight, date)
+
+    fun getLatestBMI() = repository.getMe()
 }

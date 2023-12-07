@@ -17,6 +17,15 @@ fun bmiToBias(bmi:Float):Float{
     return bias.toFloat()
 }
 
+fun calculateBMI(height: Float, weight: Float): Double {
+    // Convert height to meters
+    val heightInMeters = height / 100
+
+    // Calculate BMI using the formula: weight / (height * height)
+    return weight / (heightInMeters * heightInMeters).toDouble()
+}
+
+
 
 
 

@@ -12,13 +12,20 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.core.view.updateLayoutParams
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.CH2_PS020.fitsync.R
+import com.example.CH2_PS020.fitsync.api.response.BmisItem
+import com.example.CH2_PS020.fitsync.api.response.LatestBMI
+import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentTrackerBinding
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.DayViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.MonthViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.chart.generateRandomWeightEntries
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToBias
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.calculateBMI
+import com.example.CH2_PS020.fitsync.util.ViewModelFactory
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
@@ -35,6 +42,7 @@ import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
 import com.shawnlin.numberpicker.NumberPicker
+import kotlinx.coroutines.launch
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
@@ -43,6 +51,9 @@ import java.util.Locale
 class TrackerFragment : Fragment() {
 
     private lateinit var binding: FragmentTrackerBinding
+    private val viewModel by viewModels<TrackerViewModel> {
+        ViewModelFactory.getInstance(requireContext(), true)
+    }
 
     //Calendar
     private lateinit var calendarView: CalendarView
@@ -55,7 +66,10 @@ class TrackerFragment : Fragment() {
     //Dummy Data
     private val dummyWeightData = generateRandomWeightEntries(30)
 
-    //Slider
+    //API
+    private var bmis: List<BmisItem?>? = null
+    private var latestBMI: LatestBMI? = null
+    private var pickedWeight: Float? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,13 +89,56 @@ class TrackerFragment : Fragment() {
         binding.ibAddWeight.setOnClickListener {
             setupDialog()
         }
+        getData()
         initViews()
     }
 
+    private fun updateData(height: Float, weight: Float, date: String? = null) {
+        lifecycleScope.launch {
+            viewModel.postBMI(height, weight, date)
+            getData()
+        }
+    }
+
+    private fun getData() {
+        viewModel.getBMIs().observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+
+                }
+
+                is Result.Success -> {
+                    bmis = result.data.bmis
+                }
+
+                is Result.Error -> {
+
+                }
+            }
+        }
+        viewModel.getLatestBMI().observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+
+                }
+
+                is Result.Success -> {
+                    latestBMI = result.data.user?.latestBMI
+                }
+
+                is Result.Error -> {
+
+                }
+            }
+        }
+    }
+
     private fun initViews() {
-        setupCalendar()
-        setupChart()
-        setupSlider(bmi = 18.6)
+        if (latestBMI!=null && bmis!= null){
+            setupCalendar()
+            setupChart()
+            setupSlider(calculateBMI(latestBMI?.height!!.toFloat(),latestBMI?.weight!!.toFloat()))
+        }
     }
 
     private fun setupSlider(bmi: Double) {
@@ -101,34 +158,39 @@ class TrackerFragment : Fragment() {
 
         pickerWeight = dialogAddWeight.findViewById(R.id.picker_weight)
         btAdd = dialogAddWeight.findViewById(R.id.bt_add_body_weight)
+        pickerWeight.setOnValueChangedListener { _, _, newVal ->
+            pickedWeight = newVal.toFloat()
+        }
         btAdd.setOnClickListener {
+            pickedWeight?.let { it1 -> updateData(it1,latestBMI?.height!!.toFloat()) }
             dialogAddWeight.dismiss()
         }
         dialogAddWeight.show()
     }
 
     private fun setupChart() {
-
-        val weights = dummyWeightData.map { it.weight }
-        val dates = dummyWeightData.map { it.date }
-
-        val aaChartView = view?.findViewById<AAChartView>(R.id.aa_chart_view)
-        val aaChartModel: AAChartModel = AAChartModel()
-            .chartType(AAChartType.Line)
-            .yAxisTitle("Weight(KG)")
-            .xAxisLabelsEnabled(true)
-            .backgroundColor(android.R.color.transparent)
-            .dataLabelsEnabled(false)
-            .series(
-                arrayOf(
-                    AASeriesElement().name("Weight").data(dummyWeightData.map {
-                        it.weight
-                    }.toTypedArray())
+        if (bmis != null) {
+            val dates = bmis?.map {
+                it?.createdAt?.format(DateTimeFormatter.ofPattern("MMMM-yyyy-dddd")).toString()
+            }
+            val aaChartView = view?.findViewById<AAChartView>(R.id.aa_chart_view)
+            val aaChartModel: AAChartModel = AAChartModel()
+                .chartType(AAChartType.Line)
+                .yAxisTitle("Weight(KG)")
+                .xAxisLabelsEnabled(true)
+                .backgroundColor(android.R.color.transparent)
+                .dataLabelsEnabled(false)
+                .series(
+                    arrayOf(
+                        AASeriesElement().name("Weight").data(bmis?.map {
+                            it?.weight!!.toDouble()
+                        }!!.toTypedArray())
+                    )
                 )
-            )
-            .categories(dates.toTypedArray())
-            .zoomType(AAChartZoomType.XY)
-        aaChartView?.aa_drawChartWithChartModel(aaChartModel)
+                .categories(dates!!.toTypedArray())
+                .zoomType(AAChartZoomType.XY)
+            aaChartView?.aa_drawChartWithChartModel(aaChartModel)
+        }
     }
 
     private fun setupCalendar() {
