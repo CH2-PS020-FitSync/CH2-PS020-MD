@@ -9,8 +9,11 @@ import com.example.CH2_PS020.fitsync.data.model.UserModel
 import com.example.CH2_PS020.fitsync.util.SessionsPreferences
 import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.HttpException
-import retrofit2.http.Query
+import java.io.File
 
 class FitSyncRepository constructor(
     val userPreferences: SessionsPreferences,
@@ -194,6 +197,38 @@ class FitSyncRepository constructor(
             val errorMessage = errorBody.message.toString()
             emit(Result.Error(errorMessage))
         }
+    }
+    fun getMe() = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.getMe()
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun uploadPhoto(imageFile : File) = liveData {
+        emit(Result.Loading)
+        try {
+            val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+            val multipartBody = MultipartBody.Part.createFormData(
+                "photo",
+                imageFile.name,
+                requestImageFile
+            )
+            val success = apiService.updatePhoto(multipartBody)
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+
     }
 
 }

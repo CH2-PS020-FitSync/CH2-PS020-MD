@@ -49,8 +49,6 @@ class AccountFragment : Fragment() {
         )[ThemesPrefViewModel::class.java]
 
 
-
-
         viewModel.getThemeSettings().observe(requireActivity()) { isDarkModeActive ->
             binding.swTheme.post {
                 if (isDarkModeActive) {
@@ -66,6 +64,14 @@ class AccountFragment : Fragment() {
 
         binding.swTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             viewModel.saveThemeSetting(isChecked)
+        }
+
+        binding.layoutChangeAccount.setOnClickListener {
+            startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
+        }
+
+        binding.layoutAbout.setOnClickListener {
+            startActivity(Intent(requireActivity(),AboutActivity::class.java))
         }
 
         binding.layoutLogout.setOnClickListener {

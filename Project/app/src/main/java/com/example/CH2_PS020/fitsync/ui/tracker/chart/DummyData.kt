@@ -14,8 +14,10 @@ fun generateRandomWeightEntries(count: Int): List<WeightEntry> {
     return (1..count).map {
         currentDate.add(Calendar.DAY_OF_MONTH, 1)
         val formattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(currentDate.time)
-        val randomWeightValue = 50.0 + randomWeight.nextDouble() * 10.0// Random weight between 50.0 and 60.0
-        val randomWeightValueFormatted = String.format("%.1f",randomWeightValue).toDouble()
-        WeightEntry(formattedDate,randomWeightValueFormatted )
+        val randomWeightValue = 50.0 + randomWeight.nextDouble() * 10.0
+        val randomWeightString = decimalFormat.format(randomWeightValue)
+        val randomWeightValueFormatted = randomWeightString.replace(",", ".").toDouble()
+
+        WeightEntry(formattedDate, randomWeightValueFormatted)
     }
 }
