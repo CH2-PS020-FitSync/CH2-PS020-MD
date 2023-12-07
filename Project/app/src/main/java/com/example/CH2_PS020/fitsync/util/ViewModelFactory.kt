@@ -10,6 +10,7 @@ import com.example.CH2_PS020.fitsync.ui.account.AccountViewModel
 import com.example.CH2_PS020.fitsync.ui.login.LoginViewModel
 import com.example.CH2_PS020.fitsync.ui.register.RegisterVerifViewModel
 import com.example.CH2_PS020.fitsync.ui.register.RegisterViewModel
+import com.example.CH2_PS020.fitsync.ui.tracker.TrackerViewModel
 import com.example.CH2_PS020.fitsync.ui.workout.WorkoutViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
@@ -42,6 +43,10 @@ class ViewModelFactory(private val repository: FitSyncRepository) :
 
             modelClass.isAssignableFrom(WorkoutViewModel::class.java) -> {
                 WorkoutViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(TrackerViewModel::class.java) -> {
+                TrackerViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

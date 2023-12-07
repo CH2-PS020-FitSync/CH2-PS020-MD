@@ -1,5 +1,6 @@
 package com.example.CH2_PS020.fitsync.api.retrofit
 
+import com.example.CH2_PS020.fitsync.api.response.BmiResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import retrofit2.Response
@@ -99,6 +100,24 @@ interface ApiService {
         @Query("limit") limit: Int? = null,
         @Query("offset") offset: Int? = null
     ): ExercisesResponse
+
+    @FormUrlEncoded
+    @GET("me/bmis")
+    suspend fun getBMIs(
+        @Field("orderType") orderType: String? = null,
+        @Field("from") from: String? = null,
+        @Field("to") to: String? = null,
+        @Field("limit") limit: Int? = null,
+        @Field("offset") offset: Int? = null
+    ): BmiResponse
+
+    @FormUrlEncoded
+    @POST("me/bmis")
+    suspend fun postBMI(
+        @Field("height") height: Float,
+        @Field("weight") weight: Float,
+        @Field("date") date: String? = null
+    ): BmiResponse
 
 
 }

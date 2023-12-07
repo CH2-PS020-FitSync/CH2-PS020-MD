@@ -1,6 +1,7 @@
 package com.example.CH2_PS020.fitsync.data
 
 import androidx.lifecycle.liveData
+import com.example.CH2_PS020.fitsync.api.response.BmiResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import com.example.CH2_PS020.fitsync.api.retrofit.ApiService
@@ -145,4 +146,41 @@ class FitSyncRepository constructor(
             emit(Result.Error(errorMessage))
         }
     }
+
+    fun getBMIs(
+        orderType: String? = null,
+        from: String? = null,
+        to: String? = null,
+        limit: Int? = null,
+        offset: Int? = null
+    ) = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.getBMIs(orderType, from, to, limit, offset)
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, BmiResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun postBMI(
+        height: Float,
+        weight: Float,
+        date: String? = null
+    ) = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.postBMI(height, weight, date)
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, BmiResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
 }
