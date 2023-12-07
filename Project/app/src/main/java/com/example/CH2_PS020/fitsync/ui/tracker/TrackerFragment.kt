@@ -177,6 +177,7 @@ class TrackerFragment : Fragment() {
                 bmi
             )
             tvBmiValue.setTextColor(bmiToColor(bmi.toFloat()))
+            cardBarBmi.setBackgroundColor(bmiToColor(bmi.toFloat()))
             tvCardHeight.text = context?.getString(R.string.height_format, user?.latestBMI?.height)
             tvCardWeight.text = context?.getString(R.string.weight_format, user?.latestBMI?.weight)
         }
