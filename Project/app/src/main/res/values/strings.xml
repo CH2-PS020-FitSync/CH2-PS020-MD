@@ -142,4 +142,10 @@
     <string name="greetins_good_evening">Good Evening !</string>
     <string name="greetings_good_night">Good Night !</string>
     <string name="card_goalWeight">Goal Weight : %1S Kg</string>
+
+    //BMI
+    <string name="height_format">%1$s CM</string>
+    <string name="weight_format">%1$s KG</string>
+    <string name="bmi_description">%1$s (%2$s)</string>
+
 </resources>

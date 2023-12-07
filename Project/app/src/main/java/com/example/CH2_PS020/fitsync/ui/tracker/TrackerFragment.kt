@@ -1,7 +1,9 @@
 package com.example.CH2_PS020.fitsync.ui.tracker
 
 import android.app.Dialog
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -15,16 +17,23 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.api.response.BmisItem
 import com.example.CH2_PS020.fitsync.api.response.LatestBMI
+import com.example.CH2_PS020.fitsync.api.response.User
 import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentTrackerBinding
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.DayViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.MonthViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.chart.generateRandomWeightEntries
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToBias
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToColor
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToTextDescription
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.calculateBMI
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.convertDateFormat
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.formatDoubleToOneDecimalPlace
+import com.example.CH2_PS020.fitsync.util.AgeConverter
 import com.example.CH2_PS020.fitsync.util.ViewModelFactory
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
@@ -67,6 +76,7 @@ class TrackerFragment : Fragment() {
     private val dummyWeightData = generateRandomWeightEntries(30)
 
     //API
+    private var user: User? = null
     private var bmis: List<BmisItem?>? = null
     private var latestBMI: LatestBMI? = null
     private var pickedWeight: Float? = null
@@ -89,18 +99,41 @@ class TrackerFragment : Fragment() {
         binding.ibAddWeight.setOnClickListener {
             setupDialog()
         }
-        getData()
-        initViews()
-    }
-
-    private fun updateData(height: Float, weight: Float, date: String? = null) {
         lifecycleScope.launch {
-            viewModel.postBMI(height, weight, date)
             getData()
+            initViews()
         }
     }
 
+    private fun updateData(height: Float, weight: Float, date: String? = null) {
+        viewModel.postBMI(height, weight, date)
+        getData()
+    }
+
     private fun getData() {
+        viewModel.getUser().observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+
+                }
+
+                is Result.Success -> {
+                    user = result.data.user
+                    latestBMI = result.data.user?.latestBMI
+                    setupUser()
+                    setupSlider(
+                        calculateBMI(
+                            latestBMI?.height!!.toFloat(),
+                            latestBMI?.weight!!.toFloat()
+                        )
+                    )
+                }
+
+                is Result.Error -> {
+
+                }
+            }
+        }
         viewModel.getBMIs().observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
@@ -109,21 +142,8 @@ class TrackerFragment : Fragment() {
 
                 is Result.Success -> {
                     bmis = result.data.bmis
-                }
-
-                is Result.Error -> {
-
-                }
-            }
-        }
-        viewModel.getLatestBMI().observe(this) { result ->
-            when (result) {
-                is Result.Loading -> {
-
-                }
-
-                is Result.Success -> {
-                    latestBMI = result.data.user?.latestBMI
+                    setupCalendar()
+                    setupChart()
                 }
 
                 is Result.Error -> {
@@ -133,11 +153,40 @@ class TrackerFragment : Fragment() {
         }
     }
 
+    private fun setupUser() {
+        val bmi = formatDoubleToOneDecimalPlace(
+            calculateBMI(
+                latestBMI?.height!!.toFloat(),
+                latestBMI?.weight!!.toFloat()
+            )
+        )
+        val bmiText = bmiToTextDescription(bmi.toFloat())
+        binding.apply {
+            Glide.with(this@TrackerFragment)
+                .load(if (user?.photoUrl.isNullOrEmpty()) R.drawable.no_photo else user?.photoUrl)
+                .into(ivCardPhoto)
+            tvCardName.text = user?.name
+            tvCardAgeGender.text = context?.getString(
+                R.string.age_gender,
+                AgeConverter.calculateAge(user?.birthDate, requireContext()),
+                user?.gender.toString().uppercase()
+            ) ?: "NO DATA"
+
+            tvBmiValue.text = context?.getString(
+                R.string.bmi_description, bmiText,
+                bmi
+            )
+            tvBmiValue.setTextColor(bmiToColor(bmi.toFloat()))
+            tvCardHeight.text = context?.getString(R.string.height_format, user?.latestBMI?.height)
+            tvCardWeight.text = context?.getString(R.string.weight_format, user?.latestBMI?.weight)
+        }
+    }
+
     private fun initViews() {
-        if (latestBMI!=null && bmis!= null){
+        if (latestBMI != null && bmis != null) {
             setupCalendar()
             setupChart()
-            setupSlider(calculateBMI(latestBMI?.height!!.toFloat(),latestBMI?.weight!!.toFloat()))
+            setupSlider(calculateBMI(latestBMI?.height!!.toFloat(), latestBMI?.weight!!.toFloat()))
         }
     }
 
@@ -146,7 +195,7 @@ class TrackerFragment : Fragment() {
         binding.cardBarBmi.updateLayoutParams<ConstraintLayout.LayoutParams> {
             horizontalBias = bmiToBias(bmi.toFloat())
         }
-        binding.tvBmiSlider.text = bmi.toString()
+        binding.tvBmiSlider.text = formatDoubleToOneDecimalPlace(bmi)
     }
 
     private fun setupDialog() {
@@ -162,7 +211,7 @@ class TrackerFragment : Fragment() {
             pickedWeight = newVal.toFloat()
         }
         btAdd.setOnClickListener {
-            pickedWeight?.let { it1 -> updateData(it1,latestBMI?.height!!.toFloat()) }
+            pickedWeight?.let { it1 -> updateData(it1, latestBMI?.height!!.toFloat()) }
             dialogAddWeight.dismiss()
         }
         dialogAddWeight.show()
@@ -171,7 +220,7 @@ class TrackerFragment : Fragment() {
     private fun setupChart() {
         if (bmis != null) {
             val dates = bmis?.map {
-                it?.createdAt?.format(DateTimeFormatter.ofPattern("MMMM-yyyy-dddd")).toString()
+                convertDateFormat(it?.createdAt)
             }
             val aaChartView = view?.findViewById<AAChartView>(R.id.aa_chart_view)
             val aaChartModel: AAChartModel = AAChartModel()
@@ -237,13 +286,18 @@ class TrackerFragment : Fragment() {
                 override fun bind(container: DayViewContainer, data: CalendarDay) {
                     container.textView.text = data.date.dayOfMonth.toString()
                     container.day = data
-                    val dates = dummyWeightData.map {
-                        it.date
+                    val dates = bmis?.map {
+                        convertDateFormat(it?.createdAt)
                     }
-                    if (dates.contains(data.date.toString())) {
-                        //container.backgroundColor = Color.RED FULL
-                        //container.backgroundResource = R.drawable.background_calendar_day CIRCLE
-                        container.bar.visibility = View.VISIBLE
+                    Log.d("DATE BMI", dates.toString())
+                    Log.d("DATE CALENDAR", data.date.toString())
+                    if (dates != null) {
+                        Log.d("DATE", dates.contains(data.date.toString()).toString())
+                        if (dates.contains(data.date.toString())) {
+                            //container.backgroundColor = Color.RED FULL
+                            //container.backgroundResource = R.drawable.background_calendar_day CIRCLE
+                            container.bar.visibility = View.VISIBLE
+                        }
                     }
                 }
             }

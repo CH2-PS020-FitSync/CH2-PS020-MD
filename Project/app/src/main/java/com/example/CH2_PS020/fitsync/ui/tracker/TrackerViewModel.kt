@@ -5,6 +5,8 @@ import com.example.CH2_PS020.fitsync.data.FitSyncRepository
 
 class TrackerViewModel(private val repository: FitSyncRepository) : ViewModel() {
     //TODO LIST OF DATES,LIST OF WEIGHT WITH DATE,LATEST BMI
+
+    fun getUser() = repository.getMe()
     fun getBMIs(
         orderType: String? = null,
         from: String? = null,

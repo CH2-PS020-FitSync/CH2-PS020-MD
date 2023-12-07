@@ -105,14 +105,14 @@ interface ApiService {
         @Query("offset") offset: Int? = null
     ): ExercisesResponse
 
-    @FormUrlEncoded
+
     @GET("me/bmis")
     suspend fun getBMIs(
-        @Field("orderType") orderType: String? = null,
-        @Field("from") from: String? = null,
-        @Field("to") to: String? = null,
-        @Field("limit") limit: Int? = null,
-        @Field("offset") offset: Int? = null
+        @Query("orderType") orderType: String? = null,
+        @Query("from") from: String? = null,
+        @Query("to") to: String? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
     ): BmiResponse
 
     @FormUrlEncoded
