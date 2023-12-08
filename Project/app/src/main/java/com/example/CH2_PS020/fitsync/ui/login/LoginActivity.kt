@@ -86,12 +86,7 @@ class LoginActivity : AppCompatActivity() {
                             if (result.data.user.latestBMI?.height != null || result.data.user.latestBMI?.weight != null) {
                                 dialogBodyProfile(accessToken)
                             } else {
-                                if (name != null) {
-                                    val intent = Intent(this, WelcomeActivity::class.java)
-                                    intent.putExtra(NAME, name)
-                                    startActivity(intent)
-                                }
-
+                                startActivity(Intent(this, WelcomeActivity::class.java))
                             }
                         }
                     }
@@ -131,6 +126,7 @@ class LoginActivity : AppCompatActivity() {
         val btnContinue = dialog.findViewById<Button>(R.id.btn_done)
         val datePicker = dialog.findViewById<ImageButton>(R.id.ib_datePicker)
         val tvDate = dialog.findViewById<TextView>(R.id.tv_birthday)
+
 
         lateinit var selectedGender: String
         lateinit var selectedExercise: String
@@ -197,9 +193,9 @@ class LoginActivity : AppCompatActivity() {
                             }
 
                             is Result.Success -> {
-                                val name = result.data.user?.name.toString()
+                                val names = result.data.user?.name.toString()
                                 val intent = Intent(this, WelcomeActivity::class.java)
-                                intent.putExtra(NAME, name)
+                                intent.putExtra(NAME, names)
                                 startActivity(intent)
                             }
 
@@ -224,8 +220,16 @@ class LoginActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
 
-            dialog.show()
         }
+        btnReset.setOnClickListener {
+            dialog.findViewById<TextInputEditText>(R.id.edt_weightBodyProfile).setText("")
+            dialog.findViewById<TextInputEditText>(R.id.edt_heightBodyProfile).setText("")
+            dialog.findViewById<TextInputEditText>(R.id.edt_goalWeight).setText("")
+            tvDate.text = ""
+            radioGroupExercise.clearCheck()
+            radioGroupGender.clearCheck()
+        }
+        dialog.show()
     }
 
 

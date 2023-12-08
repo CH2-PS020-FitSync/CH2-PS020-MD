@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_centerInParent="true"
-    tools:context=".ui.welcome.WelcomeActivity">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.App.CardView"
@@ -15,7 +12,6 @@
         android:elevation="5dp"
         app:cardCornerRadius="15dp"
         app:cardUseCompatPadding="true"
-        android:layout_centerInParent="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,40 +20,45 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="20dp">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottie_namaste"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:elevation="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/namaste" />
 
             <TextView
-                android:id="@+id/title_welcome"
-                style="@style/TextAppearance.FitSync.HeadlineMedium"
+                android:id="@+id/title_rateUs"
+                style="@style/TextAppearance.FitSync.HeadlineLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome"
+                android:layout_marginTop="10dp"
+                android:text="@string/give_us_rate"
+                android:textColor="?attr/colorOnBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lottie_namaste" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_nameWelcome"
-                style="@style/TextAppearance.FitSync.TitleLarge"
+            <RatingBar
+                android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="0"
+                android:backgroundTint="?attr/colorOnSurface"
+                android:stepSize="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_welcome" />
+                app:layout_constraintTop_toBottomOf="@id/title_rateUs" />
+
+            <Button
+                android:id="@+id/btn_SendRate"
+                style="@style/Widget.App.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/okay"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rating" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,13 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <Button
             android:id="@+id/ib_back"
             style="@style/Widget.App.Button.IconButton.Filled"
@@ -50,8 +57,7 @@
             android:background="?attr/colorSurfaceVariant"
             app:layout_constraintBottom_toBottomOf="@id/iv_photoProfile"
             app:layout_constraintEnd_toEndOf="@id/iv_photoProfile"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
-            />
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
 
         <Button
             android:id="@+id/ib_editPhoto"
@@ -62,9 +68,8 @@
             android:contentDescription="@string/edit_profile"
             app:layout_constraintBottom_toBottomOf="@id/bg_edit"
             app:layout_constraintEnd_toEndOf="@id/bg_edit"
-            app:layout_constraintTop_toTopOf="@id/bg_edit"
             app:layout_constraintStart_toStartOf="@id/bg_edit"
-            />
+            app:layout_constraintTop_toTopOf="@id/bg_edit" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_name"
@@ -76,6 +81,7 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:errorEnabled="true"
+            app:hintTextColor="?attr/colorOnSurface"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_photoProfile"
@@ -90,196 +96,117 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/linear_age"
+
+        <TextView
+            android:id="@+id/title_weight"
+            style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@id/linear_weight"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_name">
+            android:text="@string/weight"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/layout_name"
+            />
 
-            <TextView
-                android:id="@+id/title_age"
-                style="@style/TextAppearance.FitSync.TitleMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/age"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="0dp"
-                android:layout_height="2dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_age"
-                style="@style/Widget.App.TextInputLayout.FilledBox"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/age"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lottie_treadmill">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:maxLength="3" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_weight"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_weight"
+            style="@style/Widget.App.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@id/linear_height"
-            app:layout_constraintStart_toEndOf="@id/linear_age"
-            app:layout_constraintTop_toBottomOf="@id/layout_name">
-
-            <TextView
-                android:id="@+id/title_weight"
-                style="@style/TextAppearance.FitSync.TitleMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weight"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="0dp"
-                android:layout_height="2dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_weight"
-                style="@style/Widget.App.TextInputLayout.FilledBox"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/weight"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lottie_treadmill"
-                app:suffixText="@string/kg">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_weight"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:maxLength="3" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_height"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:hint="@string/weight"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintTextColor="?attr/colorOnSurface"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/linear_weight"
-            app:layout_constraintTop_toBottomOf="@id/layout_name">
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/title_weight"
+            app:suffixText="@string/kg">
 
-            <TextView
-                android:id="@+id/title_height"
-                style="@style/TextAppearance.FitSync.TitleMedium"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_weight"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/height"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="0dp"
-                android:layout_height="2dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_height"
-                style="@style/Widget.App.TextInputLayout.FilledBox"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/height"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/lottie_treadmill"
-                app:suffixText="@string/cm">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_height"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:maxLength="3" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_gender"
+        <TextView
+            android:id="@+id/title_height"
+            style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
+            android:text="@string/height"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_age">
+            app:layout_constraintTop_toBottomOf="@id/layout_name" />
 
-            <TextView
-                android:id="@+id/title_gender"
-                style="@style/TextAppearance.FitSync.TitleMedium"
-                android:layout_width="wrap_content"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_height"
+            style="@style/Widget.App.TextInputLayout.FilledBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/height"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintTextColor="?attr/colorOnSurface"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_height"
+            app:suffixText="@string/cm">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_height"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/gender"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="3" />
 
-            <RadioGroup
-                android:id="@+id/radiogroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <RadioButton
-                    android:id="@+id/rb_male"
-                    style="@style/Widget.App.RadioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/male" />
 
-                <RadioButton
-                    android:id="@+id/rb_female"
-                    style="@style/Widget.App.RadioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/female" />
+        <TextView
+            android:id="@+id/title_gender"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/gender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_height" />
 
-            </RadioGroup>
-        </LinearLayout>
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_gender">
+
+            <RadioButton
+                android:id="@+id/rb_editMale"
+                style="@style/Widget.App.RadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:text="@string/male" />
+
+            <RadioButton
+                android:id="@+id/rb_editFemale"
+                style="@style/Widget.App.RadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:text="@string/female" />
+
+        </RadioGroup>
 
         <Button
             android:id="@+id/btn_saveChangedProfile"
@@ -290,7 +217,7 @@
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_gender" />
+            app:layout_constraintTop_toBottomOf="@id/radiogroup" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_bar"

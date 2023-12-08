@@ -70,13 +70,21 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.58" />
+
                 <TextView
                     android:id="@+id/card_name"
                     style="@style/TextAppearance.FitSync.TitleMedium"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/name"
                     android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,45 +109,47 @@
                 <TextView
                     android:id="@+id/tv_favoriteWorkouts"
                     style="@style/TextAppearance.FitSync.LabelMedium"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/favorite_workout"
                     android:textColor="?attr/colorOnPrimaryContainer"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_age_gender" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_cardGoalWeight" />
 
                 <TextView
                     android:id="@+id/tv_cardHeight"
                     style="@style/TextAppearance.FitSync.LabelLarge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/card_height"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_favoriteWorkouts" />
-
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
                     android:id="@+id/tv_cardWeight"
                     style="@style/TextAppearance.FitSync.LabelLarge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/card_weight"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_cardHeight" />
-
 
 
                 <TextView
                     android:id="@+id/tv_cardBMI"
                     style="@style/TextAppearance.FitSync.LabelLarge"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/card_bmi"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_cardWeight" />
 
 
@@ -151,7 +161,7 @@
                     android:text="@string/card_goalWeight"
                     android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_cardBMI" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_age_gender" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -219,10 +229,10 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_dayStreak"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

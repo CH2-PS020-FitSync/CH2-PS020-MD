@@ -9,6 +9,7 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentHomeBinding
@@ -96,7 +97,8 @@ class HomeFragment : Fragment() {
             if (photoUrl.isBlank()) {
                 ivPhoto.setImageDrawable(getDrawable(requireContext(), R.drawable.fitsync_logo))
             } else {
-                Glide.with(ivPhoto).load(photoUrl).into(ivPhoto)
+                Glide.with(ivPhoto).load(photoUrl).skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE).into(ivPhoto)
             }
 
             tvAgeGender.text = resources.getString(
@@ -107,7 +109,7 @@ class HomeFragment : Fragment() {
             if (gender.equals(resources.getString(R.string.male), true)) {
                 ivGender.setImageDrawable(getDrawable(requireContext(), R.drawable.ic_male))
 
-            } else if (gender == resources.getString(R.string.female)) {
+            } else if (gender.equals(resources.getString(R.string.female), true)) {
                 ivGender.setImageDrawable(getDrawable(requireContext(), R.drawable.ic_female))
             }
 

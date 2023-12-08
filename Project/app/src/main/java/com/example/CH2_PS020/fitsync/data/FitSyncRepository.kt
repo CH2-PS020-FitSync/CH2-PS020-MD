@@ -99,7 +99,7 @@ class FitSyncRepository constructor(
         }
     }
 
-    fun getMe() = liveData {
+    fun getMe() = liveData  {
         emit(Result.Loading)
         try {
             val success = apiService.getMe()
@@ -132,6 +132,22 @@ class FitSyncRepository constructor(
                     goalWeight,
                     height,
                     weight
+                )
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun editProfile(name: String, height: String, weight: String, gender: String) = liveData {
+        emit(Result.Loading)
+        try {
+            val success =
+                apiService.editProfile(
+                    name, height, weight, gender
                 )
             emit(Result.Success(success))
         } catch (e: HttpException) {
@@ -198,20 +214,8 @@ class FitSyncRepository constructor(
             emit(Result.Error(errorMessage))
         }
     }
-    fun getMe() = liveData {
-        emit(Result.Loading)
-        try {
-            val success = apiService.getMe()
-            emit(Result.Success(success))
-        } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, UserResponse::class.java)
-            val errorMessage = errorBody.message.toString()
-            emit(Result.Error(errorMessage))
-        }
-    }
 
-    fun uploadPhoto(imageFile : File) = liveData {
+    fun uploadPhoto(imageFile: File) = liveData {
         emit(Result.Loading)
         try {
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())

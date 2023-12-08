@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import com.example.CH2_PS020.fitsync.data.FitSyncRepository
+import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.data.model.UserModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,4 +27,6 @@ class AccountViewModel(private val repository: FitSyncRepository) : ViewModel() 
             }
         }
     }
+
+    fun getMe() = repository.getMe()
 }

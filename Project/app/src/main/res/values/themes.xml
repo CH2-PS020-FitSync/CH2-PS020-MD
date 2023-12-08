@@ -175,8 +175,9 @@
     <style name="ThemeOverlay.App.BottomNavigationView" parent="">
         <item name="colorSurface">@color/md_theme_light_surfaceVariant</item>
         <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
-
     </style>
+
+
 
     <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="">
         <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
@@ -188,6 +189,8 @@
         </item>
         <item name="android:color">@color/md_theme_light_surface</item>
     </style>
+
+
 
     //TextButton
 

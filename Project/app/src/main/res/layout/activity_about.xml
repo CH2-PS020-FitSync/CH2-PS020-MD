@@ -46,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:textColor="?attr/colorOnBackground"
             android:text="@string/about_description"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/meet_fitsync_team"
+            android:textColor="?attr/colorOnBackground"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_aboutDesc" />
@@ -69,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/machine_learning"
+            android:textColor="?attr/colorOnBackground"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_introduce" />
@@ -113,6 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/cloud_computing"
+            android:textColor="?attr/colorOnBackground"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_photoML2" />
@@ -167,6 +171,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/ic_launcher_background"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_photoMD1"
             app:layout_constraintTop_toBottomOf="@id/title_MD"
