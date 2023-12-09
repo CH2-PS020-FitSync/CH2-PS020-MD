@@ -239,7 +239,7 @@ class TrackerFragment : Fragment() {
         val startMonth = currentMonth.minusMonths(100)
         val endMonth = currentMonth.plusMonths(100)
         val daysOfWeek = daysOfWeek()
-        
+
         cbWeekMode.setOnCheckedChangeListener { _, b ->
             toggleCalendarVisibility(b)
         }
