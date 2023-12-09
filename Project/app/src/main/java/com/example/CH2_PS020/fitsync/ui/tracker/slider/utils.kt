@@ -64,7 +64,7 @@ fun convertDateFormat(date: String?): String {
         return "NO DATA"
     }
 
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     val localDateTime = try {
         LocalDateTime.parse(date, formatter)
     } catch (e: Exception) {
@@ -75,33 +75,10 @@ fun convertDateFormat(date: String?): String {
     return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 }
 
-fun formatDoubleToOneDecimalPlace(value: Double): String {
-    return String.format("%.1f", value)
+fun formatDoubleToOneDecimalPlace(value: Double): Double {
+    return String.format("%.1f", value).toDouble()
 }
 
-fun convertToUTC(isoDateTime: String): String {
-    // Parse the input ISO datetime string
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-    val localDateTime = LocalDateTime.parse(isoDateTime, formatter)
-
-    // Convert to UTC
-    val zonedDateTime = ZonedDateTime.of(localDateTime, ZoneOffset.UTC)
-
-    // Format the result back to ISO datetime string
-    return zonedDateTime.format(formatter)
-}
-
-fun convertToTimeZone(utcDateTime: String): String {
-    // Parse the input UTC datetime string
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-    val zonedDateTimeUTC = ZonedDateTime.parse(utcDateTime, formatter).withZoneSameInstant(ZoneOffset.UTC)
-
-    // Convert to the system's default time zone
-    val localDateTime = zonedDateTimeUTC.withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime()
-
-    // Format the result back to datetime string in the local time zone
-    return localDateTime.format(formatter)
-}
 
 
 

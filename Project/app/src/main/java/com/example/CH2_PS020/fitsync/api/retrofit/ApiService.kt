@@ -116,7 +116,7 @@ interface ApiService {
     ): BMIResponse
 
     @FormUrlEncoded
-    @POST("me/bmis")
+    @PUT("me/bmis")
     suspend fun postBMI(
         @Field("height") height: Float,
         @Field("weight") weight: Float,

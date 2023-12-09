@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -17,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.core.view.isInvisible
 import androidx.core.view.updateLayoutParams
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +31,6 @@ import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentTrackerBinding
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.DayViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.WeekDayViewContainer
-import com.example.CH2_PS020.fitsync.ui.tracker.chart.generateRandomWeightEntries
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToBias
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToColor
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToTextDescription
@@ -44,6 +45,7 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartZoomType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
@@ -74,19 +76,15 @@ class TrackerFragment : Fragment() {
     private val monthCalendar: CalendarView get() = binding.calendarView
     private val weekCalendar: WeekCalendarView get() = binding.weekCalendar
     private lateinit var headerTitle: TextView
-    private val btPrev: ImageButton? = view?.findViewById(R.id.bt_prev_calendar)
-    private val btNext: ImageButton? = view?.findViewById(R.id.bt_next_calendar)
+    private lateinit var cbWeekMode: CheckBox
+
 
     //Dialog
     private lateinit var dialogAddWeight: Dialog
     private lateinit var btDatePicker: ImageButton
-    private lateinit var pickerWeight: NumberPicker
+    private lateinit var pickerWeight: TextInputEditText
     private lateinit var btAdd: MaterialButton
     private val calendar = Calendar.getInstance()
-
-    //Dummy Data
-    private val dummyWeightData = generateRandomWeightEntries(30)
-
 
     //API
     private var user: User? = null
@@ -218,11 +216,9 @@ class TrackerFragment : Fragment() {
 
     private fun initViews() {
         headerTitle = view!!.findViewById(R.id.tv_month)
+        cbWeekMode = view!!.findViewById(R.id.cb_week_mode)
         setupCalendar()
         setupChart()
-//        if (latestBMI != null && bmis != null) {
-//            setupSlider(calculateBMI(latestBMI?.height!!.toFloat(), latestBMI?.weight!!.toFloat()))
-//        }
     }
 
     private fun setupCalendar() {
@@ -232,9 +228,15 @@ class TrackerFragment : Fragment() {
         val endMonth = currentMonth.plusMonths(100)
         val daysOfWeek = daysOfWeek()
 
-        monthCalendar.isInvisible = true
-        weekCalendar.isInvisible = false
-
+        cbWeekMode.setOnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                weekCalendar.visibility = View.VISIBLE
+                monthCalendar.visibility = View.GONE
+            } else {
+                monthCalendar.visibility = View.VISIBLE
+                weekCalendar.visibility = View.GONE
+            }
+        }
         setupMonthCalendar(currentMonth, startMonth, endMonth, daysOfWeek)
         setupWeekCalendar(currentMonth, startMonth, endMonth, daysOfWeek)
 
@@ -248,7 +250,6 @@ class TrackerFragment : Fragment() {
         } else {
             headerTitle.text = week.toString()
         }
-//        Log.d("UPDATE HEADER",headerTitle?.text.toString())
         Log.d("UPDATE HEADER", month.toString())
     }
 
@@ -270,7 +271,7 @@ class TrackerFragment : Fragment() {
         binding.cardBarBmi.updateLayoutParams<ConstraintLayout.LayoutParams> {
             horizontalBias = bmiToBias(bmi.toFloat())
         }
-        binding.tvBmiSlider.text = formatDoubleToOneDecimalPlace(bmi)
+        binding.tvBmiSlider.text = formatDoubleToOneDecimalPlace(bmi).toString()
     }
 
     private fun setupDialog() {
@@ -280,17 +281,17 @@ class TrackerFragment : Fragment() {
         dialogAddWeight.window?.decorView?.setBackgroundResource(android.R.color.transparent)
         dialogAddWeight.setCancelable(true)
 
-        pickerWeight = dialogAddWeight.findViewById(R.id.picker_weight)
+        pickerWeight = dialogAddWeight.findViewById(R.id.et_weight)
         btAdd = dialogAddWeight.findViewById(R.id.bt_add_body_weight)
         btDatePicker = dialogAddWeight.findViewById(R.id.bt_pick_date)
-        pickerWeight.setOnValueChangedListener { _, _, newVal ->
-            pickedWeight = newVal.toFloat()
+        pickerWeight.doOnTextChanged { text, _, _, _ ->
+            pickedWeight = text.toString().toFloat()
         }
         btDatePicker.setOnClickListener {
             showDatePicker()
         }
         btAdd.setOnClickListener {
-            pickedWeight?.let { it1 -> updateData(it1, latestBMI?.height!!.toFloat(), pickedDate) }
+            pickedWeight?.let { it1 -> updateData(latestBMI?.height!!.toFloat(), it1, pickedDate) }
             dialogAddWeight.dismiss()
         }
         dialogAddWeight.show()
@@ -315,7 +316,7 @@ class TrackerFragment : Fragment() {
             aaChartModel.series(
                 arrayOf(
                     AASeriesElement().name("Weight").data(bmis?.map {
-                        it?.weight!!.toDouble()
+                        formatDoubleToOneDecimalPlace(it?.weight!!.toDouble())
                     }!!.toTypedArray())
                 )
             )

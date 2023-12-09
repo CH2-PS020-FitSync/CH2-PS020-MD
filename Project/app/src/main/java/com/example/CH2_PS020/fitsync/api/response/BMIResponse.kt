@@ -24,13 +24,13 @@ data class BmisItem(
 	val createdAt: String? = null,
 
 	@field:SerializedName("weight")
-	val weight: Int? = null,
+	val weight: Float? = null,
 
 	@field:SerializedName("id")
 	val id: Int? = null,
 
 	@field:SerializedName("height")
-	val height: Int? = null,
+	val height: Float? = null,
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String? = null
