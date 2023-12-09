@@ -1,5 +1,6 @@
 package com.example.CH2_PS020.fitsync.ui.tracker
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -50,6 +51,7 @@ import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.WeekDay
 import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.daysOfWeek
+import com.kizitonwose.calendar.core.yearMonth
 import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.WeekCalendarView
@@ -205,7 +207,7 @@ class TrackerFragment : Fragment() {
 
             tvBmiValue.text = context?.getString(
                 R.string.bmi_description, bmiText,
-                bmi
+                bmi.toString()
             )
             tvBmiValue.setTextColor(bmiToColor(bmi.toFloat()))
             cardBarBmi.setBackgroundColor(bmiToColor(bmi.toFloat()))
@@ -221,34 +223,46 @@ class TrackerFragment : Fragment() {
         setupChart()
     }
 
+    private fun toggleCalendarVisibility(isWeekMode: Boolean) {
+        if (isWeekMode) {
+            monthCalendar.visibility = View.GONE
+            weekCalendar.visibility = View.VISIBLE
+        } else {
+            weekCalendar.visibility = View.GONE
+            monthCalendar.visibility = View.VISIBLE
+        }
+    }
+
     private fun setupCalendar() {
         setupHeader()
         val currentMonth = YearMonth.now()
         val startMonth = currentMonth.minusMonths(100)
         val endMonth = currentMonth.plusMonths(100)
         val daysOfWeek = daysOfWeek()
-
-        cbWeekMode.setOnCheckedChangeListener { compoundButton, b ->
-            if (b) {
-                weekCalendar.visibility = View.VISIBLE
-                monthCalendar.visibility = View.GONE
-            } else {
-                monthCalendar.visibility = View.VISIBLE
-                weekCalendar.visibility = View.GONE
-            }
+        
+        cbWeekMode.setOnCheckedChangeListener { _, b ->
+            toggleCalendarVisibility(b)
         }
+
         setupMonthCalendar(currentMonth, startMonth, endMonth, daysOfWeek)
         setupWeekCalendar(currentMonth, startMonth, endMonth, daysOfWeek)
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateHeader() {
         val month = monthCalendar.findFirstVisibleMonth()?.yearMonth
-        val week = weekCalendar.findFirstVisibleWeek()
-        if (month != null) {
-            headerTitle.text = month.toString()
+        val week = weekCalendar.findFirstVisibleWeek()?:return
+        if (cbWeekMode.isChecked) {//Week Mode
+            val firstDate = week.days.first().date
+            val lastDate = week.days.last().date
+            if(firstDate.yearMonth == lastDate.yearMonth){
+                headerTitle.text = firstDate.yearMonth.toString()
+            }else{
+                headerTitle.text = "${firstDate.yearMonth} - ${lastDate.yearMonth}"
+            }
         } else {
-            headerTitle.text = week.toString()
+            headerTitle.text = month.toString()
         }
         Log.d("UPDATE HEADER", month.toString())
     }
