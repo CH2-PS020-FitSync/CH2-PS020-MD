@@ -8,7 +8,7 @@ class TrackerViewModel(private val repository: FitSyncRepository) : ViewModel() 
 
     fun getUser() = repository.getMe()
     fun getBMIs(
-        orderType: String? = null,
+        orderType: String? = "asc",
         from: String? = null,
         to: String? = null,
         limit: Int? = null,

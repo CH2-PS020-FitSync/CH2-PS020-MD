@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <ImageButton
-        android:id="@+id/bt_prev_month"
+        android:id="@+id/bt_prev_calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -21,13 +21,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="?attr/colorOnBackground"
-        app:layout_constraintEnd_toEndOf="@id/bt_next_month"
-        app:layout_constraintStart_toStartOf="@id/bt_prev_month"
+        app:layout_constraintEnd_toEndOf="@id/bt_next_calendar"
+        app:layout_constraintStart_toStartOf="@id/bt_prev_calendar"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="December" />
 
     <ImageButton
-        android:id="@+id/bt_next_month"
+        android:id="@+id/bt_next_calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"

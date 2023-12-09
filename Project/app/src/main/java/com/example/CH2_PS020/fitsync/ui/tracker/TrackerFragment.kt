@@ -1,7 +1,7 @@
 package com.example.CH2_PS020.fitsync.ui.tracker
 
+import android.app.DatePickerDialog
 import android.app.Dialog
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,9 +10,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+import androidx.core.view.isInvisible
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +28,7 @@ import com.example.CH2_PS020.fitsync.api.response.User
 import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentTrackerBinding
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.DayViewContainer
-import com.example.CH2_PS020.fitsync.ui.tracker.calendar.MonthViewContainer
+import com.example.CH2_PS020.fitsync.ui.tracker.calendar.WeekDayViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.chart.generateRandomWeightEntries
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToBias
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToColor
@@ -42,19 +45,22 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartZoomType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.button.MaterialButton
 import com.kizitonwose.calendar.core.CalendarDay
-import com.kizitonwose.calendar.core.CalendarMonth
+import com.kizitonwose.calendar.core.WeekDay
+import com.kizitonwose.calendar.core.atStartOfMonth
 import com.kizitonwose.calendar.core.daysOfWeek
-import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
-import com.kizitonwose.calendar.core.nextMonth
-import com.kizitonwose.calendar.core.previousMonth
 import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
-import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
+import com.kizitonwose.calendar.view.WeekCalendarView
+import com.kizitonwose.calendar.view.WeekDayBinder
 import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.LocalDateTime
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
+import java.util.Calendar
 import java.util.Locale
 
 class TrackerFragment : Fragment() {
@@ -65,21 +71,29 @@ class TrackerFragment : Fragment() {
     }
 
     //Calendar
-    private lateinit var calendarView: CalendarView
+    private val monthCalendar: CalendarView get() = binding.calendarView
+    private val weekCalendar: WeekCalendarView get() = binding.weekCalendar
+    private lateinit var headerTitle: TextView
+    private val btPrev: ImageButton? = view?.findViewById(R.id.bt_prev_calendar)
+    private val btNext: ImageButton? = view?.findViewById(R.id.bt_next_calendar)
 
     //Dialog
     private lateinit var dialogAddWeight: Dialog
+    private lateinit var btDatePicker: ImageButton
     private lateinit var pickerWeight: NumberPicker
     private lateinit var btAdd: MaterialButton
+    private val calendar = Calendar.getInstance()
 
     //Dummy Data
     private val dummyWeightData = generateRandomWeightEntries(30)
+
 
     //API
     private var user: User? = null
     private var bmis: List<BmisItem?>? = null
     private var latestBMI: LatestBMI? = null
     private var pickedWeight: Float? = null
+    private var pickedDate: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,15 +120,32 @@ class TrackerFragment : Fragment() {
     }
 
     private fun updateData(height: Float, weight: Float, date: String? = null) {
-        viewModel.postBMI(height, weight, date)
-        getData()
+        Log.d("POST BMI", "$height,$weight,$date")
+        viewModel.postBMI(height, weight, date).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    showLoading(true)
+                }
+
+                is Result.Success -> {
+                    Log.d("POST BMI", result.data.toString())
+                    getData()
+                    showLoading(false)
+                }
+
+                is Result.Error -> {
+
+                }
+            }
+        }
+
     }
 
     private fun getData() {
         viewModel.getUser().observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
-
+                    showLoading(true)
                 }
 
                 is Result.Success -> {
@@ -127,6 +158,7 @@ class TrackerFragment : Fragment() {
                             latestBMI?.weight!!.toFloat()
                         )
                     )
+                    showLoading(false)
                 }
 
                 is Result.Error -> {
@@ -137,13 +169,14 @@ class TrackerFragment : Fragment() {
         viewModel.getBMIs().observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
-
+                    showLoading(true)
                 }
 
                 is Result.Success -> {
                     bmis = result.data.bmis
                     setupCalendar()
                     setupChart()
+                    showLoading(false)
                 }
 
                 is Result.Error -> {
@@ -184,10 +217,51 @@ class TrackerFragment : Fragment() {
     }
 
     private fun initViews() {
-        if (latestBMI != null && bmis != null) {
-            setupCalendar()
-            setupChart()
-            setupSlider(calculateBMI(latestBMI?.height!!.toFloat(), latestBMI?.weight!!.toFloat()))
+        headerTitle = view!!.findViewById(R.id.tv_month)
+        setupCalendar()
+        setupChart()
+//        if (latestBMI != null && bmis != null) {
+//            setupSlider(calculateBMI(latestBMI?.height!!.toFloat(), latestBMI?.weight!!.toFloat()))
+//        }
+    }
+
+    private fun setupCalendar() {
+        setupHeader()
+        val currentMonth = YearMonth.now()
+        val startMonth = currentMonth.minusMonths(100)
+        val endMonth = currentMonth.plusMonths(100)
+        val daysOfWeek = daysOfWeek()
+
+        monthCalendar.isInvisible = true
+        weekCalendar.isInvisible = false
+
+        setupMonthCalendar(currentMonth, startMonth, endMonth, daysOfWeek)
+        setupWeekCalendar(currentMonth, startMonth, endMonth, daysOfWeek)
+
+    }
+
+    private fun updateHeader() {
+        val month = monthCalendar.findFirstVisibleMonth()?.yearMonth
+        val week = weekCalendar.findFirstVisibleWeek()
+        if (month != null) {
+            headerTitle.text = month.toString()
+        } else {
+            headerTitle.text = week.toString()
+        }
+//        Log.d("UPDATE HEADER",headerTitle?.text.toString())
+        Log.d("UPDATE HEADER", month.toString())
+    }
+
+    private fun setupHeader() {
+//        binding.exOneYearText.text = month.year.toString()
+//        binding.exOneMonthText.text = month.month.displayText(short = false)
+
+        val header = view?.findViewById<LinearLayout>(R.id.container_day_title)?.children
+        header?.map { it as TextView }?.forEachIndexed { index, textView ->
+            val dayOfWeek = daysOfWeek()[index]
+            val title =
+                dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+            textView.text = title.uppercase()
         }
     }
 
@@ -208,77 +282,86 @@ class TrackerFragment : Fragment() {
 
         pickerWeight = dialogAddWeight.findViewById(R.id.picker_weight)
         btAdd = dialogAddWeight.findViewById(R.id.bt_add_body_weight)
+        btDatePicker = dialogAddWeight.findViewById(R.id.bt_pick_date)
         pickerWeight.setOnValueChangedListener { _, _, newVal ->
             pickedWeight = newVal.toFloat()
         }
+        btDatePicker.setOnClickListener {
+            showDatePicker()
+        }
         btAdd.setOnClickListener {
-            pickedWeight?.let { it1 -> updateData(it1, latestBMI?.height!!.toFloat()) }
+            pickedWeight?.let { it1 -> updateData(it1, latestBMI?.height!!.toFloat(), pickedDate) }
             dialogAddWeight.dismiss()
         }
         dialogAddWeight.show()
     }
 
     private fun setupChart() {
-        if (bmis != null) {
-            val dates = bmis?.map {
-                convertDateFormat(it?.createdAt)
-            }
-            val aaChartView = view?.findViewById<AAChartView>(R.id.aa_chart_view)
-            val aaChartModel: AAChartModel = AAChartModel()
-                .chartType(AAChartType.Line)
-                .yAxisTitle("Weight(KG)")
-                .xAxisLabelsEnabled(true)
-                .backgroundColor(android.R.color.transparent)
-                .dataLabelsEnabled(false)
-                .series(
-                    arrayOf(
-                        AASeriesElement().name("Weight").data(bmis?.map {
-                            it?.weight!!.toDouble()
-                        }!!.toTypedArray())
-                    )
-                )
-                .categories(dates!!.toTypedArray())
-                .zoomType(AAChartZoomType.XY)
-            aaChartView?.aa_drawChartWithChartModel(aaChartModel)
+        val dates = bmis?.map {
+            convertDateFormat(it?.date)
         }
+        val aaChartView = view?.findViewById<AAChartView>(R.id.aa_chart_view)
+        val aaChartModel: AAChartModel = AAChartModel()
+            .chartType(AAChartType.Line)
+            .yAxisTitle("Weight(KG)")
+            .xAxisLabelsEnabled(true)
+            .backgroundColor(android.R.color.transparent)
+            .dataLabelsEnabled(false)
+            .zoomType(AAChartZoomType.XY)
+
+        if (bmis.isNullOrEmpty()) {
+            aaChartModel.series(arrayOf(AASeriesElement().name("Weight")))
+        } else {
+            aaChartModel.series(
+                arrayOf(
+                    AASeriesElement().name("Weight").data(bmis?.map {
+                        it?.weight!!.toDouble()
+                    }!!.toTypedArray())
+                )
+            )
+                .categories(dates!!.toTypedArray())
+        }
+        aaChartView?.aa_drawChartWithChartModel(aaChartModel)
     }
 
-    private fun setupCalendar() {
-        calendarView = binding.calendarView
-        calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
-            override fun create(view: View): MonthViewContainer {
-                return MonthViewContainer(view)
-            }
-
-            override fun bind(container: MonthViewContainer, data: CalendarMonth) {
-                calendarView.addOnItemTouchListener(object :
-                    RecyclerView.SimpleOnItemTouchListener() {
-                    override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                        return rv.scrollState == RecyclerView.SCROLL_STATE_DRAGGING
+    private fun setupWeekCalendar(
+        currentMonth: YearMonth,
+        startMonth: YearMonth,
+        endMonth: YearMonth,
+        daysOfWeek: List<DayOfWeek>
+    ) {
+        weekCalendar.dayBinder = object : WeekDayBinder<WeekDayViewContainer> {
+            override fun bind(container: WeekDayViewContainer, data: WeekDay) {
+                container.day = data
+                container.textView.text = data.date.dayOfMonth.toString()
+                val dates = bmis?.map {
+                    convertDateFormat(it?.date)
+                }
+                if (dates != null) {
+                    if (dates.contains(data.date.toString())) {
+                        container.bar.visibility = View.VISIBLE
                     }
-                })
-                container.currentMonth.text =
-                    data.yearMonth.format(DateTimeFormatter.ofPattern("MMMM yyyy"))
-                container.buttonNextMonth.setOnClickListener {
-                    calendarView.scrollToMonth(data.yearMonth.nextMonth)
                 }
-                container.buttonPrevMonth.setOnClickListener {
-                    calendarView.scrollToMonth(data.yearMonth.previousMonth)
-                }
-                if (container.titlesDayContainer.tag == null) {
-                    container.titlesDayContainer.tag = data.yearMonth
-                    container.titlesDayContainer.children.map { it as TextView }
-                        .forEachIndexed { index, textView ->
-                            val dayOfWeek = daysOfWeek()[index]
-                            val title =
-                                dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
-                            textView.text = title.uppercase()
-                        }
-                }
-            }
-        }
 
-        calendarView.dayBinder =
+            }
+
+            override fun create(view: View): WeekDayViewContainer {
+                return WeekDayViewContainer(view)
+            }
+
+        }
+        weekCalendar.weekScrollListener = { updateHeader() }
+        weekCalendar.setup(startMonth.atStartOfMonth(), endMonth.atEndOfMonth(), daysOfWeek.first())
+        weekCalendar.scrollToWeek(currentMonth.atStartOfMonth())
+    }
+
+    private fun setupMonthCalendar(
+        currentMonth: YearMonth,
+        startMonth: YearMonth,
+        endMonth: YearMonth,
+        daysOfWeek: List<DayOfWeek>
+    ) {
+        monthCalendar.dayBinder =
             object : MonthDayBinder<DayViewContainer> {
                 // Called only when a new container is needed.
                 override fun create(view: View) = DayViewContainer(view)
@@ -288,27 +371,40 @@ class TrackerFragment : Fragment() {
                     container.textView.text = data.date.dayOfMonth.toString()
                     container.day = data
                     val dates = bmis?.map {
-                        convertDateFormat(it?.createdAt)
+                        convertDateFormat(it?.date)
                     }
-                    Log.d("DATE BMI", dates.toString())
-                    Log.d("DATE CALENDAR", data.date.toString())
                     if (dates != null) {
-                        Log.d("DATE", dates.contains(data.date.toString()).toString())
                         if (dates.contains(data.date.toString())) {
-                            //container.backgroundColor = Color.RED FULL
-                            //container.backgroundResource = R.drawable.background_calendar_day CIRCLE
                             container.bar.visibility = View.VISIBLE
                         }
                     }
                 }
             }
+        monthCalendar.monthScrollListener = { updateHeader() }
+        monthCalendar.setup(startMonth, endMonth, daysOfWeek.first())//month
+        monthCalendar.scrollToMonth(currentMonth)
+    }
 
-        val currentMonth = YearMonth.now()
-        val startMonth = currentMonth.minusMonths(100)  // Adjust as needed
-        val endMonth = currentMonth.plusMonths(100)  // Adjust as needed
-        val firstDayOfWeek = firstDayOfWeekFromLocale() // Available from the library
-        val daysOfWeek = daysOfWeek() // Available in the library
-        calendarView.setup(startMonth, endMonth, firstDayOfWeek)
-        calendarView.scrollToMonth(currentMonth)
+    private fun showDatePicker() {
+        // Create a DatePickerDialog
+        val datePickerDialog = DatePickerDialog(
+            requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                val selectedDate = LocalDateTime.of(year, monthOfYear + 1, dayOfMonth, 0, 0)
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+                val formattedDate = selectedDate.format(formatter)
+                dialogAddWeight.findViewById<TextView>(R.id.tv_picked_date).text = formattedDate
+                pickedDate = formattedDate
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        // Show the DatePicker dialog
+        datePickerDialog.show()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

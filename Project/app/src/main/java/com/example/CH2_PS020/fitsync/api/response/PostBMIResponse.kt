@@ -2,19 +2,22 @@ package com.example.CH2_PS020.fitsync.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class BmiResponse(
-
-	@field:SerializedName("bmis")
-	val bmis: List<BmisItem?>? = null,
+data class PostBMIResponse(
 
 	@field:SerializedName("message")
 	val message: String? = null,
 
 	@field:SerializedName("status")
-	val status: String? = null
+	val status: String? = null,
+
+	@field:SerializedName("bmi")
+	val bmi: Bmi? = null
 )
 
-data class BmisItem(
+data class Bmi(
+
+	@field:SerializedName("date")
+	val date: String? = null,
 
 	@field:SerializedName("createdAt")
 	val createdAt: String? = null,
@@ -23,7 +26,7 @@ data class BmisItem(
 	val weight: String? = null,
 
 	@field:SerializedName("id")
-	val id: String? = null,
+	val id: Int? = null,
 
 	@field:SerializedName("height")
 	val height: String? = null,
