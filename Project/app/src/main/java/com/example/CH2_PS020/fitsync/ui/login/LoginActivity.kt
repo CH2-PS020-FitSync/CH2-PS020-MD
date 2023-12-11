@@ -87,17 +87,7 @@ class LoginActivity : AppCompatActivity() {
                             if (result.data.user.latestBMI?.height != null || result.data.user.latestBMI?.weight != null) {
                                 dialogBodyProfile(accessToken)
                             } else {
-<<<<<<< HEAD
                                 startActivity(Intent(this, WelcomeActivity::class.java))
-=======
-                                Log.d("NAME",name.toString())
-                                if (name != null) {
-                                    val intent = Intent(this, WelcomeActivity::class.java)
-                                    intent.putExtra(NAME, name)
-                                    startActivity(intent)
-                                }
-
->>>>>>> tracker-page
                             }
                         }
                     }

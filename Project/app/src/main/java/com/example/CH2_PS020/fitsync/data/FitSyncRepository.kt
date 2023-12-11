@@ -210,22 +210,14 @@ class FitSyncRepository constructor(
             emit(Result.Success(success))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
-<<<<<<< HEAD
-            val errorBody = Gson().fromJson(jsonInString, BmiResponse::class.java)
-=======
             val errorBody = Gson().fromJson(jsonInString, PostBMIResponse::class.java)
->>>>>>> tracker-page
             val errorMessage = errorBody.message.toString()
             emit(Result.Error(errorMessage))
         }
     }
 
-<<<<<<< HEAD
-    fun uploadPhoto(imageFile: File) = liveData {
-=======
 
-    fun uploadPhoto(imageFile : File) = liveData {
->>>>>>> tracker-page
+    fun uploadPhoto(imageFile: File) = liveData {
         emit(Result.Loading)
         try {
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
