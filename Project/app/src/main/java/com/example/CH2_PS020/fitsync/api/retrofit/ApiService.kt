@@ -1,10 +1,10 @@
 package com.example.CH2_PS020.fitsync.api.retrofit
 
-import com.example.CH2_PS020.fitsync.api.response.BmiResponse
+import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
+import com.example.CH2_PS020.fitsync.api.response.PostBMIResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import okhttp3.MultipartBody
-import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -114,23 +114,23 @@ interface ApiService {
         @Query("offset") offset: Int? = null
     ): ExercisesResponse
 
-    @FormUrlEncoded
+
     @GET("me/bmis")
     suspend fun getBMIs(
-        @Field("orderType") orderType: String? = null,
-        @Field("from") from: String? = null,
-        @Field("to") to: String? = null,
-        @Field("limit") limit: Int? = null,
-        @Field("offset") offset: Int? = null
-    ): BmiResponse
+        @Query("orderType") orderType: String? = null,
+        @Query("from") from: String? = null,
+        @Query("to") to: String? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
+    ): BMIResponse
 
     @FormUrlEncoded
-    @POST("me/bmis")
+    @PUT("me/bmis")
     suspend fun postBMI(
         @Field("height") height: Float,
         @Field("weight") weight: Float,
         @Field("date") date: String? = null
-    ): BmiResponse
+    ): PostBMIResponse
 
     @Multipart
     @PUT("me/photo")

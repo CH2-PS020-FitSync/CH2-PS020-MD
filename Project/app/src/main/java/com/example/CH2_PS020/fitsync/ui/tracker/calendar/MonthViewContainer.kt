@@ -11,6 +11,4 @@ class MonthViewContainer(view: View) : ViewContainer(view) {
     // Alternatively, you can add an ID to the container layout and use findViewById()
     val titlesDayContainer = view.findViewById<ViewGroup>(R.id.container_day_title)
     val currentMonth = view.findViewById<TextView>(R.id.tv_month)
-    val buttonNextMonth = view.findViewById<ImageButton>(R.id.bt_next_month)
-    val buttonPrevMonth = view.findViewById<ImageButton>(R.id.bt_prev_month)
 }

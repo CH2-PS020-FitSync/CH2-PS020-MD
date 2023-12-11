@@ -28,19 +28,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_add_body_weight" />
 
-        <com.shawnlin.numberpicker.NumberPicker
-            android:id="@+id/picker_weight"
+        <ImageButton
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/md_theme_light_primaryContainer"
+            android:id="@+id/bt_pick_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/baseline_edit_calendar_24"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_add_body_weight" />
+
+        <TextView
+            android:id="@+id/tv_picked_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_pick_date"
+            app:layout_constraintStart_toEndOf="@id/bt_pick_date"
             app:layout_constraintTop_toBottomOf="@id/divider_add_body_weight"
-            app:np_dividerColor="#F50057"
-            app:np_max="150"
-            app:np_min="20"
-            app:np_orientation="horizontal"
-            app:np_selectedTextColor="@color/md_theme_light_primary" />
+            tools:text="2023-12-7" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="15dp"
+            android:id="@+id/til_weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/bt_pick_date"
+            app:layout_constraintTop_toBottomOf="@id/tv_picked_date">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Weight"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--        <com.shawnlin.numberpicker.NumberPicker-->
+<!--            android:id="@+id/picker_weight"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/divider_add_body_weight"-->
+<!--            app:np_dividerColor="#F50057"-->
+<!--            app:np_max="150"-->
+<!--            app:np_min="20"-->
+<!--            app:np_orientation="horizontal"-->
+<!--            app:np_selectedTextColor="@color/md_theme_light_primary" />-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_add_body_weight"
@@ -50,7 +89,7 @@
             android:text="Add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/picker_weight" />
+            app:layout_constraintTop_toBottomOf="@id/til_weight" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

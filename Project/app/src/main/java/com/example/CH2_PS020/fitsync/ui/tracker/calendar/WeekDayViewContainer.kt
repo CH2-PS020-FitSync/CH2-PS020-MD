@@ -1,22 +1,19 @@
 package com.example.CH2_PS020.fitsync.ui.tracker.calendar
 
-import android.graphics.Color
+import com.kizitonwose.calendar.core.WeekDay
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.example.CH2_PS020.fitsync.databinding.CalendarDayLayoutBinding
-import com.kizitonwose.calendar.core.CalendarDay
-import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.ViewContainer
 
 //Create your view container which acts as a view holder for each date cell.
 // The view passed in here is the inflated day view resource which you provided.
-class DayViewContainer(view:View):ViewContainer(view) {
-    lateinit var day:CalendarDay
+class WeekDayViewContainer(view:View):ViewContainer(view) {
+    lateinit var day:WeekDay
 
     val textView = CalendarDayLayoutBinding.bind(view).calendarDayText
     val bar = CalendarDayLayoutBinding.bind(view).dividerCalendarDay
-//    var backgroundColor:Int = Color.TRANSPARENT
+    //    var backgroundColor:Int = Color.TRANSPARENT
 //        set(value) {
 //            field = value
 //            view.setBackgroundColor(value)

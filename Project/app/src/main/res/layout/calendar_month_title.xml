@@ -6,33 +6,24 @@
     android:paddingHorizontal="10dp"
     android:layout_height="wrap_content">
 
-    <ImageButton
-        android:id="@+id/bt_prev_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/baseline_arrow_back_ios_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_month"
-        style="@style/TextAppearance.FitSync.TitleMedium"
+        style="@style/TextAppearance.FitSync.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="?attr/colorOnBackground"
-        app:layout_constraintEnd_toEndOf="@id/bt_next_month"
-        app:layout_constraintStart_toStartOf="@id/bt_prev_month"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="December" />
 
-    <ImageButton
-        android:id="@+id/bt_next_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/baseline_arrow_forward_ios_24"
+    <CheckBox
+        android:id="@+id/cb_week_mode"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

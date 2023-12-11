@@ -1,8 +1,9 @@
 package com.example.CH2_PS020.fitsync.data
 
 import androidx.lifecycle.liveData
-import com.example.CH2_PS020.fitsync.api.response.BmiResponse
+import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
+import com.example.CH2_PS020.fitsync.api.response.PostBMIResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import com.example.CH2_PS020.fitsync.api.retrofit.ApiService
 import com.example.CH2_PS020.fitsync.data.model.UserModel
@@ -192,7 +193,7 @@ class FitSyncRepository constructor(
             emit(Result.Success(success))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, BmiResponse::class.java)
+            val errorBody = Gson().fromJson(jsonInString, BMIResponse::class.java)
             val errorMessage = errorBody.message.toString()
             emit(Result.Error(errorMessage))
         }
@@ -209,13 +210,22 @@ class FitSyncRepository constructor(
             emit(Result.Success(success))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
+<<<<<<< HEAD
             val errorBody = Gson().fromJson(jsonInString, BmiResponse::class.java)
+=======
+            val errorBody = Gson().fromJson(jsonInString, PostBMIResponse::class.java)
+>>>>>>> tracker-page
             val errorMessage = errorBody.message.toString()
             emit(Result.Error(errorMessage))
         }
     }
 
+<<<<<<< HEAD
     fun uploadPhoto(imageFile: File) = liveData {
+=======
+
+    fun uploadPhoto(imageFile : File) = liveData {
+>>>>>>> tracker-page
         emit(Result.Loading)
         try {
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
