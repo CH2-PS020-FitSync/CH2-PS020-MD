@@ -11,6 +11,20 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
         <Button
             android:id="@+id/ib_back"
             style="@style/Widget.App.Button.IconButton.Filled"
@@ -21,54 +35,49 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ic_favorite"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/icon_favorite"
-            android:src="@drawable/ic_favorite_border"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_startWorkoutName"
             style="@style/TextAppearance.FitSync.TitleLarge"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/workout_name"
             android:textColor="?attr/colorOnBackground"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ib_back" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <TextView
             android:id="@+id/tv_startTargetWorkout"
             style="@style/TextAppearance.FitSync.TitleMedium"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/target_workout"
             android:textColor="?attr/colorOnBackground"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_startWorkoutName" />
 
         <TextView
             android:id="@+id/tv_startMinuteWorkout"
             style="@style/TextAppearance.FitSync.TitleMedium"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/level_minutes"
             android:textColor="?attr/colorOnBackground"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_startTargetWorkout" />
 
         <TextView
             android:id="@+id/tv_startDescWorkout"
             style="@style/TextAppearance.FitSync.LabelMedium"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/description_workout"
             android:textColor="?attr/colorOnBackground"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_startMinuteWorkout" />
 
@@ -79,7 +88,8 @@
             android:contentDescription="@string/workout"
             android:src="@drawable/fitsync_logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ic_favorite" />
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <TextView
             android:id="@+id/tv_timer"
@@ -101,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/start"
-            app:layout_constraintEnd_toStartOf="@id/btn_endWorkout"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_timer" />
 
@@ -113,7 +123,7 @@
             android:layout_marginTop="24dp"
             android:text="@string/stop"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_startWorkout"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@id/tv_timer" />
 
         <com.google.android.material.divider.MaterialDivider

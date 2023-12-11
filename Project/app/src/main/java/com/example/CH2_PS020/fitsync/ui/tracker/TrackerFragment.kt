@@ -5,9 +5,7 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -17,15 +15,15 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
-import androidx.core.view.isInvisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.api.response.BmisItem
+import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.LatestBMI
 import com.example.CH2_PS020.fitsync.api.response.User
 import com.example.CH2_PS020.fitsync.data.Result
@@ -56,9 +54,7 @@ import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.WeekCalendarView
 import com.kizitonwose.calendar.view.WeekDayBinder
-import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.YearMonth

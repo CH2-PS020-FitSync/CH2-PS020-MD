@@ -18,18 +18,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentAccountBinding
+import com.example.CH2_PS020.fitsync.notification.NotificationWorker
 import com.example.CH2_PS020.fitsync.ui.landingpage.LandingPage
 import com.example.CH2_PS020.fitsync.util.AgeConverter
 import com.example.CH2_PS020.fitsync.util.ThemePreferences
 import com.example.CH2_PS020.fitsync.util.ViewModelFactory
 import com.example.CH2_PS020.fitsync.util.dataStoreTheme
 import kotlinx.coroutines.launch
+import java.util.Calendar
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class AccountFragment : Fragment() {
     private lateinit var binding: FragmentAccountBinding
@@ -68,6 +76,14 @@ class AccountFragment : Fragment() {
 
             swTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
                 viewModel.saveThemeSetting(isChecked)
+            }
+
+            swNotification.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    scheduleNotificationWorker()
+                } else {
+                    cancelNotificationWorker()
+                }
             }
 
             layoutChangeAccount.setOnClickListener {
@@ -145,6 +161,7 @@ class AccountFragment : Fragment() {
 
         dialog.show()
     }
+
     private fun loadMe() {
         accountViewModel.getMe().observe(this@AccountFragment) { result ->
             showLoading(true)
@@ -195,7 +212,8 @@ class AccountFragment : Fragment() {
 
         rating.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { _, rating, _ ->
-                Toast.makeText(requireContext(), "Thanks for rate us $rating", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Thanks for rate us $rating", Toast.LENGTH_SHORT)
+                    .show()
             }
         btnOkay.setOnClickListener {
             dialog.dismiss()
@@ -210,6 +228,49 @@ class AccountFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         loadMe()
+    }
+
+    private fun scheduleNotificationWorker() {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+
+        val notificationWorkRequest =
+            PeriodicWorkRequest.Builder(NotificationWorker::class.java, 1, TimeUnit.DAYS)
+                .setConstraints(constraints)
+                .setInitialDelay(calculateInitialDelay(), TimeUnit.MILLISECONDS)
+                .build()
+
+        WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
+            NOTIFICATION_WORKER_TAG,
+            ExistingPeriodicWorkPolicy.REPLACE,
+            notificationWorkRequest
+        )
+    }
+
+    private fun cancelNotificationWorker() {
+        WorkManager.getInstance(requireContext()).cancelUniqueWork(NOTIFICATION_WORKER_TAG)
+    }
+
+    private fun calculateInitialDelay(): Long {
+        val now = System.currentTimeMillis()
+        val targetTime = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 6)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }.timeInMillis
+
+        return if (now > targetTime) {
+            targetTime + 24 * 60 * 60 * 1000 - now
+        } else {
+            targetTime - now
+        }
+    }
+
+
+    companion object {
+        private const val NOTIFICATION_WORKER_TAG = "notification_worker"
     }
 
 

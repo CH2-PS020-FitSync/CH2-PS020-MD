@@ -76,7 +76,8 @@ fun convertDateFormat(date: String?): String {
 }
 
 fun formatDoubleToOneDecimalPlace(value: Double): Double {
-    return String.format("%.1f", value).toDouble()
+    val formattedString = String.format("%.1f", value).replace(",", ".")
+    return formattedString.toDouble()
 }
 
 
