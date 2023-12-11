@@ -1,29 +1,24 @@
 package com.example.CH2_PS020.fitsync.ui.tracker
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.CheckBox
-import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
-import androidx.core.view.isInvisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.api.response.BmisItem
@@ -37,7 +32,7 @@ import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToBias
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToColor
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToTextDescription
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.calculateBMI
-import com.example.CH2_PS020.fitsync.ui.tracker.slider.convertDateFormat
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.utcToLocal
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.formatDoubleToOneDecimalPlace
 import com.example.CH2_PS020.fitsync.util.AgeConverter
 import com.example.CH2_PS020.fitsync.util.ViewModelFactory
@@ -47,7 +42,6 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartZoomType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.WeekDay
@@ -58,15 +52,11 @@ import com.kizitonwose.calendar.view.CalendarView
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.WeekCalendarView
 import com.kizitonwose.calendar.view.WeekDayBinder
-import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.time.DayOfWeek
-import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import java.time.YearMonth
-import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
-import java.util.Calendar
 import java.util.Locale
 
 class TrackerFragment : Fragment() {
@@ -85,10 +75,8 @@ class TrackerFragment : Fragment() {
 
     //Dialog
     private lateinit var dialogAddWeight: Dialog
-    private lateinit var btDatePicker: ImageButton
     private lateinit var pickerWeight: TextInputEditText
     private lateinit var btAdd: MaterialButton
-    private val calendar = Calendar.getInstance()
 
     //API
     private var user: User? = null
@@ -106,7 +94,6 @@ class TrackerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -121,9 +108,10 @@ class TrackerFragment : Fragment() {
         }
     }
 
-    private fun updateData(height: Float, weight: Float, date: String? = null) {
-        Log.d("POST BMI", "$height,$weight,$date")
-        viewModel.postBMI(height, weight, date).observe(this) { result ->
+    private fun updateData(height: Float, weight: Float) {
+        val isoDateWithZone = OffsetDateTime.now()
+        Log.d("POST BMI", "$height,$weight,$isoDateWithZone")
+        viewModel.postBMI(height, weight, isoDateWithZone.toString()).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     showLoading(true)
@@ -271,9 +259,6 @@ class TrackerFragment : Fragment() {
     }
 
     private fun setupHeader() {
-//        binding.exOneYearText.text = month.year.toString()
-//        binding.exOneMonthText.text = month.month.displayText(short = false)
-
         val header = view?.findViewById<LinearLayout>(R.id.container_day_title)?.children
         header?.map { it as TextView }?.forEachIndexed { index, textView ->
             val dayOfWeek = daysOfWeek()[index]
@@ -284,7 +269,6 @@ class TrackerFragment : Fragment() {
     }
 
     private fun setupSlider(bmi: Double) {
-        //Horizontal Bias
         binding.cardBarBmi.updateLayoutParams<ConstraintLayout.LayoutParams> {
             horizontalBias = bmiToBias(bmi.toFloat())
         }
@@ -300,15 +284,11 @@ class TrackerFragment : Fragment() {
 
         pickerWeight = dialogAddWeight.findViewById(R.id.et_weight)
         btAdd = dialogAddWeight.findViewById(R.id.bt_add_body_weight)
-        btDatePicker = dialogAddWeight.findViewById(R.id.bt_pick_date)
         pickerWeight.doOnTextChanged { text, _, _, _ ->
             pickedWeight = text.toString().toFloat()
         }
-        btDatePicker.setOnClickListener {
-            showDatePicker()
-        }
         btAdd.setOnClickListener {
-            pickedWeight?.let { it1 -> updateData(latestBMI?.height!!.toFloat(), it1, pickedDate) }
+            pickedWeight?.let { it1 -> updateData(latestBMI?.height!!.toFloat(), it1) }
             dialogAddWeight.dismiss()
         }
         dialogAddWeight.show()
@@ -316,7 +296,7 @@ class TrackerFragment : Fragment() {
 
     private fun setupChart() {
         val dates = bmis?.map {
-            convertDateFormat(it?.date)
+            utcToLocal(it?.date)
         }
         val aaChartView = view?.findViewById<AAChartView>(R.id.aa_chart_view)
         val aaChartModel: AAChartModel = AAChartModel()
@@ -353,7 +333,7 @@ class TrackerFragment : Fragment() {
                 container.day = data
                 container.textView.text = data.date.dayOfMonth.toString()
                 val dates = bmis?.map {
-                    convertDateFormat(it?.date)
+                    utcToLocal(it?.date)
                 }
                 if (dates != null) {
                     if (dates.contains(data.date.toString())) {
@@ -381,15 +361,12 @@ class TrackerFragment : Fragment() {
     ) {
         monthCalendar.dayBinder =
             object : MonthDayBinder<DayViewContainer> {
-                // Called only when a new container is needed.
                 override fun create(view: View) = DayViewContainer(view)
-
-                // Called every time we need to reuse a container.
                 override fun bind(container: DayViewContainer, data: CalendarDay) {
                     container.textView.text = data.date.dayOfMonth.toString()
                     container.day = data
                     val dates = bmis?.map {
-                        convertDateFormat(it?.date)
+                        utcToLocal(it?.date)
                     }
                     if (dates != null) {
                         if (dates.contains(data.date.toString())) {
@@ -403,24 +380,6 @@ class TrackerFragment : Fragment() {
         monthCalendar.scrollToMonth(currentMonth)
     }
 
-    private fun showDatePicker() {
-        // Create a DatePickerDialog
-        val datePickerDialog = DatePickerDialog(
-            requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                val selectedDate = LocalDateTime.of(year, monthOfYear + 1, dayOfMonth, 0, 0)
-                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
-                val formattedDate = selectedDate.format(formatter)
-                dialogAddWeight.findViewById<TextView>(R.id.tv_picked_date).text = formattedDate
-                pickedDate = formattedDate
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-
-        // Show the DatePicker dialog
-        datePickerDialog.show()
-    }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
