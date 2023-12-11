@@ -15,6 +15,7 @@ import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.core.view.isInvisible
@@ -46,6 +47,7 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartZoomType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.WeekDay
@@ -134,7 +136,7 @@ class TrackerFragment : Fragment() {
                 }
 
                 is Result.Error -> {
-
+                    showError(result.error)
                 }
             }
         }
@@ -162,7 +164,7 @@ class TrackerFragment : Fragment() {
                 }
 
                 is Result.Error -> {
-
+                    showError(result.error)
                 }
             }
         }
@@ -180,7 +182,7 @@ class TrackerFragment : Fragment() {
                 }
 
                 is Result.Error -> {
-
+                    showError(result.error)
                 }
             }
         }
@@ -252,14 +254,15 @@ class TrackerFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun updateHeader() {
         val month = monthCalendar.findFirstVisibleMonth()?.yearMonth
-        val week = weekCalendar.findFirstVisibleWeek()?:return
+        val week = weekCalendar.findFirstVisibleWeek() ?: return
         if (cbWeekMode.isChecked) {//Week Mode
             val firstDate = week.days.first().date
             val lastDate = week.days.last().date
-            if(firstDate.yearMonth == lastDate.yearMonth){
+            if (firstDate.yearMonth == lastDate.yearMonth) {
                 headerTitle.text = firstDate.yearMonth.toString()
-            }else{
-                headerTitle.text = "${firstDate.yearMonth} - ${lastDate.yearMonth}"
+            } else {
+                headerTitle.text =
+                    "${firstDate.year},${firstDate.month.ordinal} - ${lastDate.year},${lastDate.month.ordinal}"
             }
         } else {
             headerTitle.text = month.toString()
@@ -421,5 +424,11 @@ class TrackerFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(msg: String) {
+        showLoading(false)
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT)
+            .show()
     }
 }
