@@ -9,14 +9,14 @@
     <string name="login">Login</string>
     <string name="or">Or</string>
     <string name="register">Register</string>
-    <string name="greetings_login">Welcome Back !, Glad to see you again Companion</string>
+    <string name="greetings_login">Welcome Back! Glad to see you again Companion</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="back_description">Back Button</string>
     <string name="forgot_password">Forgot Password ?</string>
-    <string name="dont_have_acc">Whoops?, don’t have an account yet ?</string>
+    <string name="dont_have_acc">Whoops? don’t have an account yet ?</string>
     <string name="register_here">Register Here</string>
-    <string name="greeting_register">Hello !, Register to join healthy journey !</string>
+    <string name="greeting_register">Hello! Register to join healthy journey!</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -48,7 +48,7 @@
     <string name="female">Female</string>
     <string name="title_exercise">Exercise Frequency per Week</string>
     <string name="beginner">Not Often (Beginner)</string>
-    <string name="intermediate">1-3 Days (Intermediate)</string>
+    <string name="intermediate">1–3 Days (Intermediate)</string>
     <string name="expert">4 or More days (Expert)</string>
 
     <string name="value_beginner">Beginner</string>
@@ -59,14 +59,14 @@
     <string name="reset">Reset</string>
     <string name="done">Done</string>
     <string name="welcome">Welcome</string>
-    <string name="subtitle_forgotpassword">Don’t worry !, it occurs. Please enter the email address linked with your account.</string>
+    <string name="subtitle_forgotpassword">Don’t worry! it occurs. Please enter the email address linked with your account.</string>
     <string name="send_code">Send Code</string>
     <string name="title_createnewpassword">Create New Password</string>
     <string name="subtitle_createnewpassword">Create your new password</string>
     <string name="reset_password">Reset Password</string>
-    <string name="title_passwordChanged_success">Password Changed !</string>
+    <string name="title_passwordChanged_success">Password Changed!</string>
     <string name="subtitle_changedPass_success">Your password has been changed successfully</string>
-    <string name="back_to_login">Back to Login !</string>
+    <string name="back_to_login">Back to Login!</string>
     <string name="failed_changed_password">Failed changed password</string>
     <string name="retry">Retry</string>
     <string name="greetings">Greetings</string>
@@ -77,7 +77,7 @@
     <string name="card_bmi">BMI : %1S</string>
     <string name="days_streak">Days Streak</string>
     <string name="workout_name">Workout Name</string>
-    <string name="level_minutes">Beginner - 45 Minutes</string>
+    <string name="level_minutes">%1s / %2S Minutes</string>
     <string name="target_workout">Target Workout</string>
     <string name="recommended_workouts">Recommended Workouts</string>
     <string name="all_workouts">All Workouts</string>
@@ -109,10 +109,10 @@
     <string name="edit_account">Edit Account</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="save">Save</string>
-    <string name="subtitle_succes_changeProfile">Horray !, your profile has been changed</string>
-    <string name="title_logout_dialog">Are you sure ?</string>
+    <string name="subtitle_succes_changeProfile">Horray! your profile has been changed</string>
+    <string name="title_logout_dialog">Are you sure?</string>
     <string name="subtitle_logout_dialog">Comeback again Companion!</string>
-    <string name="logout_byebye">Byebye !</string>
+    <string name="logout_byebye">Byebye!</string>
     <string name="cancel">Cancel</string>
     <string name="your_body_mass_index">Your Body Mass Index</string>
     <string name="bmi">BMI</string>
@@ -127,7 +127,7 @@
     <string name="layout_email_error2">Email harus mengandung @ </string>
     <string name="layout_password_error">Password tidak boleh kurang dari 8 Karakter</string>
     <string name="layout_conPass_error">Password tidak sama</string>
-    <string name="btnFailedDialogText">Fill again !</string>
+    <string name="btnFailedDialogText">Fill again!</string>
     <string name="successResendCode">Success Resend Code</string>
     <string name="failedResendCode">Success Resend Code</string>
 
@@ -137,18 +137,30 @@
 
     //Adapter item
     <string name="exercise_level_duration">%s - %s</string>
-    <string name="greetings_good_morning">Good Morning !</string>
-    <string name="greetings_good_afternoon">Good Afternoon !</string>
-    <string name="greetins_good_evening">Good Evening !</string>
-    <string name="greetings_good_night">Good Night !</string>
+    <string name="greetings_good_morning">Good Morning!</string>
+    <string name="greetings_good_afternoon">Good Afternoon!</string>
+    <string name="greetins_good_evening">Good Evening!</string>
+    <string name="greetings_good_night">Good Night!</string>
     <string name="card_goalWeight">Goal Weight : %1S Kg</string>
 
-    <string name="give_us_rate">Give us Rate !</string>
+    <string name="give_us_rate">Give us Rate!</string>
     <string name="okay">Okay</string>
 
     //BMI
     <string name="height_format">%1$s CM</string>
     <string name="weight_format">%1$s KG</string>
     <string name="bmi_description">%1$s (%2$s)</string>
+    <string name="filter">Filter</string>
+    <string name="level">Level</string>
+    <string name="minutes">Minutes</string>
+    <string name="_15_minutes">15 Minutes</string>
+    <string name="_30_minutes">30 Minutes</string>
+    <string name="_45_minutes">45 Minutes</string>
+    <string name="_60_minutes">60 Minutes</string>
+    <string name="key_notification">key_notification</string>
+    <string name="notify_channel_name">Workout Reminder</string>
+    <string name="notify_content">DingDong, it\'s time to Workouts</string>
+    <string name="notif_id">notif-id</string>
+    <string name="pref_key_notify">notif_key</string>
 
 </resources>

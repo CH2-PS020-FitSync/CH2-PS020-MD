@@ -13,6 +13,7 @@ import com.example.CH2_PS020.fitsync.ui.login.LoginViewModel
 import com.example.CH2_PS020.fitsync.ui.register.RegisterVerifViewModel
 import com.example.CH2_PS020.fitsync.ui.register.RegisterViewModel
 import com.example.CH2_PS020.fitsync.ui.tracker.TrackerViewModel
+import com.example.CH2_PS020.fitsync.ui.workout.StartWorkoutViewModel
 import com.example.CH2_PS020.fitsync.ui.workout.WorkoutViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized

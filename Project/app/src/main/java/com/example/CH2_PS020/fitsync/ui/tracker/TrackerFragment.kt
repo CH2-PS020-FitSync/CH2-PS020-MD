@@ -22,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.api.response.BmisItem
+import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.LatestBMI
 import com.example.CH2_PS020.fitsync.api.response.User
 import com.example.CH2_PS020.fitsync.data.Result

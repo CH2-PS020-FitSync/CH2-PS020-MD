@@ -136,7 +136,9 @@ class LoginActivity : AppCompatActivity() {
         val radioGroupExercise = dialog.findViewById<RadioGroup>(R.id.radioGroupExercise)
 
         datePicker.setOnClickListener {
-            val datePicker = MaterialDatePicker.Builder.datePicker()
+            val datePicker = MaterialDatePicker.Builder
+                .datePicker()
+                .setTheme(R.style.ThemeOverlay_App_DatePicker)
                 .setTitleText(resources.getString(R.string.birthday))
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds()).build()
             datePicker.show(supportFragmentManager, "datePicker")

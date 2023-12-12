@@ -1,5 +1,6 @@
 package com.example.CH2_PS020.fitsync.ui.workout
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +32,14 @@ class ExerciseAdapter(private val exercises: List<ExercisesItem?>?) :
             targetWorkouts.text = exercisesItem.bodyPart
             levelMinutes.text = exercisesItem.duration?.desc.toString()
             Glide.with(itemView).load(exercisesItem.jpg).into(image)
+
+            itemView.setOnClickListener {
+                val intentDetail = Intent(itemView.context, StartWorkout::class.java)
+                intentDetail.putExtra("varWorkouts", exercisesItem)
+                itemView.context.startActivity(intentDetail)
+            }
         }
+
 
     }
 
@@ -46,7 +54,7 @@ class ExerciseAdapter(private val exercises: List<ExercisesItem?>?) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (exercises!=null){
+        if (exercises != null) {
             exercises[position]?.let { holder.bind(it) }
         }
     }

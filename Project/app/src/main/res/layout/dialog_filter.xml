@@ -1,200 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp">
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.App.CardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
-        >
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        app:cardBackgroundColor="?attr/colorPrimaryContainer"
+        app:cardCornerRadius="15dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="?attr/colorOutline"
+        app:strokeWidth="3dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_intermediate"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:padding="0dp"
-            android:text="Intermediate"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toEndOf="@+id/bt_sort_beginner"
-            app:layout_constraintTop_toTopOf="@+id/bt_sort_beginner" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_minutes_60"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:padding="0dp"
-            android:text="60 Minutes"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_sort_minutes_15" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_minutes_45"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:padding="0dp"
-            android:text="45 Minutes"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toEndOf="@+id/bt_sort_minutes_30"
-            app:layout_constraintTop_toBottomOf="@+id/tv_minutes" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_minutes_30"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:padding="0dp"
-            android:text="30 Minutes"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toEndOf="@+id/bt_sort_minutes_15"
-            app:layout_constraintTop_toBottomOf="@+id/tv_minutes" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_minutes_15"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:padding="0dp"
-            android:text="15 Minutes"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_minutes" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_expert"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:padding="0dp"
-            android:text="Expert"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toEndOf="@+id/bt_sort_intermediate"
-            app:layout_constraintTop_toTopOf="@+id/bt_sort_intermediate" />
-
-        <TextView
-            android:id="@+id/tv_filter"
-            style="@style/TextAppearance.FitSync.TitleMedium"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Filter"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="20dp">
 
-        <TextView
-            android:id="@+id/tv_gender"
-            style="@style/TextAppearance.FitSync.LabelMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Gender"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_filter" />
+            <TextView
+                android:id="@+id/title_filter"
+                style="@style/TextAppearance.FitSync.TitleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_male"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:padding="0dp"
-            android:text="Male"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_gender" />
+            <TextView
+                android:id="@+id/sort_gender"
+                style="@style/TextAppearance.FitSync.LabelLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_filter" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_female"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginStart="5dp"
-            android:padding="0dp"
-            android:text="Female"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toEndOf="@+id/bt_sort_male"
-            app:layout_constraintTop_toTopOf="@+id/bt_sort_male" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_genderMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/male"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sort_gender" />
 
-        <TextView
-            android:id="@+id/tv_level"
-            style="@style/TextAppearance.FitSync.LabelMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Level"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_sort_male" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_genderFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/female"
+                app:layout_constraintStart_toEndOf="@id/chip_genderMale"
+                app:layout_constraintTop_toBottomOf="@id/sort_gender" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sort_beginner"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:padding="0dp"
-            android:text="Beginner"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            android:textStyle="bold"
-            app:cornerRadius="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_level" />
+            <TextView
+                android:id="@+id/sort_level"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/level"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_genderMale" />
 
-        <TextView
-            android:id="@+id/tv_minutes"
-            style="@style/TextAppearance.FitSync.LabelMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Minutes"
-            android:textColor="@color/md_theme_light_onPrimaryContainer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_sort_beginner" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_levelBeginner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/value_beginner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sort_level" />
 
-        <ImageButton
-            android:elevation="2dp"
-            android:id="@+id/ib_ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/md_theme_light_secondaryContainer"
-            android:src="@drawable/baseline_check_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_levelIntermediate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/value_intermediate"
+                app:layout_constraintStart_toEndOf="@id/chip_levelBeginner"
+                app:layout_constraintTop_toBottomOf="@id/sort_level" />
 
-        <ImageButton
-            android:elevation="2dp"
-            android:id="@+id/ib_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/md_theme_light_secondaryContainer"
-            android:src="@drawable/baseline_close_24"
-            app:layout_constraintEnd_toStartOf="@id/ib_ok"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_levelExperts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/value_expert"
+                app:layout_constraintStart_toEndOf="@id/chip_levelIntermediate"
+                app:layout_constraintTop_toBottomOf="@id/sort_level" />
+
+            <TextView
+                android:id="@+id/sort_minutes"
+                style="@style/TextAppearance.FitSync.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/minutes"
+                android:textColor="?attr/colorOnPrimaryContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip_levelBeginner" />
+
+            <HorizontalScrollView
+                android:id="@+id/hScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sort_minutes">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleLine="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/_15_minutes" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/_30_minutes" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/_45_minutes" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_60"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/_60_minutes" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
 
 
-</com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

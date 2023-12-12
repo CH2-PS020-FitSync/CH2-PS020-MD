@@ -355,6 +355,13 @@
         <item name="cornerSize">8dp</item>
     </style>
 
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="colorPrimary">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="textInputStyle">@style/Widget.App.TextInputLayout.FilledBox</item>
+    </style>
+
 
     <style name="Theme.FitSync" parent="Base.Theme.FitSync">
         <item name="textAppearanceDisplayLarge">@style/TextAppearance.FitSync.DisplayLarge</item>
@@ -394,6 +401,7 @@
         <item name="materialSearchViewStyle">@style/Widget.App.SearchView</item>
 
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.App.DatePicker</item>
     </style>
 
 
