@@ -177,5 +177,12 @@
     <string name="protein">Protein</string>
     <string name="carbo">Carbo</string>
     <string name="calorie">Calorie</string>
+    <string name="nameML1">Steven Tribethran\n M694BSY0582</string>
+    <string name="nameML2">Darrel Cyril Gunawan\n M108BSY1617</string>
+    <string name="nameML3">Nigel Kusdenata\n M108BSY1102</string>
+    <string name="nameCC1">Muhammad Alfayed Dennita\n C134BSY3479</string>
+    <string name="nameCC2">Alida Shidqiya Naifa Ulmuflikhun\n C248BSX4205</string>
+    <string name="nameMD1">Vincent\n A694BSY2946</string>
+    <string name="nameMD2">Hidayat\n A550BKY4421</string>
 
 </resources>
