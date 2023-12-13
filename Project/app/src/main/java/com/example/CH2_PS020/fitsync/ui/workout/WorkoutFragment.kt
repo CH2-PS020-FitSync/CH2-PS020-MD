@@ -2,23 +2,20 @@ package com.example.CH2_PS020.fitsync.ui.workout
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.api.response.ExercisesItem
-import com.example.CH2_PS020.fitsync.databinding.FragmentTrackerBinding
-import com.example.CH2_PS020.fitsync.databinding.FragmentWorkoutBinding
-import com.example.CH2_PS020.fitsync.ui.login.LoginViewModel
-import com.example.CH2_PS020.fitsync.util.ViewModelFactory
 import com.example.CH2_PS020.fitsync.data.Result
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.example.CH2_PS020.fitsync.databinding.FragmentWorkoutBinding
+import com.example.CH2_PS020.fitsync.util.ViewModelFactory
 
 class WorkoutFragment : Fragment() {
     private lateinit var binding: FragmentWorkoutBinding
@@ -55,17 +52,7 @@ class WorkoutFragment : Fragment() {
 
                 is Result.Error -> {
                     showLoading(false)
-                    MaterialAlertDialogBuilder(
-                        requireContext(),
-                        R.style.ThemeOverlay_App_MaterialAlertDialog
-                    ).apply {
-                        setTitle(resources.getString(R.string.title_failed))
-                        setMessage(result.error)
-                        setNegativeButton(getString(R.string.fill_again)) { _, _ ->
-                        }
-                        create()
-                        show()
-                    }
+                    Toast.makeText(requireContext(), "Error : ${result.error}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -25,15 +25,15 @@
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progress_bar"
-                android:elevation="15dp"
-                android:indeterminate="true"
-                app:layout_constraintEnd_toEndOf="parent"
                 style="@style/Widget.App.CircularProgressIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:elevation="15dp"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline_center"
-                android:visibility="invisible" />
+                app:layout_constraintTop_toTopOf="@+id/guideline_center" />
 
             <TextView
                 android:id="@+id/tv_tracker"
@@ -45,18 +45,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <include
-                app:layout_constraintTop_toBottomOf="@id/tv_tracker"
-                layout="@layout/calendar_header_container"
                 android:id="@+id/header_calendar"
+                layout="@layout/calendar_header_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                />
+                app:layout_constraintTop_toBottomOf="@id/tv_tracker" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/calendar_group"
-                app:layout_constraintTop_toBottomOf="@id/header_calendar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/header_calendar">
+
                 <com.kizitonwose.calendar.view.CalendarView
                     android:id="@+id/calendar_view"
                     android:layout_width="match_parent"
@@ -66,12 +66,12 @@
                     app:cv_orientation="horizontal"
                     app:cv_scrollPaged="true"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.kizitonwose.calendar.view.WeekCalendarView
                     android:id="@+id/weekCalendar"
                     android:layout_width="match_parent"
-                    android:layout_height= "50dp"
+                    android:layout_height="50dp"
                     android:clipToPadding="false"
                     app:cv_dayViewResource="@layout/calendar_day_layout"
                     app:cv_orientation="horizontal"
@@ -82,14 +82,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:layout_marginTop="20dp"
                 android:id="@+id/tv_weight"
                 style="@style/TextAppearance.FitSync.TitleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/weight_chart"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/calendar_group"/>
+                app:layout_constraintTop_toBottomOf="@id/calendar_group" />
 
             <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
                 android:id="@+id/aa_chart_view"
@@ -99,11 +99,11 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_weight" />
 
             <TextView
-                android:layout_marginTop="20dp"
                 android:id="@+id/tv_bmi"
                 style="@style/TextAppearance.FitSync.TitleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/bmi"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/aa_chart_view" />
@@ -119,13 +119,14 @@
                 app:layout_constraintTop_toTopOf="@id/tv_weight" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:scaleType="centerCrop"
                 android:id="@+id/iv_card_photo"
                 android:layout_width="62dp"
                 android:layout_height="62dp"
                 android:layout_marginBottom="692dp"
                 android:adjustViewBounds="false"
-                android:elevation="9dp" android:src="@drawable/ic_launcher_background"
+                android:elevation="9dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintBottom_toTopOf="@id/card_bmi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -166,9 +167,9 @@
                         android:id="@+id/tv_card_age_gender"
                         style="@style/TextAppearance.FitSync.LabelSmall"
                         android:layout_width="wrap_content"
-                        android:textColor="?attr/colorOnSecondaryContainer"
                         android:layout_height="wrap_content"
                         android:text="@string/age_gender"
+                        android:textColor="?attr/colorOnSecondaryContainer"
                         app:layout_constraintEnd_toEndOf="@id/tv_card_name"
                         app:layout_constraintStart_toStartOf="@id/tv_card_name"
                         app:layout_constraintTop_toBottomOf="@id/tv_card_name" />
@@ -178,9 +179,9 @@
                         style="@style/TextAppearance.FitSync.LabelLarge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="?attr/colorOnSecondaryContainer"
                         android:layout_marginTop="10dp"
                         android:text="@string/your_body_mass_index"
+                        android:textColor="?attr/colorOnSecondaryContainer"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_card_age_gender" />
@@ -200,22 +201,22 @@
                         android:id="@+id/tv_card_height"
                         style="@style/TextAppearance.FitSync.LabelLarge"
                         android:layout_width="wrap_content"
-                        android:textColor="?attr/colorOnSecondaryContainer"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="@string/height"
+                        android:textColor="?attr/colorOnSecondaryContainer"
                         app:layout_constraintEnd_toEndOf="@id/tv_card_weight"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_bmi_value" />
 
                     <TextView
-                        style="@style/TextAppearance.FitSync.LabelLarge"
                         android:id="@+id/tv_card_weight"
+                        style="@style/TextAppearance.FitSync.LabelLarge"
                         android:layout_width="wrap_content"
-                        android:textColor="?attr/colorOnSecondaryContainer"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:text="@string/weight"
+                        android:textColor="?attr/colorOnSecondaryContainer"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/tv_card_height"
                         app:layout_constraintTop_toBottomOf="@id/tv_bmi_value" />
@@ -281,8 +282,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:elevation="10dp"
-                        android:text="22.9"
-                        android:textColor="@color/md_theme_light_onTertiaryContainer"
+                        android:text="@string/bmi"
+                        android:textColor="?attr/colorOnSurface"
                         app:layout_constraintBottom_toBottomOf="@id/card_bar_bmi"
                         app:layout_constraintEnd_toEndOf="@id/card_bar_bmi"
                         app:layout_constraintStart_toStartOf="@id/card_bar_bmi"

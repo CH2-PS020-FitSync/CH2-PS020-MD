@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.CH2_PS020.fitsync.R
+import com.example.CH2_PS020.fitsync.api.response.ExercisesItem
 import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentHomeBinding
 import com.example.CH2_PS020.fitsync.util.AgeConverter
@@ -35,6 +37,43 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        getMe()
+        getRecommended()
+        binding.ibRefresh.setOnClickListener {
+            refresh()
+        }
+        return binding.root
+    }
+
+    private fun refresh() {
+        getRecommended()
+        showRefresh(false)
+    }
+
+    private fun getRecommended() {
+        viewModel.recommendedWorkout().observe(this) { result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+                        showLoading(true)
+                    }
+
+                    is Result.Success -> {
+                        showLoading(false)
+                        showRecyclerView(result.data.exercises)
+                        showRefresh(true)
+                    }
+
+                    is Result.Error -> {
+                        showLoading(false)
+
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getMe() {
         viewModel.getMe().observe(requireActivity()) { result ->
             showLoading(true)
             if (result != null) {
@@ -74,12 +113,10 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
-        return binding.root
     }
 
 
-    fun bindingData(
+    private fun bindingData(
         name: String,
         photoUrl: String,
         birthDate: String,
@@ -121,8 +158,22 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun showRecyclerView(exercises: List<ExercisesItem?>?) {
+        binding.rvRecommendedWorkouts.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val adapter = RecommendedAdapter()
+        adapter.submitList(exercises)
+        binding.rvRecommendedWorkouts.adapter = adapter
+
+    }
+
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun showRefresh(isRefresh: Boolean) {
+        binding.ibRefresh.visibility = if (isRefresh) View.VISIBLE else View.INVISIBLE
     }
 
 

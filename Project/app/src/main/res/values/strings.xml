@@ -162,5 +162,7 @@
     <string name="notify_content">DingDong, it\'s time to Workouts</string>
     <string name="notif_id">notif-id</string>
     <string name="pref_key_notify">notif_key</string>
+    <string name="refresh">Refresh</string>
+    <string name="nutrition_corner">Nutrition Corner</string>
 
 </resources>

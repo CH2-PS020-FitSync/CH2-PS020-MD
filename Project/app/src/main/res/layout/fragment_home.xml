@@ -136,8 +136,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/card_weight"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/guideline"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
                     app:layout_constraintTop_toBottomOf="@id/tv_cardHeight" />
 
 
@@ -148,8 +148,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/card_bmi"
                     android:textColor="?attr/colorOnPrimaryContainer"
-                    app:layout_constraintStart_toEndOf="@id/guideline"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline"
                     app:layout_constraintTop_toBottomOf="@id/tv_cardWeight" />
 
 
@@ -212,6 +212,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_quoteStreak" />
 
+        <Button
+            android:id="@+id/ib_refresh"
+            style="@style/Widget.App.Button.IconButton.Filled"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/ic_refresh"
+            android:contentDescription="@string/refresh"
+            app:layout_constraintBottom_toTopOf="@id/rv_recommendedWorkouts"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_recommendedWorkouts"
             android:layout_width="match_parent"
@@ -220,7 +230,20 @@
             android:scrollbars="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_recommendedWorkout"
+            tools:itemCount="1"
             tools:listitem="@layout/item_home_recommended" />
+
+        <TextView
+            android:id="@+id/title_nutritionCorner"
+            style="@style/TextAppearance.FitSync.TitleMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/nutrition_corner"
+            android:textColor="?attr/colorOnBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_recommendedWorkouts" />
+
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_bar"
@@ -229,10 +252,9 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="invisible"
-            app:layout_constraintTop_toBottomOf="@id/tv_dayStreak"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_dayStreak" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -95,11 +95,11 @@ interface ApiService {
     @FormUrlEncoded
     @PATCH("me")
     suspend fun editProfile(
-        @Field("name") name : String,
-        @Field("height") height : String,
-        @Field("weight") weight : String,
-        @Field("gender") gender : String,
-    ) : UserResponse
+        @Field("name") name: String,
+        @Field("height") height: String,
+        @Field("weight") weight: String,
+        @Field("gender") gender: String,
+    ): UserResponse
 
     @GET("me")
     suspend fun getMe(): UserResponse
@@ -135,8 +135,11 @@ interface ApiService {
     @Multipart
     @PUT("me/photo")
     suspend fun updatePhoto(
-        @Part file :MultipartBody.Part
-    ) : UserResponse
+        @Part file: MultipartBody.Part
+    ): UserResponse
+
+    @GET("me/recommendation/exercises")
+    suspend fun recommendedExercise(): ExercisesResponse
 
 
 }

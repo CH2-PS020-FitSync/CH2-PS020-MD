@@ -84,7 +84,6 @@ class TrackerFragment : Fragment() {
     private var bmis: List<BmisItem?>? = null
     private var latestBMI: LatestBMI? = null
     private var pickedWeight: Float? = null
-    private var pickedDate: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

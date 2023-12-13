@@ -44,6 +44,8 @@ class AccountFragment : Fragment() {
     private val accountViewModel by viewModels<AccountViewModel> {
         ViewModelFactory.getInstance(requireActivity(), true)
     }
+    private var isLoadMeCalled = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -227,7 +229,10 @@ class AccountFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        loadMe()
+        if (!isLoadMeCalled) {
+            loadMe()
+            isLoadMeCalled = true
+        }
     }
 
     private fun scheduleNotificationWorker() {
