@@ -46,9 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="?attr/colorOnBackground"
             android:text="@string/about_description"
             android:textAlignment="center"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logo_fitsync" />
 
@@ -59,8 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/meet_fitsync_team"
-            android:textColor="?attr/colorOnBackground"
             android:textAlignment="center"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_aboutDesc" />
 
@@ -71,8 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/machine_learning"
-            android:textColor="?attr/colorOnBackground"
             android:textAlignment="center"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_introduce" />
 
@@ -81,11 +81,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/epen"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toStartOf="@id/iv_photoML2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_ML"
-            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full" />
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+            />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_photoML2"
@@ -116,8 +118,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/cloud_computing"
-            android:textColor="?attr/colorOnBackground"
             android:textAlignment="center"
+            android:textColor="?attr/colorOnBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_photoML2" />
 
@@ -159,7 +161,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cent"
             app:layout_constraintEnd_toStartOf="@id/iv_photoCC2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_MD"
