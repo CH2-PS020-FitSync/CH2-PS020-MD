@@ -8,4 +8,5 @@ class HomeViewModel(private val repository: FitSyncRepository) : ViewModel() {
     fun getMe() = repository.getMe()
 
     fun getEstimatedNutrition() = repository.getEstimatedNutrition()
+    fun recommendedWorkout() = repository.recommendedExercise()
 }

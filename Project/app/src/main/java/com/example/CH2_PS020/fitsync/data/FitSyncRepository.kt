@@ -1,5 +1,6 @@
 package com.example.CH2_PS020.fitsync.data
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
@@ -101,7 +102,7 @@ class FitSyncRepository constructor(
         }
     }
 
-    fun getMe() = liveData  {
+    fun getMe() = liveData {
         emit(Result.Loading)
         try {
             val success = apiService.getMe()
@@ -247,7 +248,20 @@ class FitSyncRepository constructor(
             val errorMessage = errorBody.message.toString()
             emit(Result.Error(errorMessage))
         }
+    }
 
+    fun recommendedExercise() = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.recommendedExercise()
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            Log.d("FitSyncRepository", "JSON response: $jsonInString")
+            val errorBody = Gson().fromJson(jsonInString, ExercisesResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
     }
 
 }

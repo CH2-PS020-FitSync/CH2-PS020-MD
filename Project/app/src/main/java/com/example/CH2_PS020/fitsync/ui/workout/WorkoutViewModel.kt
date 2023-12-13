@@ -9,6 +9,7 @@ import com.example.CH2_PS020.fitsync.data.Result
 import retrofit2.Response
 
 class WorkoutViewModel(private val repository: FitSyncRepository) : ViewModel() {
+
     fun getExercises(
         titleStartsWith: String? = null,
         type: String? = null,

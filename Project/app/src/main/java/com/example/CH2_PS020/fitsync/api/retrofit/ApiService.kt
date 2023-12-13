@@ -107,7 +107,7 @@ interface ApiService {
 
     @GET("exercises")
     suspend fun getExercises(
-        @Query("titleStartsWith") titleStartsWith: String? = null,
+        @Query("title") titleStartsWith: String? = null,
         @Query("type") type: String? = null,
         @Query("level") level: String? = null,
         @Query("gender") gender: String? = null,
@@ -138,6 +138,9 @@ interface ApiService {
     suspend fun updatePhoto(
         @Part file: MultipartBody.Part
     ): UserResponse
+
+    @GET("me/recommendation/exercises")
+    suspend fun recommendedExercise(): ExercisesResponse
 
     @GET("/me/recommendation/nutrition")
     suspend fun getEstimatedNutrition(): NutritionResponse
