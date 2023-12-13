@@ -248,13 +248,16 @@ class TrackerFragment : Fragment() {
             val firstDate = week.days.first().date
             val lastDate = week.days.last().date
             if (firstDate.yearMonth == lastDate.yearMonth) {
-                headerTitle.text = firstDate.yearMonth.toString()
+                headerTitle.text = "${month?.month?.name}/${month?.year}"
             } else {
                 headerTitle.text =
                     "${firstDate.year},${firstDate.month.ordinal} - ${lastDate.year},${lastDate.month.ordinal}"
+
+//                headerTitle.text =
+//                    "${firstDate.month.name}/${firstDate.year} - ${lastDate.month.name}/${lastDate.year}"
             }
         } else {
-            headerTitle.text = month.toString()
+            headerTitle.text = "${month?.month?.name}/${month?.year}"
         }
         Log.d("UPDATE HEADER", month.toString())
     }

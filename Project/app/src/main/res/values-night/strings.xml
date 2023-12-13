@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nutrition_needs">Nutrition Needs</string>
+    <string name="fat">Fat</string>
+    <string name="protein">Protein</string>
+    <string name="carbo">Carbo</string>
+    <string name="calorie">Calorie</string>
+</resources>

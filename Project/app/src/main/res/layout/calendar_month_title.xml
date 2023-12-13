@@ -9,13 +9,22 @@
 
     <TextView
         android:id="@+id/tv_month"
-        style="@style/TextAppearance.FitSync.TitleLarge"
+        style="@style/TextAppearance.FitSync.TitleMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="?attr/colorOnBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="December" />
+
+    <TextView
+        app:layout_constraintBottom_toBottomOf="@id/cb_week_mode"
+        app:layout_constraintTop_toTopOf="@id/cb_week_mode"
+        app:layout_constraintEnd_toStartOf="@id/cb_week_mode"
+        android:text="Week Mode"
+        style="@style/TextAppearance.FitSync.LabelMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <CheckBox
         android:id="@+id/cb_week_mode"

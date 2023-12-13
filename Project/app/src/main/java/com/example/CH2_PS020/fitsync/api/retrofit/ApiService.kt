@@ -2,6 +2,7 @@ package com.example.CH2_PS020.fitsync.api.retrofit
 
 import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
+import com.example.CH2_PS020.fitsync.api.response.NutritionResponse
 import com.example.CH2_PS020.fitsync.api.response.PostBMIResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import okhttp3.MultipartBody
@@ -95,11 +96,11 @@ interface ApiService {
     @FormUrlEncoded
     @PATCH("me")
     suspend fun editProfile(
-        @Field("name") name : String,
-        @Field("height") height : String,
-        @Field("weight") weight : String,
-        @Field("gender") gender : String,
-    ) : UserResponse
+        @Field("name") name: String,
+        @Field("height") height: String,
+        @Field("weight") weight: String,
+        @Field("gender") gender: String,
+    ): UserResponse
 
     @GET("me")
     suspend fun getMe(): UserResponse
@@ -135,8 +136,11 @@ interface ApiService {
     @Multipart
     @PUT("me/photo")
     suspend fun updatePhoto(
-        @Part file :MultipartBody.Part
-    ) : UserResponse
+        @Part file: MultipartBody.Part
+    ): UserResponse
+
+    @GET("/me/recommendation/nutrition")
+    suspend fun getEstimatedNutrition(): NutritionResponse
 
 
 }

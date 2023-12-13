@@ -3,6 +3,7 @@ package com.example.CH2_PS020.fitsync.data
 import androidx.lifecycle.liveData
 import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
+import com.example.CH2_PS020.fitsync.api.response.NutritionResponse
 import com.example.CH2_PS020.fitsync.api.response.PostBMIResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import com.example.CH2_PS020.fitsync.api.retrofit.ApiService
@@ -216,6 +217,18 @@ class FitSyncRepository constructor(
         }
     }
 
+    fun getEstimatedNutrition() = liveData  {
+        emit(Result.Loading)
+        try {
+            val success = apiService.getEstimatedNutrition()
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, NutritionResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
 
     fun uploadPhoto(imageFile: File) = liveData {
         emit(Result.Loading)

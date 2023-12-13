@@ -18,6 +18,7 @@ import com.example.CH2_PS020.fitsync.util.BMICalculator
 import com.example.CH2_PS020.fitsync.util.GreetingGenerator
 import com.example.CH2_PS020.fitsync.util.ViewModelFactory
 import java.util.Locale
+import kotlin.math.roundToInt
 
 class HomeFragment : Fragment() {
 
@@ -75,10 +76,40 @@ class HomeFragment : Fragment() {
             }
         }
 
+        viewModel.getEstimatedNutrition().observe(this){result->
+            when(result){
+                is Result.Loading->showLoading(true)
+                is Result.Success->{
+                    val data = result.data.nutrition
+                    if (data != null) {
+                        bindingDataNutrition(data.estimatedCalories,data.estimatedCarbohydrates,data.estimatedProteinMean,data.estimatedFat)
+                        showLoading(false)
+                    }
+                }
+                is Result.Error-> {
+                    showLoading(false)
+                    Toast.makeText(requireContext(), "Error Loading Data", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+
         return binding.root
     }
 
-
+    fun bindingDataNutrition(
+        cal: Float?,
+        carbo: Float?,
+        protein: Float?,
+        fat: Float?
+    ){
+        binding.apply {
+            tvCalorie.text = getString(R.string.nutrition_calorie,cal?.roundToInt())
+            tvCarbo.text = getString(R.string.nutrition_gram,carbo?.roundToInt())
+            tvProtein.text = getString(R.string.nutrition_gram,protein?.roundToInt())
+            tvFat.text = getString(R.string.nutrition_gram,fat?.roundToInt())
+        }
+    }
     fun bindingData(
         name: String,
         photoUrl: String,
