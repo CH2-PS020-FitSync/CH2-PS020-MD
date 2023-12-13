@@ -1,5 +1,6 @@
 package com.example.CH2_PS020.fitsync.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,9 @@ import com.example.CH2_PS020.fitsync.util.AgeConverter
 import com.example.CH2_PS020.fitsync.util.BMICalculator
 import com.example.CH2_PS020.fitsync.util.GreetingGenerator
 import com.example.CH2_PS020.fitsync.util.ViewModelFactory
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 import java.util.Locale
 
 class HomeFragment : Fragment() {
@@ -42,7 +46,37 @@ class HomeFragment : Fragment() {
         binding.ibRefresh.setOnClickListener {
             refresh()
         }
+        val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
+        val lastLoginDate = sharedPreferences.getString(LAST_LOGIN_DATE_KEY, "")
+        val currentDate = getCurrentDate()
+        val dayStreak = calculateDayStreak(lastLoginDate, currentDate)
+        val dayStreakText = "Day Streak: $dayStreak"
+        binding.tvDayStreak.text = dayStreakText
+        if (dayStreak <= 10) {
+            binding.tvQuoteStreak.text = getString(R.string.quote_dayuntil10)
+        } else if (dayStreak <= 21) {
+            binding.tvQuoteStreak.text = getString(R.string.quote_dayuntil21)
+        } else {
+            binding.tvQuoteStreak.text = getString(R.string.quote_dayuntilend)
+        }
+
+
+
         return binding.root
+    }
+    private fun getCurrentDate(): String {
+        val currentDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern(resources.getString(R.string.dateFormat))
+        return currentDate.format(formatter)
+    }
+    private fun calculateDayStreak(lastLoginDate: String?, currentDate: String): Int {
+        if (lastLoginDate.isNullOrEmpty()) {
+            return 1
+        }
+        val lastLogin = LocalDate.parse(lastLoginDate)
+        val current = LocalDate.parse(currentDate)
+        val daysBetween = ChronoUnit.DAYS.between(lastLogin, current).toInt()
+        return if (daysBetween > 0) daysBetween + 1 else 1
     }
 
     private fun refresh() {
@@ -174,6 +208,10 @@ class HomeFragment : Fragment() {
 
     private fun showRefresh(isRefresh: Boolean) {
         binding.ibRefresh.visibility = if (isRefresh) View.VISIBLE else View.INVISIBLE
+    }
+
+    companion object {
+        const val LAST_LOGIN_DATE_KEY = "lastLoginDate"
     }
 
 

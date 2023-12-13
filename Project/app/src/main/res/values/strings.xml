@@ -164,5 +164,8 @@
     <string name="pref_key_notify">notif_key</string>
     <string name="refresh">Refresh</string>
     <string name="nutrition_corner">Nutrition Corner</string>
+    <string name="quote_dayuntil10">Keep it Up Companion</string>
+    <string name="quote_dayuntil21">It\'s hot here! push yourself</string>
+    <string name="quote_dayuntilend">WOAHHHH BRIGHT IT ON Companion</string>
 
 </resources>

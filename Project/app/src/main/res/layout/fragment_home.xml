@@ -179,7 +179,7 @@
 
         <TextView
             android:id="@+id/tv_dayStreak"
-            style="@style/TextAppearance.FitSync.LabelMedium"
+            style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -191,10 +191,10 @@
 
         <TextView
             android:id="@+id/tv_quoteStreak"
-            style="@style/TextAppearance.FitSync.LabelMedium"
+            style="@style/TextAppearance.FitSync.TitleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="5dp"
             android:text="@string/days_streak"
             android:textColor="?attr/colorOnBackground"
             app:layout_constraintEnd_toEndOf="parent"
