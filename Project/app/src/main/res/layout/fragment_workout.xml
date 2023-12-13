@@ -30,6 +30,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.search.SearchView
+        android:id="@+id/searchView"
         style="@style/Widget.App.SearchView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

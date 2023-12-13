@@ -106,7 +106,7 @@ interface ApiService {
 
     @GET("exercises")
     suspend fun getExercises(
-        @Query("titleStartsWith") titleStartsWith: String? = null,
+        @Query("title") titleStartsWith: String? = null,
         @Query("type") type: String? = null,
         @Query("level") level: String? = null,
         @Query("gender") gender: String? = null,
