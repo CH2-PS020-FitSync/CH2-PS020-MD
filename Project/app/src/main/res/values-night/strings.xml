@@ -5,4 +5,7 @@
     <string name="protein">Protein</string>
     <string name="carbo">Carbo</string>
     <string name="calorie">Calorie</string>
+    <string name="last_workout">Last Workout</string>
+    <string name="show_more">Show more</string>
+    <string name="recent_workouts">Recent Workouts</string>
 </resources>

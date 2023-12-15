@@ -184,5 +184,8 @@
     <string name="nameCC2">Alida Shidqiya Naifa Ulmuflikhun\n C248BSX4205</string>
     <string name="nameMD1">Vincent\n A694BSY2946</string>
     <string name="nameMD2">Hidayat\n A550BKY4421</string>
+    <string name="last_workout">Last Workout</string>
+    <string name="show_more">Show more</string>
+    <string name="recent_workouts">Recent Workouts</string>
 
 </resources>

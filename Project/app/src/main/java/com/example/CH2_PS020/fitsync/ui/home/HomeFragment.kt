@@ -1,12 +1,15 @@
 package com.example.CH2_PS020.fitsync.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,8 +17,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.CH2_PS020.fitsync.R
 import com.example.CH2_PS020.fitsync.api.response.ExercisesItem
+import com.example.CH2_PS020.fitsync.api.response.WorkoutsItem
 import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentHomeBinding
+import com.example.CH2_PS020.fitsync.ui.historyWorkout.HistoryActivity
+import com.example.CH2_PS020.fitsync.ui.historyWorkout.HistoryAdapter
+import com.example.CH2_PS020.fitsync.ui.historyWorkout.HistoryModel
+import com.example.CH2_PS020.fitsync.ui.tracker.slider.utcToLocal
 import com.example.CH2_PS020.fitsync.util.AgeConverter
 import com.example.CH2_PS020.fitsync.util.BMICalculator
 import com.example.CH2_PS020.fitsync.util.GreetingGenerator
@@ -32,7 +40,8 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeViewModel> {
         ViewModelFactory.getInstance(requireContext(), true)
     }
-
+    private var userWorkouts: List<WorkoutsItem?>? = null
+    private var userHistory: MutableList<HistoryModel?>? = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentHomeBinding.inflate(layoutInflater)
@@ -45,6 +54,7 @@ class HomeFragment : Fragment() {
         getMe()
         getRecommended()
         getEstimatedNutrition()
+        getMeWorkouts()
         binding.ibRefresh.setOnClickListener {
             refresh()
         }
@@ -62,15 +72,21 @@ class HomeFragment : Fragment() {
             binding.tvQuoteStreak.text = getString(R.string.quote_dayuntilend)
         }
 
-
+        binding.showMoreHistory.setOnClickListener {
+            val intent = Intent(requireContext(),HistoryActivity::class.java)
+            intent.putExtra("source","home")
+            startActivity(intent)
+        }
 
         return binding.root
     }
+
     private fun getCurrentDate(): String {
         val currentDate = LocalDate.now()
         val formatter = DateTimeFormatter.ofPattern(resources.getString(R.string.dateFormat))
         return currentDate.format(formatter)
     }
+
     private fun calculateDayStreak(lastLoginDate: String?, currentDate: String): Int {
         if (lastLoginDate.isNullOrEmpty()) {
             return 1
@@ -152,18 +168,24 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun getEstimatedNutrition(){
-        viewModel.getEstimatedNutrition().observe(this){result->
-            when(result){
-                is Result.Loading->showLoading(true)
-                is Result.Success->{
+    private fun getEstimatedNutrition() {
+        viewModel.getEstimatedNutrition().observe(this) { result ->
+            when (result) {
+                is Result.Loading -> showLoading(true)
+                is Result.Success -> {
                     val data = result.data.nutrition
                     if (data != null) {
-                        bindingDataNutrition(data.estimatedCalories,data.estimatedCarbohydrates,data.estimatedProteinMean,data.estimatedFat)
+                        bindingDataNutrition(
+                            data.estimatedCalories,
+                            data.estimatedCarbohydrates,
+                            data.estimatedProteinMean,
+                            data.estimatedFat
+                        )
                         showLoading(false)
                     }
                 }
-                is Result.Error-> {
+
+                is Result.Error -> {
                     showLoading(false)
                     Toast.makeText(requireContext(), "Error Loading Data", Toast.LENGTH_SHORT)
                         .show()
@@ -171,19 +193,98 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    private fun getMeExercises(exerciseID: String) {
+        viewModel.getExerciseByID(exerciseID).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    showLoading(true)
+                }
+
+                is Result.Success -> {
+                    showLoading(false)
+                    val exercise = result.data.exercise
+                    if (exercise != null) {
+                        val history = HistoryModel(
+                            id = exercise.id,
+                            gif = exercise.gif,
+                            level=exercise.level,
+                            jpg = exercise.jpg,
+                            title = exercise.title,
+                            type = exercise.type,
+                            bodyPart = exercise.bodyPart,
+                            desc = exercise.desc,
+                            dateDone = getExerciseDateDone(exercise.id.toString()),
+                            duration = exercise.duration
+                        )
+                        userHistory?.add(history)
+                        Log.d("History List",userHistory.toString())
+                        showHistoryRecyclerView(userHistory)
+                    }
+
+                }
+
+                is Result.Error -> {
+                    showLoading(false)
+                    showError(result.error)
+                }
+            }
+
+        }
+    }
+
+    private fun getExerciseDateDone(exerciseID: String): String {
+        val workoutWithExercise = userWorkouts?.find { it?.exerciseId == exerciseID }
+        return utcToLocal(workoutWithExercise?.date)
+    }
+
+    private fun getMeWorkouts() {
+        viewModel.getWorkoutHistory(limit = 5).observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    showLoading(true)
+                }
+
+                is Result.Success -> {
+                    showLoading(false)
+                    userWorkouts = result.data.workouts
+                    userWorkouts?.forEach {
+                        Log.d("userWorkouts", it?.date.toString())
+                        getMeExercises(it?.exerciseId.toString())
+                    }
+                    turnOnRecentVisibility()
+                }
+
+                is Result.Error -> {
+                    showLoading(false)
+                    showError(result.error)
+                }
+            }
+        }
+    }
+
+    private fun turnOnRecentVisibility() {
+        binding.apply {
+            titleRecentWorkouts.isVisible = true
+            showMoreHistory.isVisible = true
+            rvHistoryWorkout.isVisible = true
+        }
+    }
+
     private fun bindingDataNutrition(
         cal: Float?,
         carbo: Float?,
         protein: Float?,
         fat: Float?
-    ){
+    ) {
         binding.apply {
-            tvCalorie.text = getString(R.string.nutrition_calorie,cal?.roundToInt())
-            tvCarbo.text = getString(R.string.nutrition_gram,carbo?.roundToInt())
-            tvProtein.text = getString(R.string.nutrition_gram,protein?.roundToInt())
-            tvFat.text = getString(R.string.nutrition_gram,fat?.roundToInt())
+            tvCalorie.text = getString(R.string.nutrition_calorie, cal?.roundToInt())
+            tvCarbo.text = getString(R.string.nutrition_gram, carbo?.roundToInt())
+            tvProtein.text = getString(R.string.nutrition_gram, protein?.roundToInt())
+            tvFat.text = getString(R.string.nutrition_gram, fat?.roundToInt())
         }
     }
+
     fun bindingData(
         name: String,
         photoUrl: String,
@@ -235,6 +336,12 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun showHistoryRecyclerView(exercises: List<HistoryModel?>?) {
+        binding.rvHistoryWorkout.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvHistoryWorkout.adapter = HistoryAdapter(exercises)
+    }
+
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -242,6 +349,12 @@ class HomeFragment : Fragment() {
 
     private fun showRefresh(isRefresh: Boolean) {
         binding.ibRefresh.visibility = if (isRefresh) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun showError(msg: String) {
+        showLoading(false)
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT)
+            .show()
     }
 
     companion object {

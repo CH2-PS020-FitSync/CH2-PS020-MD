@@ -403,6 +403,7 @@ class TrackerFragment : Fragment() {
                                 val context = container.view.context
                                 val intent = Intent(context,HistoryActivity::class.java)
                                 intent.putExtra("date",container.day.date.toString())
+                                intent.putExtra("source","tracker")
                                 startActivity(intent)
                             }
                         }
