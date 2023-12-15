@@ -1,10 +1,12 @@
 package com.example.CH2_PS020.fitsync.api.retrofit
 
 import com.example.CH2_PS020.fitsync.api.response.BMIResponse
+import com.example.CH2_PS020.fitsync.api.response.ExerciseByIDResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
 import com.example.CH2_PS020.fitsync.api.response.NutritionResponse
 import com.example.CH2_PS020.fitsync.api.response.PostBMIResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
+import com.example.CH2_PS020.fitsync.api.response.WorkoutsResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -15,6 +17,7 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -144,6 +147,22 @@ interface ApiService {
 
     @GET("/me/recommendation/nutrition")
     suspend fun getEstimatedNutrition(): NutritionResponse
+
+    @GET("/me/workouts")
+    suspend fun getMeWorkouts(
+        @Query("dateFrom") dateFrom: String? = null,
+        @Query("dateTo") dateTo: String? = null,
+        @Query("ratingFrom") ratingFrom: Int? = null,
+        @Query("ratingTo") ratingTo: Int? = null,
+        @Query("orderType") orderType: String? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null,
+    ):WorkoutsResponse
+
+    @GET("/exercises/{id}")
+    suspend fun getExerciseByID(
+        @Path("id") exerciseID:String
+    ):ExerciseByIDResponse
 
 
 }

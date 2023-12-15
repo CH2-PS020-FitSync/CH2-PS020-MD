@@ -3,10 +3,12 @@ package com.example.CH2_PS020.fitsync.data
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.example.CH2_PS020.fitsync.api.response.BMIResponse
+import com.example.CH2_PS020.fitsync.api.response.ExerciseByIDResponse
 import com.example.CH2_PS020.fitsync.api.response.ExercisesResponse
 import com.example.CH2_PS020.fitsync.api.response.NutritionResponse
 import com.example.CH2_PS020.fitsync.api.response.PostBMIResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
+import com.example.CH2_PS020.fitsync.api.response.WorkoutsResponse
 import com.example.CH2_PS020.fitsync.api.retrofit.ApiService
 import com.example.CH2_PS020.fitsync.data.model.UserModel
 import com.example.CH2_PS020.fitsync.util.SessionsPreferences
@@ -16,6 +18,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.HttpException
+import retrofit2.http.Query
 import java.io.File
 
 class FitSyncRepository constructor(
@@ -218,7 +221,7 @@ class FitSyncRepository constructor(
         }
     }
 
-    fun getEstimatedNutrition() = liveData  {
+    fun getEstimatedNutrition() = liveData {
         emit(Result.Loading)
         try {
             val success = apiService.getEstimatedNutrition()
@@ -259,6 +262,52 @@ class FitSyncRepository constructor(
             val jsonInString = e.response()?.errorBody()?.string()
             Log.d("FitSyncRepository", "JSON response: $jsonInString")
             val errorBody = Gson().fromJson(jsonInString, ExercisesResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun getMeWorkouts(
+        dateFrom: String? = null,
+        dateTo: String? = null,
+        ratingFrom: Int? = null,
+        ratingTo: Int? = null,
+        orderType: String? = null,
+        limit: Int? = null,
+        offset: Int? = null,
+    ) = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.getMeWorkouts(
+                dateFrom,
+                dateTo,
+                ratingFrom,
+                ratingTo,
+                orderType,
+                limit,
+                offset
+            )
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            Log.d("FitSyncRepository", "JSON response: $jsonInString")
+            val errorBody = Gson().fromJson(jsonInString, WorkoutsResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun getExerciseByID(
+        exerciseID:String
+    ) = liveData{
+        emit(Result.Loading)
+        try {
+            val success = apiService.getExerciseByID(exerciseID)
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            Log.d("FitSyncRepository", "JSON response: $jsonInString")
+            val errorBody = Gson().fromJson(jsonInString, ExerciseByIDResponse::class.java)
             val errorMessage = errorBody.message.toString()
             emit(Result.Error(errorMessage))
         }

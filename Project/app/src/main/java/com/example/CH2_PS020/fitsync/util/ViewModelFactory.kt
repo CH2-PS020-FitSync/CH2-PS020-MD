@@ -8,6 +8,7 @@ import com.example.CH2_PS020.fitsync.data.FitSyncRepository
 import com.example.CH2_PS020.fitsync.di.Injection
 import com.example.CH2_PS020.fitsync.ui.account.AccountViewModel
 import com.example.CH2_PS020.fitsync.ui.account.EditProfileViewModel
+import com.example.CH2_PS020.fitsync.ui.historyWorkout.HistoryViewModel
 import com.example.CH2_PS020.fitsync.ui.home.HomeViewModel
 import com.example.CH2_PS020.fitsync.ui.login.LoginViewModel
 import com.example.CH2_PS020.fitsync.ui.register.RegisterVerifViewModel
@@ -58,6 +59,10 @@ class ViewModelFactory(private val repository: FitSyncRepository) :
 
             modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
                 EditProfileViewModel(repository) as T
+            }
+
+            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
+                HistoryViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

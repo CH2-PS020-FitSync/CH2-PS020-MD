@@ -22,4 +22,14 @@ class TrackerViewModel(private val repository: FitSyncRepository) : ViewModel() 
     ) = repository.postBMI(height, weight, date)
 
     fun getLatestBMI() = repository.getMe()
+
+    fun getWorkoutHistory(
+        dateFrom: String? = null,
+        dateTo: String? = null,
+        ratingFrom: Int? = null,
+        ratingTo: Int? = null,
+        orderType: String? = null,
+        limit: Int? = null,
+        offset: Int? = null,
+    ) = repository.getMeWorkouts(dateFrom, dateTo, ratingFrom, ratingTo, orderType, limit, offset)
 }

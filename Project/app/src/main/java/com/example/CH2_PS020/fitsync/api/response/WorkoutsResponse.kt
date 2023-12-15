@@ -15,15 +15,20 @@ data class WorkoutsResponse(
 )
 
 data class WorkoutsItem(
-
-	@field:SerializedName("createdAt")
-	val createdAt: String? = null,
+	@field:SerializedName("id")
+	val id: String? = null,
 
 	@field:SerializedName("exerciseId")
 	val exerciseId: String? = null,
 
-	@field:SerializedName("id")
-	val id: String? = null,
+	@field:SerializedName("rating")
+	val rating: String? = null,
+
+	@field:SerializedName("date")
+	val date: String? = null,
+
+	@field:SerializedName("createdAt")
+	val createdAt: String? = null,
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String? = null

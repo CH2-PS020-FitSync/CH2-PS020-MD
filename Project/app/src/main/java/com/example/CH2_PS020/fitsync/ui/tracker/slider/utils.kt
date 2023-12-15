@@ -2,7 +2,11 @@ package com.example.CH2_PS020.fitsync.ui.tracker.slider
 
 import android.graphics.Color
 import android.util.Log
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
@@ -77,9 +81,19 @@ fun utcToLocal(date: String?): String {
         e.printStackTrace()
         "INVALID DATE FORMAT"
     }
-
 }
 
+fun localToUtc(dateIso:String):String{
+    // Parse the input string
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
+    val inputDatetime = ZonedDateTime.parse(dateIso, formatter)
+
+    // Convert to UTC
+    val utcDatetime = inputDatetime.withZoneSameInstant(ZoneOffset.UTC)
+
+    // Format the result as a string
+    return utcDatetime.format(formatter)
+}
 fun formatDoubleToOneDecimalPlace(value: Double): Double {
     val formattedString = String.format("%.1f", value).replace(",", ".")
     return formattedString.toDouble()

@@ -2,6 +2,7 @@ package com.example.CH2_PS020.fitsync.ui.tracker
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,8 +26,10 @@ import com.example.CH2_PS020.fitsync.api.response.BmisItem
 import com.example.CH2_PS020.fitsync.api.response.BMIResponse
 import com.example.CH2_PS020.fitsync.api.response.LatestBMI
 import com.example.CH2_PS020.fitsync.api.response.User
+import com.example.CH2_PS020.fitsync.api.response.WorkoutsItem
 import com.example.CH2_PS020.fitsync.data.Result
 import com.example.CH2_PS020.fitsync.databinding.FragmentTrackerBinding
+import com.example.CH2_PS020.fitsync.ui.historyWorkout.HistoryActivity
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.DayViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.calendar.WeekDayViewContainer
 import com.example.CH2_PS020.fitsync.ui.tracker.slider.bmiToBias
@@ -84,6 +87,7 @@ class TrackerFragment : Fragment() {
     private var bmis: List<BmisItem?>? = null
     private var latestBMI: LatestBMI? = null
     private var pickedWeight: Float? = null
+    private var userWorkouts: List<WorkoutsItem?>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -164,8 +168,22 @@ class TrackerFragment : Fragment() {
 
                 is Result.Success -> {
                     bmis = result.data.bmis
-                    setupCalendar()
+                    //setupCalendar()
                     setupChart()
+                    showLoading(false)
+                }
+
+                is Result.Error -> {
+                    showError(result.error)
+                }
+            }
+        }
+        viewModel.getWorkoutHistory().observe(this) { result ->
+            when (result) {
+                is Result.Loading -> showLoading(true)
+                is Result.Success -> {
+                    userWorkouts = result.data.workouts
+                    setupCalendar()
                     showLoading(false)
                 }
 
@@ -335,12 +353,19 @@ class TrackerFragment : Fragment() {
             override fun bind(container: WeekDayViewContainer, data: WeekDay) {
                 container.day = data
                 container.textView.text = data.date.dayOfMonth.toString()
-                val dates = bmis?.map {
+                val dates = userWorkouts?.map {
                     utcToLocal(it?.date)
                 }
                 if (dates != null) {
                     if (dates.contains(data.date.toString())) {
                         container.bar.visibility = View.VISIBLE
+                        //click listener here,how
+                        container.view.setOnClickListener {
+                            val context = container.view.context
+                            val intent = Intent(context,HistoryActivity::class.java)
+                            intent.putExtra("date",container.day.date.toString())
+                            startActivity(intent)
+                        }
                     }
                 }
 
@@ -368,12 +393,18 @@ class TrackerFragment : Fragment() {
                 override fun bind(container: DayViewContainer, data: CalendarDay) {
                     container.textView.text = data.date.dayOfMonth.toString()
                     container.day = data
-                    val dates = bmis?.map {
+                    val dates = userWorkouts?.map {
                         utcToLocal(it?.date)
                     }
                     if (dates != null) {
                         if (dates.contains(data.date.toString())) {
                             container.bar.visibility = View.VISIBLE
+                            container.view.setOnClickListener {
+                                val context = container.view.context
+                                val intent = Intent(context,HistoryActivity::class.java)
+                                intent.putExtra("date",container.day.date.toString())
+                                startActivity(intent)
+                            }
                         }
                     }
                 }

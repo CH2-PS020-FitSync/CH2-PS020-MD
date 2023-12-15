@@ -1,9 +1,11 @@
 package com.example.CH2_PS020.fitsync.ui.tracker.calendar
 
+import android.content.Intent
 import com.kizitonwose.calendar.core.WeekDay
 import android.util.Log
 import android.view.View
 import com.example.CH2_PS020.fitsync.databinding.CalendarDayLayoutBinding
+import com.example.CH2_PS020.fitsync.ui.historyWorkout.HistoryActivity
 import com.kizitonwose.calendar.view.ViewContainer
 
 //Create your view container which acts as a view holder for each date cell.
