@@ -1,6 +1,7 @@
 package com.example.CH2_PS020.fitsync.ui.login
 
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -74,7 +75,8 @@ class LoginActivity : AppCompatActivity() {
                         val refreshToken = result.data.user?.refreshToken.toString()
                         val name = result.data.user?.name
                         if (accessToken != null) {
-                            if (result.data.user.latestBMI?.height == null || result.data.user.latestBMI.weight == null || result.data.user.gender ==null) {
+                            if (result.data.user.goalWeight?.isNotBlank() == true) {
+                                Log.e(TAG, "loginPhase: ${result.data.user.latestBMI?.height}", )
                                 dialogBodyProfile(accessToken)
                                 lifecycleScope.launch {
                                     viewModel.saveSessions(
