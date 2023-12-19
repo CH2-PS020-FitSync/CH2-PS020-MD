@@ -9,12 +9,10 @@ object BMICalculator {
         val weightDouble = parseDoubleWithCommaAsDecimalSeparator(weight)
         val heightDouble = parseDoubleWithCommaAsDecimalSeparator(height)
 
-        if (weightDouble == null || heightDouble == null || weightDouble <= 0 || heightDouble <= 0) {
-            throw IllegalArgumentException("Weight and height must be valid positive numbers")
-        }
 
-        val heightInMeters = heightDouble / 100
-        val bmi = weightDouble / heightInMeters.pow(2)
+
+        val heightInMeters = heightDouble?.div(100)
+        val bmi = heightInMeters?.let { weightDouble?.div(it.pow(2)) }
         return String.format(Locale.getDefault(), "%.2f", bmi)
     }
 

@@ -118,7 +118,7 @@
     <string name="bmi">BMI</string>
     <string name="weight_chart">Weight Chart</string>
     <string name="add_body_weight">Add Body Weight</string>
-    <string name="birthday">Birthday : %1S</string>
+    <string name="birthday">Birthday :</string>
     <string name="body_bmi">Ideal Weight (22)</string>
 
     //Error

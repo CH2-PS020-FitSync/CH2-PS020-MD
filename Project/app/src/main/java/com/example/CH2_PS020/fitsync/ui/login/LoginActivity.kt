@@ -74,19 +74,29 @@ class LoginActivity : AppCompatActivity() {
                         val refreshToken = result.data.user?.refreshToken.toString()
                         val name = result.data.user?.name
                         if (accessToken != null) {
-                            lifecycleScope.launch {
-                                viewModel.saveSessions(
-                                    UserModel(
-                                        name.toString(),
-                                        email,
-                                        accessToken,
-                                        refreshToken
-                                    )
-                                )
-                            }
-                            if (result.data.user.latestBMI?.height != null || result.data.user.latestBMI?.weight != null) {
+                            if (result.data.user.latestBMI?.height == null || result.data.user.latestBMI.weight == null || result.data.user.gender ==null) {
                                 dialogBodyProfile(accessToken)
+                                lifecycleScope.launch {
+                                    viewModel.saveSessions(
+                                        UserModel(
+                                            name.toString(),
+                                            email,
+                                            accessToken,
+                                            refreshToken
+                                        )
+                                    )
+                                }
                             } else {
+                                lifecycleScope.launch {
+                                    viewModel.saveSessions(
+                                        UserModel(
+                                            name.toString(),
+                                            email,
+                                            accessToken,
+                                            refreshToken
+                                        )
+                                    )
+                                }
                                 startActivity(Intent(this, WelcomeActivity::class.java))
                             }
                         }
@@ -147,7 +157,7 @@ class LoginActivity : AppCompatActivity() {
                     resources.getString(R.string.dateFormat),
                     it
                 )
-                tvDate.text = resources.getString(R.string.birthday, birth)
+                tvDate.text = birth
             }
         }
 
@@ -228,7 +238,7 @@ class LoginActivity : AppCompatActivity() {
             dialog.findViewById<TextInputEditText>(R.id.edt_weightBodyProfile).setText("")
             dialog.findViewById<TextInputEditText>(R.id.edt_heightBodyProfile).setText("")
             dialog.findViewById<TextInputEditText>(R.id.edt_goalWeight).setText("")
-            tvDate.text = ""
+            tvDate.text = resources.getString(R.string.birthday)
             radioGroupExercise.clearCheck()
             radioGroupGender.clearCheck()
         }
