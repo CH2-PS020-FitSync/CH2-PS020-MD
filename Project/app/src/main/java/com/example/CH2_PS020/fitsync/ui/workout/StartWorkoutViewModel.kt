@@ -10,13 +10,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
+import com.example.CH2_PS020.fitsync.data.FitSyncRepository
 import com.example.CH2_PS020.fitsync.notification.NotificationEndWorkouts
 import com.example.CH2_PS020.fitsync.util.WORKOUT_ID
 import com.example.CH2_PS020.fitsync.util.WORKOUT_TITLE
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
-class StartWorkoutViewModel : ViewModel() {
+class StartWorkoutViewModel(private val repository: FitSyncRepository) : ViewModel() {
     private var timer: CountDownTimer? = null
 
     private val initialTime = MutableLiveData<Long>()
@@ -29,6 +30,9 @@ class StartWorkoutViewModel : ViewModel() {
     private val _eventCountDownFinish = MutableLiveData<Boolean>()
     val eventCountDownFinish: LiveData<Boolean> = _eventCountDownFinish
 
+
+    fun postWorkout(exerciseId: String, rating: Int? = null, date: String? = null) =
+        repository.postWorkout(exerciseId, rating, date)
 
     fun setInitialTime(minuteFocus: Long) {
         val initialTimeMillis = minuteFocus * 60 * 1000

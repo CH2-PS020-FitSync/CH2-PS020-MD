@@ -65,6 +65,10 @@ class ViewModelFactory(private val repository: FitSyncRepository) :
                 HistoryViewModel(repository) as T
             }
 
+            modelClass.isAssignableFrom(StartWorkoutViewModel::class.java) -> {
+                StartWorkoutViewModel(repository) as T
+            }
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

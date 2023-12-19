@@ -8,6 +8,7 @@ import com.example.CH2_PS020.fitsync.api.response.PostBMIResponse
 import com.example.CH2_PS020.fitsync.api.response.UserResponse
 import com.example.CH2_PS020.fitsync.api.response.WorkoutsResponse
 import okhttp3.MultipartBody
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -157,12 +158,20 @@ interface ApiService {
         @Query("orderType") orderType: String? = null,
         @Query("limit") limit: Int? = null,
         @Query("offset") offset: Int? = null,
-    ):WorkoutsResponse
+    ): WorkoutsResponse
+
+    @FormUrlEncoded
+    @POST("/me/workouts")
+    suspend fun postWorkout(
+        @Field("exerciseId") exerciseId: String,
+        @Field("rating") rating: Int? = null,
+        @Field("date") date: String? = null
+    ): WorkoutsResponse
 
     @GET("/exercises/{id}")
     suspend fun getExerciseByID(
-        @Path("id") exerciseID:String
-    ):ExerciseByIDResponse
+        @Path("id") exerciseID: String
+    ): ExerciseByIDResponse
 
 
 }

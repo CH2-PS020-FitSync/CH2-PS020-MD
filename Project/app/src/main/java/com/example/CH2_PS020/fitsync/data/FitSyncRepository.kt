@@ -18,6 +18,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.HttpException
+import retrofit2.http.Field
 import retrofit2.http.Query
 import java.io.File
 
@@ -287,6 +288,24 @@ class FitSyncRepository constructor(
                 limit,
                 offset
             )
+            emit(Result.Success(success))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            Log.d("FitSyncRepository", "JSON response: $jsonInString")
+            val errorBody = Gson().fromJson(jsonInString, WorkoutsResponse::class.java)
+            val errorMessage = errorBody.message.toString()
+            emit(Result.Error(errorMessage))
+        }
+    }
+
+    fun postWorkout(
+      exerciseId: String,
+      rating: Int? = null,
+      date: String? = null
+    ) = liveData {
+        emit(Result.Loading)
+        try {
+            val success = apiService.postWorkout(exerciseId, rating, date)
             emit(Result.Success(success))
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
