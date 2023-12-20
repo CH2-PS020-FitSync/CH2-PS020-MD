@@ -58,4 +58,7 @@ How to run this project:
     - Clone this repository using `git bash`
       `https://github.com/CH2-PS020-FitSync/CH2-PS020-MD.git`
     - Done, you can access the FitSync Application or access the FitSync API.
+   
+## APK FitSync Link 
+[FitSync GDrive](https://drive.google.com/drive/folders/1EShBxUigNsQTUJ4Of7mKjrjdmuSyGO9c?hl=id)
 
