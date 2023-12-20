@@ -18,21 +18,21 @@ This app able to give you some Workouts Recommendation and Nutrition needs for y
 Source code of the application of FitSync using Kotlin Language to complete Bangkit Capstone Project
 
 * Features
-  _+ **Splash Screen**, it will appear FitSync logo before you set up on Landing Page
-  _+ **Login**, Enterance for user to access an application by inserting _Email_ and _Password_ and after login, User must fill _**Body Profile Form**_ for applications need
-  _+ **Register**, if user don't have any account yet, user can make the new one to access the application
-  _+ **Home**, The main first main page that is displayed when you logged in to application, it appears user **Body Profile** such as Username, Gender, Age, Weight, Height, BMI, Favorited Workout, Nutritions: Protein, Carbo , etc. Also using **SharedPreferences** to make it easier for user if already logged before.
-  _+ **All Workouts**, this second page that will display **All Workouts** related by body profile such as **Gender**, **Level**, **Muscle Targets**
-  _+ **Start Workouts**, if user click the All Workouts, it will appear timer that related by Workout minutes data.
-  _+ **Tracker**, this third page allow user to input their **Body Weight** to Weight Chart, and show user _Body Mass Index_
-  _+ **Account**, last page, this page related to Account Preferences, user can change their profile photo or Weight and Height, Enable Notification, Change Dark Theme, and also Logout from the application.
+  _ **Splash Screen**, it will appear FitSync logo before you set up on Landing Page
+  _ **Login**, Enterance for user to access an application by inserting _Email_ and _Password_ and after login, User must fill _**Body Profile Form**_ for applications need
+  _ **Register**, if user don't have any account yet, user can make the new one to access the application
+  _ **Home**, The main first main page that is displayed when you logged in to application, it appears user **Body Profile** such as Username, Gender, Age, Weight, Height, BMI, Favorited Workout, Nutritions: Protein, Carbo , etc. Also using **SharedPreferences** to make it easier for user if already logged before.
+  _ **All Workouts**, this second page that will display **All Workouts** related by body profile such as **Gender**, **Level**, **Muscle Targets**
+  _ **Start Workouts**, if user click the All Workouts, it will appear timer that related by Workout minutes data.
+  _ **Tracker**, this third page allow user to input their **Body Weight** to Weight Chart, and show user _Body Mass Index_
+  _ **Account**, last page, this page related to Account Preferences, user can change their profile photo or Weight and Height, Enable Notification, Change Dark Theme, and also Logout from the application.
 How to run this project:
 
 * Dependencies
-  _+ [Retrofit 2](https://square.github.io/retrofit/)
-  _+ [Lottie Files](https://lottiefiles.com/)
-  _+ [OkHttp](https://square.github.io/okhttp/)
-  _+ [Material Design 3](https://m3.material.io/)
+  _ [Retrofit 2](https://square.github.io/retrofit/)
+  _ [Lottie Files](https://lottiefiles.com/)
+  _ [OkHttp](https://square.github.io/okhttp/)
+  _ [Material Design 3](https://m3.material.io/)
 1.Copy the git link "https://github.com/CH2-PS020-FitSync/CH2-PS020-MD.git"
 
 
