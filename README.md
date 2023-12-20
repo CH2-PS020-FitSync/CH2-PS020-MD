@@ -33,16 +33,29 @@ How to run this project:
   - [Lottie Files](https://lottiefiles.com/)
   - [OkHttp](https://square.github.io/okhttp/)
   - [Material Design 3](https://m3.material.io/)
-1.Copy the git link "https://github.com/CH2-PS020-FitSync/CH2-PS020-MD.git"
+  - [Lifecycle](https://developer.android.com/guide/components/activities/activity-lifecycle?hl=id)
+  - [Android KTX](https://developer.android.com/kotlin/ktx?hl=id)
+  - [Glide](https://github.com/bumptech/glide)
+  - [PinView](https://github.com/mukeshsolanki/android-otpview-pinview)
+  - [Android Coroutine](https://developer.android.com/kotlin/coroutines?hl=id)
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata?hl=id)
+  - [Work Manager KTX](https://developer.android.com/jetpack/androidx/releases/work?hl=id)
+  - [DataStore Preferences](https://developer.android.com/topic/libraries/architecture/datastore?hl=id)
+  - [Calendar View](https://github.com/kizitonwose/Calendar)
+  - [AAChartCore](https://github.com/AAChartModel/AAChartCore)
+  - [Number Picker](https://github.com/ShawnLin013/NumberPicker)
+ 
+### Getting Started Application
+* Prerequisites
+  - Tools Software
+    - [Android Studio](https://developer.android.com/studio?hl=id)
+    - JRE (Java Runtime Enviroment) or JDK (Java Development-Kit).
+  - Installation
+    - Base Url for API
+      - Development = https://fitsync-main-api-k3bfbgtn5q-et.a.run.app
+      - Production = https://prod-fitsync-main-api-k3bfbgtn5q-et.a.run.app
+    - Get an `api-key` from this [Cloud Computing Repository](https://github.com/CH2-PS020-FitSync/CH2-PS020-CC?tab=readme-ov-file#-api-documentation)
+    - Clone this repository using `git bash`
+      `https://github.com/CH2-PS020-FitSync/CH2-PS020-MD.git`
+    - Done, you can access the FitSync Application or access the FitSync API.
 
-
-2.Open Android Studio
-
-
-3.Pick New Project from version control
-
-
-4.Paste the git link
-
-
-5.Ok
