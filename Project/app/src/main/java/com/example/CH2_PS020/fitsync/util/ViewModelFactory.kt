@@ -20,7 +20,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(private val repository: FitSyncRepository) :
+class ViewModelFactory(private val repository: FitSyncRepository, private val context: Context) :
     ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -34,7 +34,7 @@ class ViewModelFactory(private val repository: FitSyncRepository) :
             }
 
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
-                LoginViewModel(repository) as T
+                LoginViewModel(repository, context) as T
             }
 
             modelClass.isAssignableFrom(RegisterVerifViewModel::class.java) -> {
@@ -82,7 +82,7 @@ class ViewModelFactory(private val repository: FitSyncRepository) :
         fun getInstance(context: Context, refresh: Boolean): ViewModelFactory {
             if (INSTANCE == null || refresh) {
                 synchronized(ViewModelFactory::class.java) {
-                    INSTANCE = ViewModelFactory(Injection.provideRepository(context))
+                    INSTANCE = ViewModelFactory(Injection.provideRepository(context), context)
                 }
             }
             return INSTANCE as ViewModelFactory

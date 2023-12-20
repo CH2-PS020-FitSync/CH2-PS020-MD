@@ -32,6 +32,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
+@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val viewModel by viewModels<LoginViewModel> {
@@ -88,8 +89,22 @@ class LoginActivity : AppCompatActivity() {
                                 }
                                 startActivity(Intent(this, WelcomeActivity::class.java))
                             } else {
-                                Log.e(TAG, "loginPhase: ${result.data.user.latestBMI?.height}")
-                                dialogBodyProfile(accessToken)
+                                if (viewModel.isFirstTimeLogin()) {
+                                    viewModel.setFirstTimeLogin(false)
+                                    dialogBodyProfile(accessToken)
+                                } else {
+                                    startActivity(Intent(this, WelcomeActivity::class.java))
+                                }
+                                lifecycleScope.launch {
+                                    viewModel.saveSessions(
+                                        UserModel(
+                                            name.toString(),
+                                            email,
+                                            accessToken,
+                                            refreshToken
+                                        )
+                                    )
+                                }
                             }
                         }
                     }
