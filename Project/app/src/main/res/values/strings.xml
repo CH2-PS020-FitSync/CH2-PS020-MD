@@ -71,7 +71,7 @@
     <string name="retry">Retry</string>
     <string name="greetings">Greetings</string>
     <string name="age_gender">%1$s - %2$s</string>
-    <string name="favorite_workout">Currently Favorited Workouts : \n %1S</string>
+    <string name="favorite_workout">Currently Favorited Workouts : \n</string>
     <string name="card_height">Height : %1S Cm</string>
     <string name="card_weight">Weight : %1S Kg</string>
     <string name="card_bmi">BMI : %1S</string>
@@ -187,5 +187,6 @@
     <string name="last_workout">Last Workout</string>
     <string name="show_more">Show more</string>
     <string name="recent_workouts">Recent Workouts</string>
+    <string name="date_done">Date done</string>
 
 </resources>

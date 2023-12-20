@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:backgroundTint="?attr/colorTertiaryContainer"
     android:elevation="2dp"
-    app:cardCornerRadius="40dp"
+    app:cardCornerRadius="20dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="@string/workout_name"
+            android:layout_marginEnd="20dp"
             android:ellipsize="end"
             android:textColor="?attr/colorOnTertiaryContainer"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
+            android:layout_marginEnd="20dp"
             android:text="@string/level_minutes"
             android:textColor="?attr/colorOnTertiaryContainer"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:layout_marginEnd="20dp"
             android:maxLines="1"
             android:text="@string/target_workout"
             android:textColor="?attr/colorOnTertiaryContainer"
@@ -68,7 +71,8 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Date done"
+            android:layout_marginEnd="20dp"
+            android:text="@string/date_done"
             android:textColor="?attr/colorOnTertiaryContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline"

@@ -285,7 +285,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun bindingData(
+    private fun bindingData(
         name: String,
         photoUrl: String,
         birthDate: String,

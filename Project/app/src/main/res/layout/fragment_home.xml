@@ -179,6 +179,7 @@
                     style="@style/TextAppearance.FitSync.LabelMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_nutrition_needs"
                     tools:text="@string/nutrition_calorie" />
@@ -188,6 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/calorie"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toStartOf="@id/tv_calorie"
                     app:layout_constraintTop_toBottomOf="@id/tv_calorie" />
 
@@ -196,6 +198,7 @@
                     style="@style/TextAppearance.FitSync.LabelMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintEnd_toStartOf="@id/tv_protein"
                     app:layout_constraintStart_toEndOf="@id/tv_calorie"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nutrition_needs"
@@ -206,6 +209,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/carbo"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toStartOf="@id/tv_carbo"
                     app:layout_constraintTop_toBottomOf="@id/tv_carbo" />
 
@@ -214,6 +218,7 @@
                     style="@style/TextAppearance.FitSync.LabelMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintEnd_toStartOf="@id/tv_fat"
                     app:layout_constraintStart_toEndOf="@id/tv_carbo"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nutrition_needs"
@@ -224,6 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/protein"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toStartOf="@id/tv_protein"
                     app:layout_constraintTop_toBottomOf="@id/tv_protein" />
 
@@ -232,6 +238,7 @@
                     style="@style/TextAppearance.FitSync.LabelMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nutrition_needs"
                     tools:text="@string/nutrition_gram" />
@@ -241,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fat"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     app:layout_constraintStart_toStartOf="@id/tv_fat"
                     app:layout_constraintTop_toBottomOf="@id/tv_fat" />
 
@@ -314,7 +322,6 @@
             tools:listitem="@layout/item_home_recommended" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/title_recent_workouts"
             style="@style/TextAppearance.FitSync.TitleMedium"
             android:layout_width="wrap_content"
@@ -322,29 +329,30 @@
             android:layout_marginTop="35dp"
             android:text="@string/recent_workouts"
             android:textColor="?attr/colorOnBackground"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_recommendedWorkouts" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/show_more_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/show_more"
-            android:textColor="#007ACC"
-            android:clickable="true"
             android:background="?android:attr/selectableItemBackground"
-            app:layout_constraintTop_toTopOf="@id/title_recent_workouts"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:clickable="true"
+            android:text="@string/show_more"
+            android:textColor="?attr/colorOnBackground"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title_recent_workouts" />
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:visibility="gone"
             android:id="@+id/rv_history_workout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_recent_workouts"
             tools:itemCount="1"

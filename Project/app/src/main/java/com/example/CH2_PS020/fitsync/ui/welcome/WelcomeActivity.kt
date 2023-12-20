@@ -17,7 +17,6 @@ class WelcomeActivity : AppCompatActivity() {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val name = intent.getStringExtra(NAME)
         binding.tvNameWelcome.text = name
         val handler = Handler(Looper.getMainLooper())

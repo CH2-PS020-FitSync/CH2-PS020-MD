@@ -76,19 +76,6 @@ class LoginActivity : AppCompatActivity() {
                         val name = result.data.user?.name
                         if (accessToken != null) {
                             if (result.data.user.goalWeight?.isNotBlank() == true) {
-                                Log.e(TAG, "loginPhase: ${result.data.user.latestBMI?.height}", )
-                                dialogBodyProfile(accessToken)
-                                lifecycleScope.launch {
-                                    viewModel.saveSessions(
-                                        UserModel(
-                                            name.toString(),
-                                            email,
-                                            accessToken,
-                                            refreshToken
-                                        )
-                                    )
-                                }
-                            } else {
                                 lifecycleScope.launch {
                                     viewModel.saveSessions(
                                         UserModel(
@@ -100,6 +87,9 @@ class LoginActivity : AppCompatActivity() {
                                     )
                                 }
                                 startActivity(Intent(this, WelcomeActivity::class.java))
+                            } else {
+                                Log.e(TAG, "loginPhase: ${result.data.user.latestBMI?.height}")
+                                dialogBodyProfile(accessToken)
                             }
                         }
                     }
@@ -164,7 +154,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnContinue.setOnClickListener {
-            val edtWieght =
+            val edtWeight =
                 dialog.findViewById<TextInputEditText>(R.id.edt_weightBodyProfile).text.toString()
             val edtHeight =
                 dialog.findViewById<TextInputEditText>(R.id.edt_heightBodyProfile).text.toString()
@@ -188,7 +178,7 @@ class LoginActivity : AppCompatActivity() {
                     else -> ""
                 }
             }
-            if (edtWieght.isBlank() || edtHeight.isBlank() || edtGoalWeight.isBlank() || tvDate.text.isBlank() ||
+            if (edtWeight.isBlank() || edtHeight.isBlank() || edtGoalWeight.isBlank() || tvDate.text.isBlank() ||
                 radioGroupGender.checkedRadioButtonId == -1 || radioGroupExercise.checkedRadioButtonId == -1
             ) {
                 Toast.makeText(this@LoginActivity, "Harap isi semua kolom", Toast.LENGTH_SHORT)
@@ -198,7 +188,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.getPatchedMe(
                     authorization,
                     selectedGender, tvDate.text.toString(),
-                    selectedExercise, edtGoalWeight, edtHeight, edtWieght
+                    selectedExercise, edtGoalWeight, edtHeight, edtWeight
                 ).observe(this) { result ->
                     showLoading(true)
                     if (result != null) {

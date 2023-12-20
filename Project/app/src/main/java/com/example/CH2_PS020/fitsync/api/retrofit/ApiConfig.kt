@@ -1,6 +1,5 @@
 package com.example.CH2_PS020.fitsync.api.retrofit
 
-import android.util.Log
 import com.example.CH2_PS020.fitsync.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -18,7 +17,7 @@ class ApiConfig {
             val authInterceptor = Interceptor { chain ->
                 val req = chain.request()
                 val requestHeaders = req.newBuilder()
-                    .addHeader("Authorization", "Bearer $token ")
+                    .addHeader("Authorization", "Bearer $token")
                     .addHeader("x-api-key", BuildConfig.API_KEY)
                     .addHeader("x-smtp-host", "smtp.ethereal.email")
                     .addHeader("x-smtp-port", "587")
@@ -27,6 +26,7 @@ class ApiConfig {
                     .build()
                 chain.proceed(requestHeaders)
             }
+
             val client = OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .addInterceptor(authInterceptor)
@@ -40,6 +40,5 @@ class ApiConfig {
                 .build()
             return retrofit.create(ApiService::class.java)
         }
-
     }
 }
