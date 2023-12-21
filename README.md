@@ -62,3 +62,6 @@ How to run this project:
 ## APK FitSync Link 
 [FitSync GDrive](https://drive.google.com/drive/folders/1EShBxUigNsQTUJ4Of7mKjrjdmuSyGO9c?hl=id)
 
+## FitSync Demo App
+[Demo Application](https://youtu.be/HZVKdfYzABs?si=xwEBEsubdmPlD7-i)
+
