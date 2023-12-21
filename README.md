@@ -18,7 +18,7 @@ This app able to give you some Workouts Recommendation and Nutrition needs for y
 Source code of the application of FitSync using Kotlin Language to complete Bangkit Capstone Project
 
 * Features
-  -**Splash Screen**, it will appear FitSync logo before you set up on Landing Page
+  - **Splash Screen**, it will appear FitSync logo before you set up on Landing Page
   - **Login**, Enterance for user to access an application by inserting _Email_ and _Password_ and after login, User must fill _**Body Profile Form**_ for applications need
   - **Register**, if user don't have any account yet, user can make the new one to access the application
   - **Home**, The main first main page that is displayed when you logged in to application, it appears user **Body Profile** such as Username, Gender, Age, Weight, Height, BMI, Favorited Workout, Nutritions: Protein, Carbo , etc. Also using **SharedPreferences** to make it easier for user if already logged before.
