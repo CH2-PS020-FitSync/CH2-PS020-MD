@@ -55,7 +55,7 @@ How to run this project:
       - Development = https://fitsync-main-api-k3bfbgtn5q-et.a.run.app
       - Production = https://prod-fitsync-main-api-k3bfbgtn5q-et.a.run.app
     - Get an `api-key` from this [Cloud Computing Repository](https://github.com/CH2-PS020-FitSync/CH2-PS020-CC?tab=readme-ov-file#-api-documentation)
-    - Clone this repository using `git bash`
+    - Clone this repository using `git clone`
       `https://github.com/CH2-PS020-FitSync/CH2-PS020-MD.git`
     - Done, you can access the FitSync Application or access the FitSync API.
    
